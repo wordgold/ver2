@@ -1,0 +1,8 @@
+<div class="loading" ng-show="loading"></div>
+<div class="pagination" ng-if="page.list.length">
+	<span ng-if="page.first" ng-click="get(1)">首页</span>
+	<span ng-if="page.first" ng-click="get(page.index-1)">&lt;</span>
+	<span ng-repeat="s in page.list" ng-click="get(s)" ng-class="{'on':s==page.index}">{{s}}</span>
+	<span ng-if="page.last" ng-click="get(page.index+1)">&gt;</span>
+	<span ng-if="page.last" ng-click="get(page.length)">尾页</span>
+</div>

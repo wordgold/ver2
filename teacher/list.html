@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>师资力量</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page ng-init" ng-controller="teacherList">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>师资力量</span></div>
+	<!-- <ul class="class_nav box" ng-if="clist.length">
+		<li>
+			<b>选择专业</b>
+			<label ng-click="setMid(0)" ng-class="{'on':hash.mid==0}">全部</label>
+			<label ng-repeat="s in clist" ng-click="setMid(s.id)" ng-class="{'on':hash.mid==s.id}">{{s.major_name}}</label>
+		</li>
+	</ul> -->
+	<ul class="h_teacher cf box">
+		<li ng-repeat="s in list" class="hover_box">
+			<img ng-src="{{s.logo}}">
+			<div>
+				<h5>— {{s.name}} —</h5>
+				<p><b>主讲课程：</b>{{s.course | slice:28}}<br>
+				<span ng-if="s.fengge"><b>讲课风格：</b>{{s.fengge | slice:28}}</span></p>
+				<a href="<!--#echo var='ver1'-->teacher/item.html?id={{s.id}}" class="btn">查看详情</a>
+			</div>
+		</li>
+	</ul>
+	<!--#include virtual="/include/pagination.html"-->
+	<div class="search_none" ng-if="!loading&&!list.length">
+		很抱歉，暂无与此专业相关老师
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

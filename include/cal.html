@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="keywords" content="中科建安（北京）教育科技有限公司,中科建安,中科建安教育网,注册安全工程师,注册安全工程师培训机构,安全工程师,安全工程师分专业,注册安全工程师讲师,注册安全工程师真题题,注册安全工程师考试时间,注册安全工程师报名时间,2017年注册安全工程师,注册安全工程师最新教材,安全生产法及相关法律知识,安全生产管理知识,安全生产技术,安全生产事故案例分析"/>
+<meta name="description" content="中科建安（北京）教育科技有限公司，简称中科建安教育。中国执业资格考试培训领导品牌，是目前国内规模最大、最强师资阵容的注册安全工程师教育培训机构。"/>
+    <title>在线科学计算器 - 在线小工具</title>
+    <SCRIPT src="<!--#echo var="ver1"-->js/cal.js"></SCRIPT>
+    <style type="text/css">
+        body{
+            background:#fff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font: 400 12px/2 Verdana,"Microsoft YaHei",sans-serif;
+        }
+        table {
+            empty-cells: show;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td,th{padding: 0;word-break: break-all;text-align: left}
+        input{
+            vertical-align: middle;
+            margin: 0;
+        }
+        .checkbox,.radio{
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        .show{
+            width: 442px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            border-radius: 4px;
+            border: 1px #333 solid;
+            padding: 0 9px;
+        }
+        .txt{
+            background: #ddd;
+            border: 1px #999 solid;
+        }
+        .table{
+            width: 462px;
+            background: #eee;
+        }
+        .button{
+            width: 40px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            padding: 0;
+            margin: 1px;
+            background: #fff;
+            background: linear-gradient(to bottom, #fff 0%,#ccc 100%);
+            border: 1px #999 solid;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all ease-out .2s;
+        }
+        .button:hover{
+            background: #ddd;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg index">
+    <FORM name=calc>
+        <TABLE class="table">
+            <TR>
+                <TD class="padding">
+                    <INPUT class="show" readOnly size=40 value=0 name=display></TD>
+            </TR>
+            <TR>
+                <TD class="padding">
+                    <TABLE>
+                        <TR>
+                            <TD width=300>
+                                <INPUT onclick=inputChangCarry(16) type="radio" class="radio"  name=carry>
+                                十六进制
+                                <INPUT onclick=inputChangCarry(10) type="radio" class="radio"  CHECKED name=carry>
+                                十进制
+                                <INPUT onclick=inputChangCarry(8) type="radio" class="radio" name=carry>
+                                八进制
+                                <INPUT onclick=inputChangCarry(2) type="radio" class="radio" name=carry>二进制</TD>
+                            <TD width=162 style="text-align:right">
+                                <INPUT onclick="inputChangAngle('d')" type="radio" class="radio" CHECKED value=d name=angle>
+                                角度制
+                                <INPUT onclick="inputChangAngle('r')" type="radio" class="radio" value=r name=angle>弧度制</TD>
+                        </TR>
+                    </TBODY>
+                </TABLE>
+                <TABLE>
+                    <TR>
+                        <TD width=150>
+                            <INPUT onclick=inputshift() type=checkbox class="checkbox" name=shiftf>
+                            上档功能
+                            <INPUT onclick=inputshift() type=checkbox class="checkbox" name=hypf>双曲函数</TD>
+                        <TD width=180>
+                            <INPUT readOnly class="txt" size=3 name=bracket>
+                            <INPUT readOnly class="txt" size=3 name=memory>
+                            <INPUT readOnly class="txt" size=3 name=operator></TD>
+                        <TD width=132>
+                            <INPUT style="COLOR: red;float:right" onclick="document.calc.display.value = 0" type=button class="button" value="清屏">
+                            <INPUT style="COLOR: red;float:right" onclick=clearall() type=button class="button" value="全清">
+                            <INPUT style="COLOR: red;float:right" onclick=backspace() type=button class="button" value="退格">
+                            </TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+            <TABLE>
+                <TR>
+                    <TD width="150">
+                        <TABLE>
+                            <TR>
+                                <TD>
+                                    <INPUT style="COLOR: blue" onclick="inputfunction('pi','pi')" type=button class="button" value="PI" name=pi></TD>
+                                <TD>
+                                    <INPUT style="COLOR: blue" onclick="inputfunction('e','e')" type=button class="button" value="E " name=e></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('dms','deg')" type=button class="button" value=d.ms name=bt></TD>
+                            </TR>
+                            <TR>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick=addbracket() type=button class="button" value="( "></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick=disbracket() type=button class="button" value=") "></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('ln','exp')" type=button class="button" value="ln" name=ln></TD>
+                            </TR>
+                            <TR>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputtrig('sin','arcsin','hypsin','ahypsin')" type=button class="button" value="sin" name=sin></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="operation('^',7)" type=button class="button" value="x^y"></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('log','expdec')" type=button class="button" value="log" name=log></TD>
+                            </TR>
+                            <TR>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputtrig('cos','arccos','hypcos','ahypcos')" type=button class="button" value="cos" name=cos></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('cube','cubt')" type=button class="button" value="x^3" name=cube></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('!','!')" type=button class="button" value="n!"></TD>
+                            </TR>
+                            <TR>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputtrig('tan','arctan','hyptan','ahyptan')" type=button class="button" value="tan" name=tan></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('sqr','sqrt')" type=button class="button" value="x^2" name=sqr></TD>
+                                <TD>
+                                    <INPUT style="COLOR: #ff00ff" onclick="inputfunction('recip','recip')" type=button class="button" value="1/x"></TD>
+                            </TR>
+                        </TBODY>
+                    </TABLE>
+                </TD>
+                <TD width="60">
+                    <TABLE>
+                        <TR>
+                            <TD>
+                                <INPUT style="COLOR: red" onclick=putmemory() type=button class="button" value="储存"></TD>
+                        </TR>
+                        <TR>
+                            <TD>
+                                <INPUT style="COLOR: red" onclick=getmemory() type=button class="button" value="取存"></TD>
+                        </TR>
+                        <TR>
+                            <TD>
+                                <INPUT style="COLOR: red" onclick=addmemory() type=button class="button" value="累存"></TD>
+                        </TR>
+                        <TR>
+                            <TD>
+                                <INPUT style="COLOR: red" onclick=multimemory() type=button class="button" value="积存"></TD>
+                        </TR>
+                        <TR>
+                            <TD>
+                                <INPUT style="COLOR: red" onclick=clearmemory() type=button class="button" value="清存"></TD>
+                        </TR>
+                    </TBODY>
+                </TABLE>
+            </TD>
+            <TD width=252>
+                <TABLE>
+                    <TR style="text-align:right">
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('7')" type=button class="button" value="7" name=k7></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('8')" type=button class="button" value="8" name=k8></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('9')" type=button class="button" value="9" name=k9></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('/',6)" type=button class="button" value="/"></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('%',6)" type=button class="button" value=取余></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('&amp;',3)" type=button class="button" value="与"></TD>
+                    </TR>
+                    <TR style="text-align:right">
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('4')" type=button class="button" value="4" name=k4></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('5')" type=button class="button" value="5" name=k5></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('6')" type=button class="button" value="6" name=k6></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('*',6)" type=button class="button" value="*"></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="inputfunction('floor','deci')" type=button class="button" value=取整 name=floor></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('|',1)" type=button class="button" value="或"></TD>
+                    </TR>
+                    <TR style="text-align:right">
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('1')" type=button class="button" value="1"></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('2')" type=button class="button" value="2" name=k2></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('3')" type=button class="button" value="3" name=k3></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('-',5)" type=button class="button" value="-"></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('<',4)" type=button class="button" value=左移></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="inputfunction('~','~')" type=button class="button" value="非"></TD>
+                    </TR>
+                    <TR style="text-align:right">
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('0')" type=button class="button" value="0"></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick=changeSign() type=button class="button" value=+/-></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" onclick="inputkey('.')" type=button class="button" value="." name=kp></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('+',5)" type=button class="button" value="+"></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick=result() type=button class="button" value="＝"></TD>
+                        <TD>
+                            <INPUT style="COLOR: red" onclick="operation('x',2)" type=button class="button" value=异或></TD>
+                    </TR>
+                    <TR style="text-align:right">
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('a')" type=button class="button" value="A" name=ka></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('b')" type=button class="button" value="B" name=kb></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('c')" type=button class="button" value="C" name=kc></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('d')" type=button class="button" value="D" name=kd></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('e')" type=button class="button" value="E" name=ke></TD>
+                        <TD>
+                            <INPUT style="COLOR: blue" disabled onclick="inputkey('f')" type=button class="button" value="F" name=kf></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </TD>
+    </TR>
+</TBODY>
+</TABLE>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</FORM>
+</body>
+</html>

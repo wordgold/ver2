@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>在线答题</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init" ng-controller="test">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->test/list.html?mid={{rt.mid}}&type={{rt.type}}" ng-if="rt.type!='grade'">在线题库</a><a ng-href="<!--#echo var="ver1"-->user/history.html?title=学习中心&type=1" ng-if="rt.type=='grade'">学习计划</a>&gt;<span>在线答题</span></div>
+	<div class="test_t box" id="test_top1">
+		<i class="i_point" ng-show="submited&&geted">{{score}}</i>
+		<h2 ng-if="rt.name">{{rt.name}}</h2>
+		<div ng-if="!started" class="test_info">
+			<p>
+				<span>试卷类型：{{info.types}}</span>
+				<span>试卷题量：{{info.total}}</span>
+				<span>考试时长：{{info.times}} 分钟</span>
+				<span>及格/总分：{{info.qualified_point}}/{{info.all_point}}</span>
+			</p>
+			<label class="btn big" ng-click="start()">计时开始</label>
+		</div>
+		<div ng-show="started" class="qtypes">
+			<label ng-click="scroll('ttp'+t.question_type_id)" class="btn" ng-repeat="t in list">{{t.question_type_name}}</label>
+		</div>
+	</div>
+	<div class="box" ng-if="!started" ng-bind-html="html(info.info)"></div>
+	<div class="cf" ng-show="started">
+		<div class="loading" ng-if="!geted"></div>
+		<div class="text_fl box" ng-show="geted" oncopy="return false" onselectstart="return false">
+			<div ng-repeat="t in list" id="ttp{{t.question_type_id}}" ng-init="i=$index">
+				<h3 class="text_type">{{$index | xyz}}. {{t.question_type_name}}</h3>
+				<div class="qtnlist_li" ng-repeat="s in t.question" id="ttq{{s.qid}}">
+					<i class="i_{{s.yesno}}" ng-show="submited"></i>
+					<div class="qtnlist_qt">
+						<div ng-bind-html="html($index+1+'. '+s.question)" ng-class="{'p1':t.question_type_id>2}"></div>
+						<img ng-src="{{s.question_url}}" style="display: block;max-width: 100%;margin: 9px auto">
+						<label ng-repeat="a in s.options" ng-click="goVote(s,a.id)" ng-class="{'on':vote(s.checked,a.id,s.question_type_id)}"><span>{{$index | abcd}}</span>{{a.answer}} <img ng-if="a.answer_url" ng-src="{{a.answer_url}}"></label>
+						<div class="btns" ng-if="showBtn">
+							<a href="javascript:" class="a_check" ng-class="{'on':s.checkStar}" ng-show="s.colled" ng-click="s.checkStar=!s.checkStar">
+								<i class="icon i_fav_h"></i>
+								<span class="a_show">取消收藏</span>
+								<span class="a_hide">确认取消：<u ng-click="delStar(s)">是</u> <u>否</u></span>
+							</a>
+							<a href="javascript:" ng-show="!s.colled" ng-click="addStar(s)">
+								<i class="icon i_fav"></i> 加入收藏
+							</a>
+							<a href="javascript:" ng-if="!submited" class="a_check" ng-class="{'on':s.showA}" ng-click="viewA(s)">
+								<i class="icon i_view"></i>
+								<span class="a_show">查看解析</span>
+								<span class="a_hide">关闭解析</span>
+							</a>
+						</div>
+					</div>
+					<ul ng-show="s.showA||submited">
+						<li ng-if="t.question_type_id<3"><b class="green">参考答案：<span ng-repeat="a in s.options" ng-if="a.is_real">{{$index | abcd}}</span></b> <span class="gray">统计全平台正确率为 {{pen(s.answer_right,s.answer_num)}}</span></li>
+						<li ng-if="s.analysis"><b>参考解析：</b><div ng-bind-html="html(s.analysis)"></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="text_fr" ng-show="geted" id="card">
+			<div class="test_time">
+				用时 <b class="red">{{time}}</b>
+				<label title="计算器" ng-click="cal=!cal"><i class="icon i_ctr"></i>计算器</label>
+				<label ng-if="!submited" title="暂停" ng-click="time_stop()"><i class="icon i_pause"></i>暂停</label>
+			</div>
+			<div class="cards">
+				<div ng-repeat="t in list" class="card">
+					<h4 ng-click="scroll('ttp'+t.question_type_id)">{{$index | xyz}}. {{t.question_type_name}}</h4>
+					<label ng-repeat="s in t.question" class="{{s.yesno}}" ng-class="{'on':s.checked,'submited':submited}" ng-click="scroll('ttq'+s.qid)">{{$index+1}}</label>
+				</div>
+			</div>
+			<a class="btn big" ng-href="{{url}}" ng-if="submited">再做一遍</a>
+			<label class="btn big" ng-if="!submited" ng-click="showSub()">提交试卷</label>
+		</div>
+	</div>
+	<div class="cal" ng-if="cal" style="margin: -121px 0 0 -241px;">
+		<div ng-mousedown="drag($event)"></div>
+		<iframe src="<!--#echo var="ver1"-->include/cal.html" width="462" height="222" frameborder="0"></iframe>
+		<label class="close" ng-click="$parent.cal=false">X</label>
+	</div>
+	<div ng-show="!time_t&&started&&geted&&!submited">
+		<div class="hbg"></div>
+		<div class="alert_panl" ng-show="!showS">
+			<h4>答题暂停中</h4>
+			<label class="btn big" ng-click="time_play()">继续答题</label>
+		</div>
+		<div id="alertM" ng-show="showS" style="width: 500px;margin: -250px">
+			<h4 id="alertT">提交试卷</h4>
+			<div id="alertP" style="text-align: center;margin: 20px 0 0 0">
+				还有 <b class="red">{{qlength}}</b> 道题未做，是否确认交卷？
+				<div class="btns">
+					<label class="btn big" ng-click="showS=false||time_play()">继续答题</label>
+					<label class="btn big" ng-click="submit()">提交试卷</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

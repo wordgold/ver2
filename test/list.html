@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>在线题库</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page ng-init" ng-controller="qlist">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>在线题库</span></div>
+	<ul class="class_nav box">
+		<li>
+			<b>试题类型</b>
+			<label ng-repeat="n in nlist" ng-click="setType(n.type)" ng-class="{'on':rt.type==n.type}">{{n.name}}</label>
+		</li>
+		<!-- <li>
+			<b>报考专业</b>
+			<label ng-repeat="m in mlist" ng-click="setMid(m.id)" ng-class="{'on':rt.mid==m.id}">{{m.major_name}}</label>
+		</li> -->
+		<li ng-if="rt.type!='DayQueston'&&clist.length">
+			<b>报考科目</b>
+			<label ng-class="{'on':rt.cid==0}" ng-click="setCid(0)">不限</label>
+			<label ng-repeat="c in clist" ng-click="setCid(c.id,$index)" ng-class="{'on':rt.cid==c.id}">{{c.course_name}}</label>
+		</li>
+		<li ng-if="dlist.length">
+			<b>二级科目</b>
+			<label ng-class="{'on':rt.did==0}" ng-click="setDid(0)">不限</label>
+			<label ng-repeat="d in dlist" ng-click="setDid(d.id)" ng-class="{'on':rt.did==d.id}">{{d.course_name}}</label>
+		</li>
+	</ul>
+	<div class="box">
+		<ul class="l_qlist qlist bdx" ng-if="rt.type==nlist[0].type&&list.length">
+			<li ng-repeat="c in list" ng-init="c.p=c.zdnums/c.yznums" ng-class="{'last':$last,'odd':$odd,'on':c.showL}">
+				<div ng-click="getS(c)" style="cursor: pointer;">
+					<i class="icon i_plus" ng-hide="c.showL"></i>
+					<i class="icon i_minus" ng-show="c.showL"></i>
+					<i class="icon i_up"></i>
+					{{c.chapter_name}}
+					<span class="gray fr" ng-if="c.yznums">已做：{{c.yznums}}/{{c.nums}}</span>
+					<span class="gray fr" ng-if="!c.yznums">题量：{{c.nums}}</span>
+					<i class="i_bar" ng-if="c.yznums"><u ng-class="{'a':c.p>0.84,'b':c.p>0.69,'c':c.p>0.49}" ng-style="{width:c.yznums/c.nums*100+'%'}"></u></i>
+				</div>
+				<a ng-href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}" class="btn" ng-class="{'on':c.yznums}">{{c.yznums?"再做一次":"开始做题"}}</a>
+				<a ng-if="c.yznums>0" style="right:180px" ng-href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}&keep=1" class="btn">继续答题</a>
+				<ol>
+					<li ng-repeat="s in c.sublist" ng-init="s.p=s.zdnums/s.yznums">
+						{{s.section_name}}
+						<a ng-if="s.nums" ng-href="<!--#echo var="ver1"-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&sid={{s.id}}&name={{s.chapter_name}}-{{s.section_name}}" class="btn">开始做题</a>
+						<label ng-if="!s.nums" class="btn disabled">暂无习题</label>
+						<span class="gray fr" ng-if="s.yznums">已做：{{s.yznums}}/{{s.nums}}</span>
+						<i class="i_bar" ng-if="s.yznums"><u ng-class="{'a':s.p>0.84,'b':s.p>0.69,'c':s.p>0.49}" ng-style="{width:s.yznums/s.nums*100+'%'}"></u></i>
+						<span class="gray fr" ng-if="!s.yznums">题量：{{s.nums}}</span>
+					</li>
+				</ol>
+			</li>
+		</ul>
+		<ul class="l_qlist qlist bdx" ng-if="rt.type==nlist[3].type&&list.length">
+			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
+				{{s.name}}
+				<span class="gray">每日作业({{date}})</span>
+				<a href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid=1&name={{s.name}}-{{date}}" class="btn fr">开始做题</a>
+			</li>
+		</ul>
+		<ul class="d_qlist qlist bdx" ng-if="(rt.type==nlist[1].type||rt.type==nlist[2].type)&&list.length">
+			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
+				<a ng-href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"再做一次":"开始做题"}}</a>
+				<span class="gray fr">已有 {{s.write_num}} 人参考</span>
+				<a href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
+				{{s.title}} <br>
+				<span class="gray">试卷题量：{{s.nums}}</span>
+				<span class="gray">考试时长：{{s.times}} 分钟</span>
+				<span class="gray">及格/总分：{{s.qualified_point}}/{{s.all_point}}</span>
+			</li>
+		</ul>
+		<!--#include virtual="/include/pagination.html"-->
+		<div class="search_none" ng-if="!loading&&!list.length">
+			很抱歉，暂无相关内容
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

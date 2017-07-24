@@ -1,0 +1,122 @@
+<div class="header box ng-init" ng-controller="header">
+	<div class="top_bar f_biger">
+		<div class="page cf">
+			<div class="fl">
+				中科建安教育 :与您携手通过考试 &nbsp;
+				<span ng-if="!user.logined" class="fr" style="margin-left:40px"><a class="tb_a" href="<!--#echo var="ver1"-->user/register.html?href={{href}}">注册</a> <span class="dl">|</span> <a class="tb_a" ng-href="<!--#echo var="ver1"-->user/login.html?href={{href}}">登录</a></span>
+				<span ng-if="user.logined" class="dl" style="width: 140px;" ng-class="{'on':showU}" ng-mouseenter="showU=true" ng-mouseleave="showU=false">&nbsp;
+					<li class="dl_b">
+						<a class="dl_t" href="<!--#echo var='ver1'-->user/history.html">
+						<img ng-src="{{user.logo}}" class="icon i_avastar" ng-if="user.logo">
+						<i class="icon i_avastar" ng-if="!user.logo"></i>{{user.nickname}}<i class="icon i_up"></i></a>
+						<a href="<!--#echo var="ver1"-->user/detail.html">个人资料</a>
+						<a href="<!--#echo var="ver1"-->user/detail.html?type=2">修改密码</a>
+						<a href="javascript:" ng-click="user.out()">退出登录</a>
+					</li>
+				</span>
+			</div>
+			<div class="fr">
+				<span class="dl" style="width: 132px;" ng-class="{'on':nav0}" ng-mouseenter="nav0=true" ng-mouseleave="nav0=false">&nbsp;
+					<li class="dl_b">
+						<a class="dl_t" href="http://www.zkjan.com/user/history.html"><i class="icon i_help"></i>帮助中心<i class="icon i_up"></i></a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=0">新手指南</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=1">支付方式</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=2">售后服务</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=3">服务条款</a>
+					</li>
+				</span>
+				<span class="dl" style="width: 132px;" ng-class="{'on':nav1}" ng-mouseenter="nav1=true" ng-mouseleave="nav1=false">&nbsp;
+					<li class="dl_b">
+						<a target="_blank" class="dl_t" href="<!--#echo var='ver1'-->help/about.html">关于我们<i class="icon i_up"></i></a>
+						<a target="_blank" href="<!--#echo var='ver1'-->help/about.html">公司介绍</a>
+						<a target="_blank" href="">企业荣誉</a>
+						<a target="_blank" href="<!--#echo var='ver1'-->teacher/list.html">师资力量</a>
+						<a target="_blank" href="">特训现场</a>
+					</li>
+				</span>
+				<span ng-if="user.logined">
+				<a class="tb_a" href="<!--#echo var="ver1"-->user/car.html"><i class="icon i_car"></i>购物车(<b class="red">{{user.car}}</b>)</a>
+				<a class="tb_a" href="<!--#echo var="ver1"-->user/news.html"><i class="icon i_ring"></i>通知(<b class="red">{{user.unread}}</b>)</a></span>
+			</div>
+		</div>
+	</div>
+	<div class="page nav f_biger">
+		<h1><a href="<!--#echo var="ver1"-->"><img src="<!--#echo var="ver1"-->images/logo.png" alt="">中科建安</a></h1>
+		<span class="hd_ph"><i class="icon i_phone"></i>全国免费服务热线 010-61705052</span>
+		<span class="hd_ph"><i class="icon i_phone"></i>24小时必过热线 18600798969</span>
+		<form class="header_s" action="<!--#echo var="ver1"-->search.html">
+			<select name="hstype" ng-model="type">
+				<option value="1" selected>视频</option>
+				<option value="2">试题</option>
+			</select>
+			<input type="text" name="hsname" autocomplete="off" ng-model="key" ng-keyup="get(key,type)" ng-focus="get(key,type)" ng-blur="blur()" placeholder="输入搜索内容">
+			<button class="i_search" type="submit"></button>
+			<div ng-if="focus&&list.length>0">
+				<a ng-repeat="s in list" ng-if="type==1" ng-href="<!--#echo var="ver1"-->search.html?hstype=1&hsname={{s.name}}"><b>{{s.name}} {{s.tname}}</b> {{s.gnames}} <br ng-if="s.gnames">{{s.major_name}} {{s.course_name}}</a>
+				<a ng-repeat="s in list" ng-if="type==2" ng-href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}"><b>{{s.title | slice:42}}</b>{{s.major_name}} - {{s.course_name}}</a>
+			</div>
+		</form>
+		<div class="nav_a">
+			<a class="na_a" ng-class="{'in':nav==''||nav=='v2.cc'}" href="<!--#echo var='ver1'-->">首页</a>
+			<span class="dl" ng-class="{'on':nav2}" ng-mouseenter="nav2=true" ng-mouseleave="nav2=false">&nbsp;
+				<li class="dl_b">
+					<a class="dl_t" ng-class="{'in':nav=='news'}" href="<!--#echo var='ver1'-->news/list.html">新闻动态<i class="icon i_up"></i></a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=6">地方资讯</a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=3">行业热点</a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=7">专题报道</a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=4">法律法规</a>
+				</li>
+			</span>
+			<a href="" class="na_a">课程介绍</a>
+			<span class="dl" ng-class="{'on':nav3}" ng-mouseenter="nav3=true" ng-mouseleave="nav3=false">&nbsp;
+				<li class="dl_b">
+					<a class="dl_t" ng-class="{'in':nav=='test'}" href="<!--#echo var='ver1'-->test/list.html">在线题库<i class="icon i_up"></i></a>
+					<a href="<!--#echo var='ver1'-->test/list.html">章节练习</a>
+					<a href="<!--#echo var='ver1'-->test/list.html?type=AllReal">历年真题</a>
+					<a href="<!--#echo var='ver1'-->test/list.html?type=AllSimul">模拟考试</a>
+					<a href="<!--#echo var='ver1'-->test/list.html?type=DayQueston">每日作业</a>
+				</li>
+			</span>
+			<span class="dl" ng-class="{'on':nav4}" ng-mouseenter="nav4=true" ng-mouseleave="nav4=false">&nbsp;
+				<li class="dl_b">
+					<a class="dl_t" ng-class="{'in':nav=='user'}" href="">学习中心<i class="icon i_up"></i></a>
+					<a href="">学习计划</a>
+					<a href="">我的课程</a>
+					<a href="<!--#echo var='ver1'-->user/test.html">我的题库</a>
+				</li>
+			</span>
+			<span class="dl" ng-class="{'on':nav5}" ng-mouseenter="nav5=true" ng-mouseleave="nav5=false">&nbsp;
+				<li class="dl_b">
+					<a class="dl_t" ng-class="{'in':nav=='exam'}" href="">考试指南<i class="icon i_up"></i></a>
+					<a href="">报名入口</a>
+					<a href="<!--#echo var='ver1'-->exam/know.html">考试须知</a>
+					<a href="<!--#echo var='ver1'-->exam/knowledge.html">技巧心得</a>
+				</li>
+			</span>
+			<a href="" class="na_a">资料下载</a>
+		</div>
+	</div>
+	<div class="fly" ng-hide="hideFly">
+		<i class="fly_close" ng-click="hideFly=true"></i>
+		<label>免费咨询热线：<br>010-61705052</label>
+		<div class="f_biger">
+			<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw"><img src="<!--#echo var="ver1"-->images/qq.png">在线咨询</a>
+			<img class="fly_code" src="<!--#echo var="ver1"-->images/code.png">微信公众号
+		</div>
+		<label class="top_t" ng-click="goTop()"><i class="icon i_top"></i>返回顶部</label>
+	</div>
+	<div ng-if="user.showPanl">
+		<div class="hbg"></div>
+		<form ng-submit="$parent.user.login(ph,pw,checked)" ng-init="checked='1'" class="login_f login_panl" name="user" novalidate>
+			<a href="javascript:" id="alertR" ng-click="$parent.user.showPanl=false">X</a>
+			<h3><b>请先登录</b> <a href="<!--#echo var="ver1"-->user/register.html?href={{href}}" class="fr">立即注册</a></h3>
+			<ul class="form">
+				<li class="no_f red">{{$parent.user.errMsg}}</li>
+				<li><input type="text" class="txt login_ph" ng-model="ph" vphone name="ph" required placeholder="手机号"><span class="err" ng-show="user.ph.$dirty&&user.ph.$invalid">请输入正确格式的手机号码</span></li>
+				<li><input type="password" class="txt login_pw" ng-model="pw" name="pw" required placeholder="密码"><span class="err" ng-show="user.pw.$dirty&&user.pw.$invalid">请输入密码</span></li>
+				<li class="no_f"><label for="auto"><input type="checkbox" id="auto" ng-model="checked" name="checked" ng-true-value="1" ng-false-value="0">下次自动登录</label> <a href="<!--#echo var="ver1"-->user/findpwd.html?ph={{ph}}&href={{href}}" class="fr">忘记密码?</a></li>
+				<li class="no_f"><button class="sub btn" type="submit" ng-disabled="user.$invalid">登&emsp;&emsp;录</button></li>
+			</ul>
+		</form>
+	</div>
+</div>

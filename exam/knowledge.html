@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>技巧心得</title>
+</head>
+<body ng-app="baseApp">
+	<!--#include virtual="/include/header.html"-->
+	<div class="page ng-init" ng-controller="newsList" data-type="5">
+		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>技巧心得</span></div>
+		<ul class="class_nav box" ng-if="clist.length">
+			<li>
+				<b>选择{{nav[hash.type]}}</b>
+				<label ng-click="setSid(0)" ng-class="{'on':hash.sid==0}">全部</label>
+				<label ng-repeat="s in clist" ng-click="setSid(s.id)" ng-class="{'on':hash.sid==s.id}">{{s.title}}</label>
+			</li>
+		</ul>
+		<div class="box">
+			<ul class="nlist f_biger">
+				<li ng-repeat="s in list">
+					<a href="<!--#echo var='ver1'-->news/item.html?id={{s.id}}&type={{hash.type}}">
+						<img ng-src="{{s.pic_url}}">
+					</a>
+					<h5><a href="<!--#echo var='ver1'-->news/item.html?id={{s.id}}&type={{hash.type}}">{{s.title}}</a></h5>
+					<p>{{s.intro}}</p>
+					<span class="gray">{{s.thisdate}}</span>
+					<a href="<!--#echo var='ver1'-->news/item.html?id={{s.id}}&type={{hash.type}}" class="more">阅读全文</a>
+				</li>
+			</ul>
+			<!--#include virtual="/include/pagination.html"-->
+			<div class="search_none f_biger" ng-if="!loading&&!list.length">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+	<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

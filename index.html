@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>中科建安教育网-注册安全工程师权威培训机构</title>
+</head>
+<body ng-app="baseApp">
+	<!--#include virtual="include/header.html"-->
+	<div class="page ng-init" ng-controller="home">
+		<div class="box h_area">
+			<div class="cf f_biger">
+				<h4 class="fl">地方资讯</h4>
+				<div class="bdx fl" ng-controller="newsList" data-type="6">
+					<a href="<!--#echo var='ver1'-->news/list.html?type=6">全国</a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=6&sid={{s.id}}" ng-repeat="s in clist">{{s.province_name}}</a>
+				</div>
+				<div class="bdx fr"><a class="red" href="<!--#echo var="ver1"-->news/item.html?id={{news.id}}">{{news.title|slice:20}}</a></div>
+			</div>
+			<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
+				<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
+				<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
+			</div>
+		</div>
+		<div class="cf h_news">
+			<div class="box fl">
+				<div class="fl">
+					<h4>专题报道 <a href="<!--#echo var='ver1'-->news/list.html?type=7" class="more">更多&gt;</a></h4>
+					<div class="bdx f_biger list_a" ng-controller="newsList" data-type="7" data-rows="7">
+						<a href="<!--#echo var='ver1'-->news/item.html?type=7&id={{s.id}}" title="{{s.title}}" ng-repeat="s in list">{{s.title | slice:14}} <span>{{s.thisdate}}</span></a>
+					</div>
+				</div>
+				<div class="fr">
+					<h4>行业热点 <a href="<!--#echo var='ver1'-->news/list.html?type=3" class="more">更多&gt;</a></h4>
+					<div class="bdx f_biger list_a" ng-controller="newsList" data-type="3" data-rows="7">
+						<a href="<!--#echo var='ver1'-->news/item.html?type=3&id={{s.id}}" title="{{s.title}}" ng-repeat="s in list">{{s.title | slice:14}} <span>{{s.thisdate}}</span></a>
+					</div>
+				</div>
+			</div>
+			<div class="box fr h_login f_biger">
+				<a href="" class="avatar">
+					<img src="<!--#echo var='ver1'-->images/avatar_man.png">
+				</a>
+				<p style="margin: 20px 0 40px 120px">HI，<br>
+				欢迎来到中科建安</p>
+				<a href="" class="btn fl">登录</a><a href="" class="btn fr">注册</a>
+				<a href="" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl1.png"> 学习计划</a>
+				<a href="" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl2.png"> 我的课程</a>
+				<a href="" class="h_l_a" style="margin-right: 0"><img src="<!--#echo var='ver1'-->images/hl3.png"> 我的题库</a>
+			</div>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">特训现场<span>SPECIAL FIELD</span></h3>
+			<a href="" class="more">更多&gt;</a>
+			<div class="h_pic" ng-controller="scene" data-rows="6">
+				<div class="h_pic_list fr">
+					<label class="hover_box" ng-class="{'on':index==$index}" ng-repeat="p in plist" ng-click="get($index)"><img ng-src="{{p.slist[0].imgurl}}"><span>2017年<br>{{p.slist[0].content}}</span></label>
+				</div>
+				<div class="hover_box">
+					<div class="pic_anim" ng-mouseenter="sa.stop()" ng-mouseleave="sa.play()">
+						<div ng-class="{'anim' : sa.a}" ng-style="{left:0-sa.i*640+'px'}">
+							<img ng-src="{{s.imgurl}}" ng-repeat="s in list"><img ng-src="{{s.imgurl}}" ng-repeat="s in list">
+						</div>
+						<label ng-click="sa.next()"></label>
+						<label class="p_a_r" ng-click="sa.prev()"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">课程介绍<span>COURSE INTRODUCTION</span></h3>
+			<a href="" class="more">更多&gt;</a>
+			<ul class="f_biger h_class">
+				<li class="bdx">
+					<a href=""><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<div class="bdx">
+						<img src="<!--#echo var='ver1'-->images/c1.png">
+						<p><i class="icon i_arrow"></i>章节习题 历年真题 模拟考试 视频课程 名师讲义</p>
+						<p><i class="icon i_arrow"></i>突出考点 精确剖析。</p>
+						<p><i class="icon i_arrow"></i>赠送配套讲义、解析、试题。</p>
+						<p><i class="icon i_person"></i>适合人群：有一定基础、自学能力较强，有时间完成学习计划，想通过名师指导掌握考点进行提升的学员。</p>
+					</div>
+				</li>
+				<li class="bdx">
+					<a href=""><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<div class="bdx">
+						<img src="<!--#echo var='ver1'-->images/c2.png">
+						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学进度</p>
+						<p><i class="icon i_arrow"></i>为学员制定学习计划</p>
+						<p><i class="icon i_arrow"></i>赠送配套《考点精讲讲义》、《历年真题考点解析》、《章节练习题》、《高频考点试题》 </p>
+						<p><i class="icon i_person"></i>适合人群：基础较薄弱，学习时间有限，不能参加面授课程。想通过网课培训接受名师点拨，结合题库课程掌握考点，高效通过考试的学员。</p>
+					</div>
+				</li>
+				<li class="bdx">
+					<a href=""><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<div class="bdx">
+						<img src="<!--#echo var='ver1'-->images/c3.png">
+						<p><i class="icon i_arrow"></i>协助考生报名、学习计咨询、跟踪学习进度</p>
+						<p><i class="icon i_arrow"></i>为学员制定学习计划</p>
+						<p><i class="icon i_arrow"></i>赠送配套《考点精讲讲义》、《历年真题考点解析》、《章节练习题》、《高频考点试题》</p>
+						<p><i class="icon i_person"></i>适合人群：基础薄弱，自我学习能力不强，基本没有时间学习。但有条件参加面授课程，通过名师现场教学指导，特训+冲关学习，结合密押试题。</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">试题练习<span>PRACTICE TEST</span></h3>
+			<a href="" class="more">更多&gt;</a>
+			<div class="bdx h_test">
+				<h5>请选择科目和试题类型</h5>
+				<p>
+				<label class="h_t_1" ng-class="{'on':cid==34}" ng-click="cid=34"><img src="<!--#echo var='ver1'-->images/h_t_1.png">安全生产法及相关法律知识</label>
+				<label class="h_t_2" ng-class="{'on':cid==35}" ng-click="cid=35"><img src="<!--#echo var='ver1'-->images/h_t_2.png">安全生产管理知识</label>
+				<label class="h_t_3" ng-class="{'on':cid==36}" ng-click="cid=36"><img src="<!--#echo var='ver1'-->images/h_t_3.png">安全生产技术</label>
+				<label class="h_t_4" ng-class="{'on':cid==37}" ng-click="cid=37"><img src="<!--#echo var='ver1'-->images/h_t_4.png">安全生产事故案例分析</label></p>
+				<p>
+				<label class="h_t_5" ng-class="{'on':type=='ChaptersAndSections'}" ng-click="type='ChaptersAndSections'"><img src="<!--#echo var='ver1'-->images/h_t_5.png">章节练习</label>
+				<label class="h_t_6" ng-class="{'on':type=='AllReal'}" ng-click="type='AllReal'"><img src="<!--#echo var='ver1'-->images/h_t_6.png">历年真题</label>
+				<label class="h_t_7" ng-class="{'on':type=='AllSimul'}" ng-click="type='AllSimul'"><img src="<!--#echo var='ver1'-->images/h_t_7.png">模拟考试</label></p>
+				<img src="<!--#echo var='ver1'-->images/h_down.png">
+				<a href="<!--#echo var='ver1'-->test/list.html?mid=11&type={{type}}&cid={{cid}}" class="btn f_biger">开始做题</a>
+			</div>
+		</div>
+		<div class="cf h_download">
+			<div class="fl box_pd">
+				<h3 class="tit">资料下载<span>DOWNLOAD THE DATE</span></h3>
+				<a href="" class="more">更多&gt;</a>
+				<div class="bdx f_biger list_a">
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师报名时间 |2017年新手考试指南<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师考试考情分析|解读2017年报名政策<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师考试全科教材下载<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《生产技术》word下载<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《案例分析》word下载<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《法律知识》word下载<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《生产管理》word下载<span class="btn">下载</span></a>
+					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师《模拟试卷》全科资料下载<span class="btn">下载</span></a>
+				</div>
+			</div>
+			<div class="fr box">
+				<div class="banner bnr1" ng-controller="banner" data-id="" style="height: 346px">
+					<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
+					<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
+				</div>
+			</div>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">授课名师<span>FAMOUS TEATER</span></h3>
+			<a href="<!--#echo var='ver1'-->teacher/list.html" class="more">更多&gt;</a>
+			<ul ng-controller="teacherList" data-rows="8" class="h_teacher cf">
+				<li ng-repeat="s in list" class="hover_box">
+					<img ng-src="{{s.logo}}">
+					<div>
+						<h5>— {{s.name}} —</h5>
+						<p><b>主讲课程：</b>{{s.course | slice:28}}<br>
+						<span ng-if="s.fengge"><b>讲课风格：</b>{{s.fengge | slice:28}}</span></p>
+						<a href="<!--#echo var='ver1'-->teacher/item.html?id={{s.id}}" class="btn">查看详情</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">各地法律法规<span>LOCAL LAWS AND REGULATIONS</span></h3>
+			<a href="<!--#echo var='ver1'-->news/list.html?type=4" class="more">更多&gt;</a>
+			<div class="cf h_law f_biger ">
+				<div class="fl bdx list_a" ng-controller="newsList" data-type="4" data-rows="8" data-page="1">
+					<a href="<!--#echo var='ver1'-->news/item.html?type=4&id={{s.id}}" title="{{s.title}}" ng-repeat="s in list">{{s.title | slice:24}} <span>{{s.thisdate}}</span></a>
+				</div>
+				<div class="fr bdx list_a" ng-controller="newsList" data-type="4" data-rows="8" data-page="2">
+					<a href="<!--#echo var='ver1'-->news/item.html?type=4&id={{s.id}}" title="{{s.title}}" ng-repeat="s in list">{{s.title | slice:24}} <span>{{s.thisdate}}</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="box_pd">
+			<h3 class="tit">学员评价<span>STUGENT EVALUATION</span></h3>
+			<ul class="bdx h_comment cf">
+				<li class="fl">
+					<img ng-src="" class="u_avatar">
+					<b>姓名</b><span>2017-07-12</span>
+					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+				</li>
+				<li class="fr">
+					<img ng-src="" class="u_avatar">
+					<b>姓名</b><span>2017-07-12</span>
+					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+				</li>
+				<li class="fl">
+					<img ng-src="" class="u_avatar">
+					<b>姓名</b><span>2017-07-12</span>
+					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+				</li>
+				<li class="fr">
+					<img ng-src="" class="u_avatar">
+					<b>姓名</b><span>2017-07-12</span>
+					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--#include virtual="include/footer.html"-->
+</body>
+</html>

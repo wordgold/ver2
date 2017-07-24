@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>教师详情</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page ng-init" ng-controller="teacher">
+	<div class="bread"><a href="<!--#echo var="ver1"-->index.html">首页</a>&gt;<a href="<!--#echo var="ver1"-->teacher/list.html">师资力量</a>&gt;<span>教师详情</span></div>
+	<div class="teacher_info box_pd">
+		<img src="{{info.logo}}">
+		<ul class="class_nav">
+			<li><b>教师姓名：</b>{{info.name}}</li>
+			<li><b>主讲课程：</b>{{info.course}}</li>
+			<li><b>讲课风格：</b>{{info.fengge}}</li>
+			<li><b>个人简介：</b>{{info.info}}</li>
+			<li><b>所获荣誉：</b>{{info.content}}</li>
+		</ul>
+	</div>
+	<div class="box_pd">
+		<h3 class="tit">相关视频<span>RELATED VIDEO</span></h3>
+		<ul class="list_li bdx">
+			<li class="l_video" ng-repeat="s in list" ng-class="{'odd':$odd}">
+				{{s.course_name}} {{s.name}}
+				<span class="green" ng-if="s.is_free==0">免费</span>
+				<span class="blue" ng-if="s.is_free==1">会员免费</span>
+				<span class="red" ng-if="s.is_free==2">收费</span>
+				<span class="gray">{{s.play_count}} 人观看</span><br>
+				视频所在班次:
+				<a class="btn" ng-repeat="x in s.grade" ng-href="<!--#echo var="ver1"-->class/class.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
+			</li>
+		</ul>
+		<!--#include virtual="/include/pagination.html"-->
+		<div class="search_none" ng-if="!list.length">
+			很抱歉，暂无 “<b class="red">{{info.name}}</b>” 的相关视频
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>
