@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>公司介绍</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init" ng-controller="newsList" data-type="8" data-rows="99">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>考试须知</span></div>
+	<div class="nav_l box f_biger" id="help_l1">
+		<label ng-repeat="n in list" ng-click="go($index)" class="btn" ng-class="{on:hash.sid==$index}">{{n.title}} </label>
+	</div>
+	<div class="box_r box">
+		<div class="bdx">
+			<div ng-repeat="n in list">
+				<h3 class="title_h3" id="title_h3{{$index}}">{{n.title}}</h3>
+				<div ng-bind-html="html(n.content)"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

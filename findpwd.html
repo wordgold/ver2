@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>找回密码</title>
+</head>
+<body ng-app="baseApp">
+	<div class="login" ng-controller="findpwd">
+		<div class="page header">
+			<h1><a href="<!--#echo var="ver1"-->index.html"><img src="<!--#echo var="ver1"-->images/logo.png" alt="">中科建安</a></h1>
+			<h2>找回密码</h2>
+			<div class="fr">
+				<a href="<!--#echo var="ver1"-->login.html?href={{hashHref}}">登录</a>
+				<a href="<!--#echo var="ver1"-->register.html?href={{hashHref}}">注册</a>
+				<a href="<!--#echo var="ver1"-->help/" target="_blank">帮助中心</a>
+			</div>
+		</div>
+		<div class="login_bg" style="height: 560px;padding:60px 0">
+			<div class="register_f page ng-init">
+				<ul class="findpwd_step">
+					<li ng-class="{'on':step>0}"><span>1</span>填写账户信息</li>
+					<li ng-class="{'on':step>1}"><span>2</span>设置新密码</li>
+					<li ng-class="{'on':step>2}"><span>3</span>修改成功</li>
+				</ul>
+				<form ng-show="step==1" ng-submit="sub1()" name="phone" novalidate autocomplete="off">
+					<ul class="form">
+						<li class="no_f red">{{errMsg}}</li>
+						<li>
+							<label for="ph" class="f_i"><big class="red">*</big>手&ensp;机&ensp;号：</label>
+							<input id="ph" type="text" class="txt" ng-model="ph" vphone name="ph" required placeholder="请输入注册时的手机号"><span class="err" ng-show="phone.ph.$dirty&&phone.ph.$invalid">请输入正确格式的手机号码</span></li>
+						<li>
+							<label for="code" class="f_i"><big class="red">*</big>图片验证：</label>
+							<input id="imgcode" maxlength="4" ng-minlength="4" class="txt half" ng-model="imgcode" name="imgcode" required placeholder="图片验证"><label title="点击刷新验证码" ng-click="ran()" class="half"><img ng-src="<!--#echo var="ver1"-->kstk-api/webuser/validateCode?{{r}}" alt="点击刷新验证码"></label><span class="err" ng-show="phone.imgcode.$dirty&&phone.imgcode.$invalid">请输入4位图片验证码</span></li>
+						<li>
+							<label for="code" class="f_i"><big class="red">*</big>短信验证：</label>
+							<input id="code" maxlength="4" ng-minlength="4" class="txt half" ng-model="code" name="code" required placeholder="短信验证码"><label class="half btn bg_white" ng-click="send(phone.ph.$modelValue)" ng-class="{'disabled':phone.ph.$invalid||phone.imgcode.$invalid||sended}" ng-bind="sended?'等待 '+s+' 秒…':'获取短信验证码'"></label><span class="err" ng-show="phone.code.$dirty&&phone.code.$invalid">请输入4位短信验证码</span></li>
+						<li class="no_f"><button class="sub btn" type="submit" ng-disabled="phone.$invalid">提&emsp;&emsp;交</button></li>
+					</ul>
+				</form>
+				<form ng-show="step==2" ng-submit="sub2()" name="pwd" novalidate autocomplete="off">
+					<ul class="form">
+						<li class="no_f red">{{errMsg}}
+						<input type="hidden" name="key" ng-model="key"></li>
+						<li>
+							<label for="npw" class="f_i"><big class="red">*</big>新&ensp;密&ensp;码：</label>
+							<input id="npw" type="password" maxlength="18" ng-minlength="4" class="txt" ng-model="npw" name="npw" ng-pattern="/^[0-9a-zA-Z\_]+$/" required placeholder="请输入4-18位（数字，字母，下划线）"><span class="err" ng-show="pwd.npw.$dirty&&pwd.npw.$invalid">请输入4-18位（数字，字母，下划线）</span></li>
+						<li>
+							<label for="rpw" class="f_i"><big class="red">*</big>确认密码：</label>
+							<input id="rpw" type="password" class="txt" vconfirm="npw" required ng-model="rpw" name="rpw" placeholder="请再次输入密码"><span class="err" ng-show="pwd.rpw.$dirty&&pwd.rpw.$invalid">两次密码输入不一致</span></li>
+						<li class="no_f"><button class="sub btn" type="submit" ng-disabled="pwd.$invalid">修改密码</button></li>
+					</ul>
+				</form>
+				<div class="register_ok" ng-show="step==3">
+					<h3><i class="icon i_ok"></i>新密码修改成功！</h3>
+					<p><big class="red">{{s}}</big> 秒后跳转至进入<a href="{{href}}">页面</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

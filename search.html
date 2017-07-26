@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="include/head.html"-->
+	<title>搜索结果</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="include/header.html"-->
+<div class="page">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>搜索</span></div>
+	<div class="box" ng-controller="search">
+		<ul class="list_li bdx" ng-if="list.length&&hash.hstype==1">
+			<li class="l_video" ng-repeat="s in list" ng-class="{'odd':$odd}">
+				{{s.course_name}} {{s.name}}
+				<span class="green" ng-if="s.is_free==0">免费</span>
+				<span class="blue" ng-if="s.is_free==1">会员免费</span>
+				<span class="red" ng-if="s.is_free==2">收费</span>
+				<span class="gray">{{s.play_count}} 人观看</span><br>
+				视频所在班次:
+				<a class="btn" ng-repeat="x in s.grade" ng-href="<!--#echo var="ver1"-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
+			</li>
+		</ul>
+		<ul class="d_qlist qlist bdx" ng-if="list.length&&hash.hstype==2">
+			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
+				<a ng-href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"在做一次":"开始做题"}}</a>
+				<span class="gray fr">已有 {{s.write_num}} 人参考</span>
+				<a href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
+				{{s.title}} <br>
+				<span class="gray">试卷题量：{{s.nums}}</span>
+				<span class="gray">考试时长：{{s.times}} 分钟</span>
+				<span class="gray">及格/总分：{{s.qualified_point}}/{{s.all_point}}</span>
+			</li>
+		</ul>
+		<!--#include virtual="include/pagination.html"-->
+		<div class="search_none" ng-if="!loading&&!list.length">
+			很抱歉，暂无与 “<b class="red">{{hash.hsname}}</b>” 相关的内容
+		</div>
+	</div>
+</div>
+<!--#include virtual="include/footer.html"-->
+</body>
+</html>

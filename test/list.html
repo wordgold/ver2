@@ -29,9 +29,9 @@
 		</li>
 	</ul>
 	<div class="box">
-		<ul class="l_qlist qlist bdx" ng-if="rt.type==nlist[0].type&&list.length">
+		<ul class="l_qlist qlist bdx" ng-if="!loading&&rt.type==nlist[0].type&&list.length">
 			<li ng-repeat="c in list" ng-init="c.p=c.zdnums/c.yznums" ng-class="{'last':$last,'odd':$odd,'on':c.showL}">
-				<div ng-click="getS(c)" style="cursor: pointer;">
+				<div ng-click="getS(c)" class="cursor">
 					<i class="icon i_plus" ng-hide="c.showL"></i>
 					<i class="icon i_minus" ng-show="c.showL"></i>
 					<i class="icon i_up"></i>
@@ -54,14 +54,14 @@
 				</ol>
 			</li>
 		</ul>
-		<ul class="l_qlist qlist bdx" ng-if="rt.type==nlist[3].type&&list.length">
+		<ul class="l_qlist qlist bdx" ng-if="!loading&&rt.type==nlist[3].type&&list.length">
 			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
 				{{s.name}}
 				<span class="gray">每日作业({{date}})</span>
 				<a href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid=1&name={{s.name}}-{{date}}" class="btn fr">开始做题</a>
 			</li>
 		</ul>
-		<ul class="d_qlist qlist bdx" ng-if="(rt.type==nlist[1].type||rt.type==nlist[2].type)&&list.length">
+		<ul class="d_qlist qlist bdx" ng-if="!loading&&(rt.type==nlist[1].type||rt.type==nlist[2].type)&&list.length">
 			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
 				<a ng-href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"再做一次":"开始做题"}}</a>
 				<span class="gray fr">已有 {{s.write_num}} 人参考</span>

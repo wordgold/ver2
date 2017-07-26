@@ -3,14 +3,14 @@
 		<div class="page cf">
 			<div class="fl">
 				中科建安教育 :与您携手通过考试 &nbsp;
-				<span ng-if="!user.logined" class="fr" style="margin-left:40px"><a class="tb_a" href="<!--#echo var="ver1"-->user/register.html?href={{href}}">注册</a> <span class="dl">|</span> <a class="tb_a" ng-href="<!--#echo var="ver1"-->user/login.html?href={{href}}">登录</a></span>
+				<span ng-if="!user.logined" class="fr" style="margin-left:40px"><a class="tb_a" href="{{user.registerURL}}">注册</a> <span class="dl">|</span> <a class="tb_a" ng-href="{{user.loginURL}}">登录</a></span>
 				<span ng-if="user.logined" class="dl" style="width: 140px;" ng-class="{'on':showU}" ng-mouseenter="showU=true" ng-mouseleave="showU=false">&nbsp;
 					<li class="dl_b">
 						<a class="dl_t" href="<!--#echo var='ver1'-->user/history.html">
-						<img ng-src="{{user.logo}}" class="icon i_avastar" ng-if="user.logo">
-						<i class="icon i_avastar" ng-if="!user.logo"></i>{{user.nickname}}<i class="icon i_up"></i></a>
+						<img ng-src="{{user.info.logo}}" class="icon i_avastar" ng-if="user.info.logo">
+						<i class="icon i_avastar" ng-if="!user.info.logo"></i>{{user.info.nickname}}<i class="icon i_up"></i></a>
 						<a href="<!--#echo var="ver1"-->user/detail.html">个人资料</a>
-						<a href="<!--#echo var="ver1"-->user/detail.html?type=2">修改密码</a>
+						<a href="<!--#echo var="ver1"-->user/password.html">修改密码</a>
 						<a href="javascript:" ng-click="user.out()">退出登录</a>
 					</li>
 				</span>
@@ -18,11 +18,11 @@
 			<div class="fr">
 				<span class="dl" style="width: 132px;" ng-class="{'on':nav0}" ng-mouseenter="nav0=true" ng-mouseleave="nav0=false">&nbsp;
 					<li class="dl_b">
-						<a class="dl_t" href="http://www.zkjan.com/user/history.html"><i class="icon i_help"></i>帮助中心<i class="icon i_up"></i></a>
-						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=0">新手指南</a>
-						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=1">支付方式</a>
-						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=2">售后服务</a>
-						<a target="_blank" href="<!--#echo var="ver1"-->help/index.html?pid=3">服务条款</a>
+						<a class="dl_t" href="<!--#echo var="ver1"-->help/"><i class="icon i_help"></i>帮助中心<i class="icon i_up"></i></a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help?pid=0">新手指南</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help?pid=1">支付方式</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help?pid=2">售后服务</a>
+						<a target="_blank" href="<!--#echo var="ver1"-->help?pid=3">服务条款</a>
 					</li>
 				</span>
 				<span class="dl" style="width: 132px;" ng-class="{'on':nav1}" ng-mouseenter="nav1=true" ng-mouseleave="nav1=false">&nbsp;
@@ -51,13 +51,15 @@
 			</select>
 			<input type="text" name="hsname" autocomplete="off" ng-model="key" ng-keyup="get(key,type)" ng-focus="get(key,type)" ng-blur="blur()" placeholder="输入搜索内容">
 			<button class="i_search" type="submit"></button>
-			<div ng-if="focus&&list.length>0">
-				<a ng-repeat="s in list" ng-if="type==1" ng-href="<!--#echo var="ver1"-->search.html?hstype=1&hsname={{s.name}}"><b>{{s.name}} {{s.tname}}</b> {{s.gnames}} <br ng-if="s.gnames">{{s.major_name}} {{s.course_name}}</a>
-				<a ng-repeat="s in list" ng-if="type==2" ng-href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}"><b>{{s.title | slice:42}}</b>{{s.major_name}} - {{s.course_name}}</a>
+			<div ng-if="focus&&list.length>0&&type==1">
+				<a ng-repeat="s in list" ng-href="<!--#echo var="ver1"-->search.html?hstype=1&hsname={{s.name}}"><b>{{s.name}} {{s.tname}}</b> {{s.gnames}} <br ng-if="s.gnames">{{s.major_name}} {{s.course_name}}</a>
+			</div>
+			<div ng-if="focus&&list.length>0&&type==2">
+				<a ng-repeat="s in list" ng-href="<!--#echo var="ver1"-->test/item.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}"><b>{{s.title | slice:42}}</b>{{s.major_name}} - {{s.course_name}}</a>
 			</div>
 		</form>
 		<div class="nav_a">
-			<a class="na_a" ng-class="{'in':nav==''||nav=='v2.cc'}" href="<!--#echo var='ver1'-->">首页</a>
+			<a class="na_a" ng-class="{'in':nav==''}" href="<!--#echo var='ver1'-->">首页</a>
 			<span class="dl" ng-class="{'on':nav2}" ng-mouseenter="nav2=true" ng-mouseleave="nav2=false">&nbsp;
 				<li class="dl_b">
 					<a class="dl_t" ng-class="{'in':nav=='news'}" href="<!--#echo var='ver1'-->news/list.html">新闻动态<i class="icon i_up"></i></a>
@@ -67,7 +69,7 @@
 					<a href="<!--#echo var='ver1'-->news/list.html?type=4">法律法规</a>
 				</li>
 			</span>
-			<a href="" class="na_a">课程介绍</a>
+			<a href="<!--#echo var='ver1'-->class/list.html" class="na_a" ng-class="{'in':nav=='class'}">课程介绍</a>
 			<span class="dl" ng-class="{'on':nav3}" ng-mouseenter="nav3=true" ng-mouseleave="nav3=false">&nbsp;
 				<li class="dl_b">
 					<a class="dl_t" ng-class="{'in':nav=='test'}" href="<!--#echo var='ver1'-->test/list.html">在线题库<i class="icon i_up"></i></a>
@@ -79,9 +81,9 @@
 			</span>
 			<span class="dl" ng-class="{'on':nav4}" ng-mouseenter="nav4=true" ng-mouseleave="nav4=false">&nbsp;
 				<li class="dl_b">
-					<a class="dl_t" ng-class="{'in':nav=='user'}" href="">学习中心<i class="icon i_up"></i></a>
-					<a href="">学习计划</a>
-					<a href="">我的课程</a>
+					<a class="dl_t" ng-class="{'in':nav=='user'}" href="<!--#echo var='ver1'-->user/plan_v.html">学习中心<i class="icon i_up"></i></a>
+					<a href="<!--#echo var='ver1'-->user/plan_v.html">学习计划</a>
+					<a href="<!--#echo var='ver1'-->user/class.html">我的课程</a>
 					<a href="<!--#echo var='ver1'-->user/test.html">我的题库</a>
 				</li>
 			</span>
@@ -109,12 +111,12 @@
 		<div class="hbg"></div>
 		<form ng-submit="$parent.user.login(ph,pw,checked)" ng-init="checked='1'" class="login_f login_panl" name="user" novalidate>
 			<a href="javascript:" id="alertR" ng-click="$parent.user.showPanl=false">X</a>
-			<h3><b>请先登录</b> <a href="<!--#echo var="ver1"-->user/register.html?href={{href}}" class="fr">立即注册</a></h3>
+			<h3><b>请先登录</b> <a href="{{user.registerURL}}" class="fr">立即注册</a></h3>
 			<ul class="form">
 				<li class="no_f red">{{$parent.user.errMsg}}</li>
 				<li><input type="text" class="txt login_ph" ng-model="ph" vphone name="ph" required placeholder="手机号"><span class="err" ng-show="user.ph.$dirty&&user.ph.$invalid">请输入正确格式的手机号码</span></li>
 				<li><input type="password" class="txt login_pw" ng-model="pw" name="pw" required placeholder="密码"><span class="err" ng-show="user.pw.$dirty&&user.pw.$invalid">请输入密码</span></li>
-				<li class="no_f"><label for="auto"><input type="checkbox" id="auto" ng-model="checked" name="checked" ng-true-value="1" ng-false-value="0">下次自动登录</label> <a href="<!--#echo var="ver1"-->user/findpwd.html?ph={{ph}}&href={{href}}" class="fr">忘记密码?</a></li>
+				<li class="no_f"><label for="auto"><input type="checkbox" id="auto" ng-model="checked" name="checked" ng-true-value="1" ng-false-value="0">下次自动登录</label> <a href="<!--#echo var="ver1"-->user/findpwd.html?ph={{ph}}&href={{user.fromURL}}" class="fr">忘记密码?</a></li>
 				<li class="no_f"><button class="sub btn" type="submit" ng-disabled="user.$invalid">登&emsp;&emsp;录</button></li>
 			</ul>
 		</form>

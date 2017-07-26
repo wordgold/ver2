@@ -7,7 +7,7 @@
 <body ng-app="baseApp">
 	<!--#include virtual="/include/header.html"-->
 	<div class="page ng-init" ng-controller="newsList" data-type="5">
-		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>技巧心得</span></div>
+		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>{{ntype}}</span></div>
 		<ul class="class_nav box" ng-if="clist.length">
 			<li>
 				<b>选择{{nav[hash.type]}}</b>

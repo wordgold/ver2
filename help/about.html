@@ -8,12 +8,10 @@
 <!--#include virtual="/include/header.html"-->
 <div class="page cf ng-init" ng-controller="about">
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>公司介绍</span></div>
-	<div class="help_l box f_biger">
-		<div ng-repeat="n in nlist">
-			<label ng-click="hash.pid=$index" class="btn" ng-class="{on:hash.pid==$index}">{{n}} </label>
-		</div>
+	<div class="nav_l box f_biger">
+		<label ng-repeat="n in nlist" ng-click="hash.pid=$index" class="btn" ng-class="{on:hash.pid==$index}">{{n}} </label>
 	</div>
-	<div class="help_r box">
+	<div class="box_r box">
 		<div class="bdx">
 			<h3 class="title_h3">{{nlist[hash.pid]}}</h3>
 			<div ng-include="hash.pid+'Html'"></div>

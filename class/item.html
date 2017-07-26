@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="<!--#echo var="ver1"-->ckplayer/ckplayer.js" type="text/javascript"></script>
+	<!--#include virtual="/include/head.html"-->
+	<title>班次详情</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page ng-init" ng-controller="class">
+	<div class="no_class" ng-if="!grade_name">
+		课程即将开始，请耐心等待……
+		<a href="<!--#echo var="ver1"-->class/list.html" class="btn big">查看其他班次</a>
+	</div>
+	<div ng-if="grade_name" class="box">
+		<div class="cf">
+			<div class="class_fl"><div id="video1" class="class_video"></div><h2>{{video.name}}</h2></div>
+			<div class="class_fr box_bd f_biger">
+				<div class="class_t" ng-class="{'cursor':glist.length>1,'on':cursor}" ng-click="cursor=!cursor"><i class="icon i_book"></i>{{grade_name}} <i class="icon fr i_up" ng-if="glist.length>1"></i>
+					<div class="c_fr_li">
+						<label ng-repeat="g in glist" ng-if="grade_name!=g.name" ng-click="changeList(g)"><i class="icon i_book"></i>{{g.name}}</label>
+					</div>
+				</div>
+				<div class="class_vlist">
+					<label ng-repeat="v in vlist" ng-if="v.name.indexOf('仅课件')" ng-class={'on':v.id==rt.vid,'play':!v.is_free||info.buy} ng-click="getVideo(v.id)" title="{{v.name}}">{{v.name|slice:18}}
+						<span class="bg_green" ng-if="v.is_free==0">免费</span>
+						<span class="bg_red" ng-if="v.is_free==1">会员免费</span>
+					</label>
+				</div>
+				<div class="btns">
+					<label ng-click="user.buy(info)" class="btn bg_green" ng-class="{'bg_yellow':info.status}">{{info.status?'查看':'加入'}}购物车</label>
+					<label ng-click="user.buy(info,true)" class="btn on fr">立即购买</label>
+				</div>
+			</div>
+		</div>
+		<div class="box_bd f_biger">
+			<div class="box_bd_t">
+				<label ng-class="{'on':!panl}" ng-click="panl=0">课程介绍</label>
+				<label ng-class="{'on':panl==1}" ng-click="panl=1">授课老师</label>
+				<label ng-class="{'on':panl==2}" ng-click="panl=2">报班流程</label>
+				<i class="anim" ng-style="{left:panl*120+50+'px'}"></i>
+			</div>
+			<div class="box_panl" ng-show="!panl" style="padding: 20px">
+				<h5>{{content}}</h5>
+				<div ng-bind-html="description">
+				</div>
+			</div>
+			<div class="box_panl" ng-show="panl==1">
+				<ul class="h_teacher cf" style="padding: 20px 0 0 9px;">
+					<li ng-repeat="s in list" class="hover_box">
+						<img ng-src="{{s.logo}}">
+						<div>
+							<h5>— {{s.name}} —</h5>
+							<p><b>主讲课程：</b>{{s.course | slice:28}}<br>
+							<span ng-if="s.fengge"><b>讲课风格：</b>{{s.fengge | slice:28}}</span></p>
+							<a href="<!--#echo var='ver1'-->teacher/item.html?id={{s.id}}" class="btn">查看详情</a>
+						</div>
+					</li>
+				</ul>
+				<div class="search_none" ng-if="!list.length">
+					很抱歉，暂无与此课程相关老师
+				</div>
+			</div>
+			<div class="box_panl" ng-show="panl==2">
+				<p style="padding:40px;">
+					<label class="class_btn">注册登录</label>
+					<img src="<!--#echo var="ver1"-->images/icon/r1.png">
+					<label class="class_btn">选购课程</label>
+					<img src="<!--#echo var="ver1"-->images/icon/r1.png">
+					<label class="class_btn">支付学费</label>
+					<img src="<!--#echo var="ver1"-->images/icon/r1.png">
+					<label class="class_btn">开通学习</label>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

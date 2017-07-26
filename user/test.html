@@ -35,7 +35,7 @@
 		</li>
 	</ul>
 	<div class="box" oncopy="return false" onselectstart="return false">
-		<ul class="qtnlist" ng-if="list.length">
+		<ul class="qtnlist" ng-if="!loading&&list.length">
 			<li class="qtnlist_li" ng-repeat="s in list" ng-class="{'last':$last}">
 				<div class="qtnlist_qt">
 					<div ng-bind-html="html(s.question)" ng-class="{'p1':t.question_type_id>2}"></div>

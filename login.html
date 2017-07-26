@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>登录</title>
+</head>
+<body ng-app="baseApp" class="login">
+	<div class="header page">
+		<h1><a href="<!--#echo var="ver1"-->index.html"><img src="<!--#echo var="ver1"-->images/logo.png" alt="">中科建安</a></h1>
+		<h2>登录</h2>
+		<div class="fr">
+			<a href="<!--#echo var="ver1"-->help/" target="_blank">帮助中心</a>
+		</div>
+	</div>
+	<div class="login_bg ng-init" ng-controller="login">
+		<div class="page" style="height:720px">
+			<div class="login_s"></div>
+			<form ng-submit="sub()" class="login_f ng-init" name="user" novalidate>
+				<h3><b>用户登录</b> <a href="<!--#echo var="ver1"-->register.html?href={{href}}" class="fr">立即注册</a></h3>
+				<ul class="form">
+					<li class="no_f red">{{errMsg}}</li>
+					<li><input type="text" class="txt login_ph" ng-model="ph" vphone name="ph" required placeholder="手机号"><span class="err" ng-show="user.ph.$dirty&&user.ph.$invalid">请输入正确格式的手机号码</span></li>
+					<li><input type="password" class="txt login_pw" ng-model="pw" name="pw" required placeholder="密码"><span class="err" ng-show="user.pw.$dirty&&user.pw.$invalid">请输入密码</span></li>
+					<li class="no_f"><label for="auto"><input type="checkbox" id="auto" ng-model="checked" name="checked" ng-true-value="1" ng-false-value="0">下次自动登录</label> <a href="<!--#echo var="ver1"-->findpwd.html?ph={{ph}}&href={{href}}" class="fr">忘记密码?</a></li>
+					<li class="no_f"><button class="sub btn" type="submit" ng-disabled="user.$invalid">登&emsp;&emsp;录</button></li>
+					<li class="no_f red">注：同一账号不允许同时登录多台设备。</li>
+				</ul>
+			</form>
+		</div>
+		<div ng-show="errMsg1">
+			<div class="hbg"></div>
+			<div class="login_f login_panl">
+				<h3><b>确认登录</b></h3>
+				<ul class="form">
+					<li class="no_f red" style="padding: 20px 0">{{errMsg1}}</li>
+					<li class="no_f">
+						<label class="sub btn" style="width: 120px" ng-click="login()">登&emsp;&emsp;录</label>
+						<label class="bg_white btn fr" ng-click="errMsg1=''" style="width: 120px">取&emsp;&emsp;消</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

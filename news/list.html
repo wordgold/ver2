@@ -16,7 +16,7 @@
 			</li>
 		</ul>
 		<div class="box">
-			<ul class="nlist f_biger">
+			<ul class="nlist f_biger" ng-if="!loading&&list.length">
 				<li ng-repeat="s in list">
 					<a href="<!--#echo var='ver1'-->news/item.html?id={{s.id}}&type={{hash.type}}">
 						<img ng-src="{{s.pic_url}}">

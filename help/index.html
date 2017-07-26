@@ -8,13 +8,13 @@
 <!--#include virtual="/include/header.html"-->
 <div class="page cf ng-init" ng-controller="help">
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>帮助中心</span></div>
-	<div class="help_l box f_biger">
+	<div class="nav_l box f_biger">
 		<div ng-repeat="n in nlist" ng-init="n_i=$index" ng-class="{'in':hash.pid==n_i}">
-			<label ng-click="set(n_i,0)" class="btn">{{n.name}} <i class="icon i_cen"></i></label>
-			<label ng-class="{'on':hash.pid==n_i&&hash.tid==$index}" ng-repeat="m in n.list" ng-click="set(n_i,$index,m.href)" class="help_a">{{m}}</label>
+			<label ng-click="set(n_i,0)" class="btn">{{n.name}}</label>
+			<label ng-class="{'on':hash.pid==n_i&&hash.tid==$index}" ng-repeat="m in n.list" ng-click="set(n_i,$index,m.href)" class="nav_l_a">{{m}}</label>
 		</div>
 	</div>
-	<div class="help_r box">
+	<div class="box_r box">
 		<div class="bdx">
 			<h3 class="title_h3">{{nlist[hash.pid].list[hash.tid]}}</h3>
 			<div ng-include="hash.href"></div>

@@ -15,7 +15,7 @@
 			<label ng-repeat="s in clist" ng-click="setMid(s.id)" ng-class="{'on':hash.mid==s.id}">{{s.major_name}}</label>
 		</li>
 	</ul> -->
-	<ul class="h_teacher cf box">
+	<ul class="h_teacher cf box" ng-if="!loading&&list.length">
 		<li ng-repeat="s in list" class="hover_box">
 			<img ng-src="{{s.logo}}">
 			<div>

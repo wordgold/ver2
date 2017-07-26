@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>学习计划</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
+	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="0" data-mid="1">
+		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
+			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+		</div>
+	</div>
+	<div class="box_r ng-init" ng-controller="plan" data-type="getMyGradeExam">
+		<ul class="class_nav box" ng-if="mlist.length">
+			<!-- <li>
+				<b>报考专业</b>
+				<label ng-repeat="m in mlist" ng-click="setMid(m.id,$index)" ng-class="{'on':hash.mid==m.id}">{{m.major_name}}</label>
+			</li> -->
+			<li ng-if="clist.length">
+				<b>报考科目</b>
+				<label ng-repeat="c in clist" ng-click="setCid(c.id)" ng-class="{'on':cid==c.id}">{{c.course_name}}</label>
+			</li>
+		</ul>
+		<div class="box">
+			<ul class="myClassList bdx" ng-if="!loading&&list.length">
+				<li class="mcl_1" ng-repeat="s in list" ng-class="{'last':$last}">
+					<h4>{{s.name}}</h4>
+					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showQ}">
+						<p ng-click="q.showQ=!q.showQ" class="cursor"><i class="icon i_plus" ng-if="q.examlist.length"></i><b>第 {{$index | xyz}} 阶段：</b>练习试题
+						<i ng-if="q.examlist.length" class="icon i_up fr"></i></p>
+						<table ng-if="q.examlist.length">
+							<tr ng-repeat="s in q.examlist" ng-class="{'odd':$odd}" ng-init="s.p=s.zdnums/s.yznums">
+								<td style="padding: 0 0 0 42px">{{s.title}}</td>
+								<td width="120">试卷题量：{{s.nums}}</td>
+								<td width="200"><i class="i_bar" ng-if="s.yznums"><u ng-class="{'a':s.p>0.84,'b':s.p>0.69,'c':s.p>0.49}" ng-style="{width:s.yznums/s.nums*100+'%'}"></u></i></td>
+								<td width="120"><a ng-if="s.yznums>0" ng-href="<!--#echo var='ver1'-->test/item.html?mid={{hash.mid}}&cid={{hash.cid}}&type=grade&sid={{s.id}}&name={{s.title}}&keep=1" class="btn bg_white">继续答题</a></td>
+								<td width="120"><a ng-href="<!--#echo var='ver1'-->test/item.html?mid={{hash.mid}}&cid={{hash.cid}}&type=grade&sid={{s.id}}&name={{s.title}}" class="btn bg_white" ng-class="{'on':s.yznums}">{{s.yznums?"再做一次":"开始做题"}}</a></td>
+							</tr>
+						</table>
+					</div>
+				</li>
+			</ul>
+			<div class="loading" ng-show="loading"></div>
+			<div class="search_none" ng-if="!loading&&!list.length">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

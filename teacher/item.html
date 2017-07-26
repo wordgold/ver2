@@ -28,7 +28,7 @@
 				<span class="red" ng-if="s.is_free==2">收费</span>
 				<span class="gray">{{s.play_count}} 人观看</span><br>
 				视频所在班次:
-				<a class="btn" ng-repeat="x in s.grade" ng-href="<!--#echo var="ver1"-->class/class.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
+				<a class="btn" ng-repeat="x in s.grade" ng-href="<!--#echo var="ver1"-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
 			</li>
 		</ul>
 		<!--#include virtual="/include/pagination.html"-->
