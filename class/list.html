@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>课程介绍-中科建安</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>课程介绍</span></div>
+	<div class="fl" style="width: 820px" ng-controller="classlist">
+		<ul class="class_nav box">
+			<!-- <li>
+				<b>报考专业</b>
+				<label ng-repeat="m in mlist" ng-click="setMid(m.id)" ng-class="{'on':rt.mid==m.id}">{{m.major_name}}</label>
+			</li> -->
+			<li ng-if="rt.type!='DayQueston'&&clist.length">
+				<b>报考科目</b>
+				<label ng-class="{'on':rt.cid==0}" ng-click="setCid(0)">不限</label>
+				<label ng-repeat="c in clist" ng-click="setCid(c.id,$index)" ng-class="{'on':rt.cid==c.id}">{{c.course_name}}</label>
+			</li>
+		</ul>
+		<div class="box">
+			<ul class="bdx class_list odd_list" ng-if="!loading&&list.length">
+				<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
+					<a class="c_l_a" ng-href="<!--#echo var='ver1'-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{s.id}}">
+						<img ng-src="{{s.imgurl}}">
+						<span>课程价格：￥{{s.cmoney}}</span>
+					</a>
+					<h5><a ng-href="<!--#echo var='ver1'-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{s.id}}">{{s.name}}</a></h5>
+					<p>课程简介：{{s.content}}</p>
+					<label ng-click="user.buy(s)" class="btn" ng-class="{'on':s.status}">{{s.status?'查看':'加入'}}购物车</label>
+					<label ng-click="pay(s)" class="btn">立即报名</label>
+				</li>
+			</ul>
+			<!--#include virtual="/include/pagination.html"-->
+			<div class="search_none" ng-if="!loading&&!list.length">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+	<div class="fr" style="width: 360px">
+		<div class="box">
+			<h4>资料下载<a href="<!--#echo var='ver1'-->download/list.html" class="more">更多&gt;</a></h4>
+			<div class="bdx list_a" ng-controller="download" data-rows="8">
+				<a href="{{user.logined?s.url:user.loginURL}}" ng-repeat="s in list"><i class="icon i_download"></i>{{s.name|slice:20}}</a>
+			</div>
+		</div>
+		<div class="box" ng-controller="student">
+			<h4>学员列表</h4>
+			<div class="bdx student">
+				<ul ng-style="{top:0-sa.i+'px'}">
+					<li ng-repeat="s in list track by $index">{{s.content}}</li>
+					<li ng-repeat="s in list track by $index">{{s.content}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

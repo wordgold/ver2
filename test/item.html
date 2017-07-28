@@ -9,7 +9,7 @@
 <div class="page cf ng-init" ng-controller="test">
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->test/list.html?mid={{rt.mid}}&type={{rt.type}}" ng-if="rt.type!='grade'">在线题库</a><a ng-href="<!--#echo var="ver1"-->user/history.html?title=学习中心&type=1" ng-if="rt.type=='grade'">学习计划</a>&gt;<span>在线答题</span></div>
 	<div class="test_t box" id="test_top1">
-		<i class="i_point" ng-show="submited&&geted">{{score}}</i>
+		<i class="i_point" ng-show="!rt.view&&submited&&geted">{{score}}</i>
 		<h2 ng-if="rt.name">{{rt.name}}</h2>
 		<div ng-if="!started" class="test_info">
 			<p>

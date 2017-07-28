@@ -23,7 +23,7 @@
 			<b>报考专业</b>
 			<label ng-repeat="m in mlist" ng-click="setMid(m.id)" ng-class="{'on':rt.mid==m.id}">{{m.major_name}}</label>
 		</li> -->
-		<li ng-if="rt.type!='getDayQueston'&&clist.length">
+		<li ng-if="clist.length">
 			<b>报考科目</b>
 			<label ng-class="{'on':rt.cid==0}" ng-click="setCid(0)">不限</label>
 			<label ng-repeat="c in clist" ng-click="setCid(c.id,$index)" ng-class="{'on':rt.cid==c.id}">{{c.course_name}}</label>

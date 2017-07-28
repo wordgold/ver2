@@ -14,7 +14,12 @@
 					<a href="<!--#echo var='ver1'-->news/list.html?type=6">全国</a>
 					<a href="<!--#echo var='ver1'-->news/list.html?type=6&sid={{s.id}}" ng-repeat="s in clist">{{s.province_name}}</a>
 				</div>
-				<div class="bdx fr"><a class="red" href="<!--#echo var="ver1"-->news/item.html?id={{news.id}}">{{news.title|slice:20}}</a></div>
+				<div class="bdx fr" ng-mouseenter="ta.stop()" ng-mouseleave="ta.play()">
+					<div ng-style="{'top':0-ta.i+'px'}">
+						<a class="red" ng-repeat="s in tlist" title="s.title" href="<!--#echo var="ver1"-->news/item.html?id={{s.id}}&type=2">{{s.title|slice:16}}</a>
+						<a class="red" ng-repeat="s in tlist" title="s.title" href="<!--#echo var="ver1"-->news/item.html?id={{s.id}}&type=2">{{s.title|slice:16}}</a>
+					</div>
+				</div>
 			</div>
 			<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
 				<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
@@ -37,8 +42,8 @@
 				</div>
 			</div>
 			<div class="box fr h_login f_biger">
-				<a href="" class="avatar">
-					<img src="<!--#echo var='ver1'-->images/avatar_man.png">
+				<a href="<!--#echo var='ver1'-->user/avatar.html" class="avatar">
+					<img ng-src="{{user.info.logo?user.info.logo:'<!--#echo var='ver1'-->images/avatar_man.png'}}">
 				</a>
 				<p style="margin: 20px 0 40px 120px">HI，{{user.info.nickname}}<br>
 				欢迎来到中科建安</p>
@@ -51,15 +56,16 @@
 		</div>
 		<div class="box_pd">
 			<h3 class="tit">特训现场<span>SPECIAL FIELD</span></h3>
-			<a href="" class="more">更多&gt;</a>
+			<a href="<!--#echo var='ver1'-->picture/list.html" class="more">更多&gt;</a>
 			<div class="h_pic" ng-controller="scene" data-rows="6">
 				<div class="h_pic_list fr">
-					<label class="hover_box" ng-class="{'on':index==$index}" ng-repeat="p in plist" ng-click="get($index)"><img ng-src="{{p.slist[0].imgurl}}"><span>2017年<br>{{p.slist[0].content}}</span></label>
+					<label class="hover_box" title="{{hash.year}}年-{{p.slist[0].content}}" ng-class="{'on':index==$index}" ng-repeat="p in list" ng-click="play(p)"><img ng-src="{{p.slist[0].imgurl}}"><span>{{hash.year}}年<br>{{p.slist[0].content|slice:9}}</span></label>
 				</div>
 				<div class="hover_box">
 					<div class="pic_anim" ng-mouseenter="sa.stop()" ng-mouseleave="sa.play()">
 						<div ng-class="{'anim' : sa.a}" ng-style="{left:0-sa.i*640+'px'}">
-							<img ng-src="{{s.imgurl}}" ng-repeat="s in list"><img ng-src="{{s.imgurl}}" ng-repeat="s in list">
+							<img ng-src="{{p.imgurl}}" ng-repeat="p in plist">
+							<img ng-src="{{p.imgurl}}" ng-repeat="p in plist">
 						</div>
 						<label ng-click="sa.next()"></label>
 						<label class="p_a_r" ng-click="sa.prev()"></label>
@@ -105,7 +111,7 @@
 		</div>
 		<div class="box_pd">
 			<h3 class="tit">试题练习<span>PRACTICE TEST</span></h3>
-			<a href="" class="more">更多&gt;</a>
+			<a href="<!--#echo var='ver1'-->test/list.html" class="more">更多&gt;</a>
 			<div class="bdx h_test">
 				<h5>请选择科目和试题类型</h5>
 				<p>
@@ -124,16 +130,9 @@
 		<div class="cf h_download">
 			<div class="fl box_pd">
 				<h3 class="tit">资料下载<span>DOWNLOAD THE DATE</span></h3>
-				<a href="" class="more">更多&gt;</a>
-				<div class="bdx f_biger list_a">
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师报名时间 |2017年新手考试指南<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师考试考情分析|解读2017年报名政策<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师考试全科教材下载<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《生产技术》word下载<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《案例分析》word下载<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《法律知识》word下载<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>安全工程师历年真题《生产管理》word下载<span class="btn">下载</span></a>
-					<a href="<!--#echo var='ver1'-->user/download.html?title=%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83"><i class="icon i_download"></i>2017年安全工程师《模拟试卷》全科资料下载<span class="btn">下载</span></a>
+				<a href="<!--#echo var='ver1'-->download/list.html" class="more">更多&gt;</a>
+				<div class="bdx f_biger list_a" ng-controller="download" data-rows="8">
+					<a href="{{user.logined?s.url:user.loginURL}}" ng-repeat="s in list"><i class="icon i_download"></i>{{s.name|slice:40}}<span class="btn">下载</span></a>
 				</div>
 			</div>
 			<div class="fr box">

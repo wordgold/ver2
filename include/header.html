@@ -6,9 +6,9 @@
 				<span ng-if="!user.logined" class="fr" style="margin-left:40px"><a class="tb_a" href="{{user.registerURL}}">注册</a> <span class="dl">|</span> <a class="tb_a" ng-href="{{user.loginURL}}">登录</a></span>
 				<span ng-if="user.logined" class="dl" style="width: 140px;" ng-class="{'on':showU}" ng-mouseenter="showU=true" ng-mouseleave="showU=false">&nbsp;
 					<li class="dl_b">
-						<a class="dl_t" href="<!--#echo var='ver1'-->user/history.html">
-						<img ng-src="{{user.info.logo}}" class="icon i_avastar" ng-if="user.info.logo">
-						<i class="icon i_avastar" ng-if="!user.info.logo"></i>{{user.info.nickname}}<i class="icon i_up"></i></a>
+						<a class="dl_t" href="<!--#echo var='ver1'-->user/history.html" title="欢迎，{{user.info.nickname}}">
+						<img ng-src="{{user.info.logo?user.info.logo:'<!--#echo var='ver1'-->images/avatar_man.png'}}" class="icon i_avatar">
+						{{user.info.nickname | slice:5}}<i class="icon i_up"></i></a>
 						<a href="<!--#echo var="ver1"-->user/detail.html">个人资料</a>
 						<a href="<!--#echo var="ver1"-->user/password.html">修改密码</a>
 						<a href="javascript:" ng-click="user.out()">退出登录</a>
@@ -29,9 +29,9 @@
 					<li class="dl_b">
 						<a target="_blank" class="dl_t" href="<!--#echo var='ver1'-->help/about.html">关于我们<i class="icon i_up"></i></a>
 						<a target="_blank" href="<!--#echo var='ver1'-->help/about.html">公司介绍</a>
-						<a target="_blank" href="">企业荣誉</a>
+						<!-- <a target="_blank" href="">企业荣誉</a> -->
 						<a target="_blank" href="<!--#echo var='ver1'-->teacher/list.html">师资力量</a>
-						<a target="_blank" href="">特训现场</a>
+						<a target="_blank" href="<!--#echo var='ver1'-->picture/list.html">特训现场</a>
 					</li>
 				</span>
 				<span ng-if="user.logined">
@@ -89,13 +89,13 @@
 			</span>
 			<span class="dl" ng-class="{'on':nav5}" ng-mouseenter="nav5=true" ng-mouseleave="nav5=false">&nbsp;
 				<li class="dl_b">
-					<a class="dl_t" ng-class="{'in':nav=='exam'}" href="">考试指南<i class="icon i_up"></i></a>
-					<a href="">报名入口</a>
+					<a class="dl_t" ng-class="{'in':nav=='exam'}" href="<!--#echo var='ver1'-->exam/enter.html">考试指南<i class="icon i_up"></i></a>
+					<a href="<!--#echo var='ver1'-->exam/enter.html">报名入口</a>
 					<a href="<!--#echo var='ver1'-->exam/know.html">考试须知</a>
 					<a href="<!--#echo var='ver1'-->exam/knowledge.html">技巧心得</a>
 				</li>
 			</span>
-			<a href="" class="na_a">资料下载</a>
+			<a href="<!--#echo var='ver1'-->download/list.html" class="na_a" ng-class="{'in':nav=='download'}">资料下载</a>
 		</div>
 	</div>
 	<div class="fly" ng-hide="hideFly">

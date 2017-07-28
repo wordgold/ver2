@@ -25,7 +25,6 @@ input[type=checkbox]{
 }
 .txt, select, textarea {
 	background-color: #fff;
-	border-radius: 4px;
 	border: 1px #aaa solid;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .1) inset;
 	vertical-align: middle;
@@ -35,7 +34,7 @@ input[type=checkbox]{
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .2) inset
 }
 .txt:focus, select:focus, textarea:focus {
-	border: 1px #565583 solid;
+	border: 1px #21a6f1 solid;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, .3) inset
 }
 .txt.ng-dirty.ng-invalid,.txt.invalid{
@@ -197,6 +196,12 @@ li {
 	color: #21a6f1;
 	float: right;
 }
+h4{
+	margin: 0 0 9px 0;
+}
+h4 .more{
+	margin-top: 6px;
+}
 .tit{
 	display: inline-block;
 	position: relative;
@@ -332,6 +337,19 @@ hr {
 	height: 200px;
 	background: url(<!--#echo var="ver1"-->images/icon/loading.gif) no-repeat 50% 50%
 }
+.odd_list{
+	padding: 0;
+}
+.odd_list li{
+	padding: 9px 20px;
+	border-bottom: 1px #ddd solid;
+}
+.odd_list li.odd{
+	background: #f6f6f6;
+}
+.odd_list li.last{
+	border: 0;
+}
 .ng-init {
 	opacity: 0;
 	/*transform: scaleY(0);
@@ -351,7 +369,7 @@ hr {
 	margin: 0 4px;
 	transition: transform .2s ease-out;
 }
-.i_avastar {
+.i_avatar {
 	width: 24px;
 	height: 24px;
 	background: url(<!--#echo var="ver1"-->images/icon/avatar_s.png)
@@ -469,6 +487,18 @@ hr {
 	width: 22px;
 	height: 22px;
 	background: url(<!--#echo var="ver1"-->images/icon/book.png)
+}
+.i_stime,.i_stname,.i_splace{
+	width: 25px;
+	height: 25px;
+	border-radius: 4px;
+	background:#fed3d3 url(<!--#echo var="ver1"-->images/icon/stime.png) no-repeat 50% 50%;
+}
+.i_stname{
+	background:#b9e9b6 url(<!--#echo var="ver1"-->images/icon/stname.png) no-repeat 50% 50%;
+}
+.i_splace{
+	background:#bce4fb url(<!--#echo var="ver1"-->images/icon/splace.png) no-repeat 50% 50%;
 }
 /*header s*/
 .header{
@@ -721,9 +751,19 @@ hr {
 	margin: 0 12px;
 }
 .h_area .fr{
-	width:284px;
+	position: relative;
+	width:334px;
+	padding: 0;
+	overflow: hidden;
 	background: url(<!--#echo var='ver1'-->images/ring.png) no-repeat 9px 50%;
-	padding: 0 0 0 50px;
+}
+.h_area .fr div{
+	position: absolute;
+	left: 50px;
+	width: 280px;
+}
+.h_area .fr a{
+	display: block;
 }
 .h_login{
 	width: 276px;
@@ -839,7 +879,7 @@ hr {
 	bottom: 0;
 	height: 40px;
 	background: #000;
-	background: rgba(0,0,0,.8);
+	background: rgba(0,0,0,.4);
 	color: #fff;
 	overflow: hidden;
 	transition: height .2s ease-out;
@@ -1161,7 +1201,7 @@ hr {
 }
 .class_nav label {
 	display: inline-block;
-	margin: 0 40px 0 0;
+	margin: 0 24px 0 0;
 }
 .class_nav label.on, .class_nav label:hover {
 	color: #21a6f1
@@ -1218,19 +1258,9 @@ hr {
 	color: #fff;
 	background: #21a6f1;
 }
-.qlist, .qtnlist {
-	padding: 0;
-}
 .l_qlist li, .d_qlist li {
 	position: relative;
 	padding: 24px 280px 24px 32px;
-	border-bottom: 1px #eee solid;
-}
-.qlist li.odd {
-	background: #f5f5f5;
-}
-.qlist li.last {
-	border: 0;
 }
 .l_qlist .i_up {
 	position: absolute;
@@ -2171,7 +2201,7 @@ iframe#alertP {
 	padding: 320px 0 0 0;
 	font-size: 20px;
 	line-height: 60px;
-	background: url(<!--#echo var="ver1"-->images/noclass.png) no-repeat 50% 0;
+	background:#fff url(<!--#echo var="ver1"-->images/noclass.png) no-repeat 50% 50%;
 }
 .box_bd{
 	border: 12px #bce4fb solid;
@@ -2310,6 +2340,57 @@ iframe#alertP {
 	border: 1px #21a6f1 dashed;
 	text-align: center;
 }
+.class_list li{
+	position: relative;
+	padding: 9px 20px 20px 260px;
+}
+.class_list p{
+	height: 96px;
+}
+.class_list img{
+	display: block;
+	width: 100%;
+}
+.class_list .btn{
+	width: 120px;
+	margin-right: 20px;
+}
+.c_l_a{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	width: 220px;
+	height: 158px;
+	overflow: hidden;
+}
+.c_l_a span{
+	position: absolute;
+	left: 0;
+	bottom: -28px;
+	width: 100%;
+	color: #fff948;
+	background: #000;
+	background: rgba(0,0,0,.4);
+	text-align: center;
+}
+.c_l_a:hover span{
+	bottom: 0;
+}
+.student{
+	position: relative;
+	padding: 0;
+	height: 280px;
+	overflow: hidden;
+}
+.student ul{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.student li{
+	padding: 0 12px;
+}
 /*class o*/
 /*user s*/
 .myClassList{
@@ -2362,4 +2443,103 @@ iframe#alertP {
 .mcl_2 .i_bar u:after{
 	content: ""
 }
+.clist li {
+	float: left;
+	width: 280px;
+	height: 264px;
+	border: 1px #e5e5e5 solid;
+	margin: 12px 8px;
+}
+.clist img {
+	display: block;
+	width: 280px;
+	height: 200px;
+	margin-bottom: 9px
+}
+.clist p {
+	line-height: 24px;
+	padding: 0 1em
+}
+.ava_l{
+	margin: 20px 0;
+	padding: 40px;
+	width: 400px;
+}
+.ava_l .sub{
+	display: block;
+	margin: 0 auto;
+}
+.upload{
+	display: block;
+	position: relative;
+	height: 300px;
+	line-height: 300px;
+	text-align: center;
+	font-size: 32px;
+	color: #999;
+	font-weight: bold;
+	background: #eee;
+	border: 1px #ddd solid;
+	overflow: hidden;
+	margin: 20px 0;
+}
+.upload label,.upload div{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.upload div{
+	display: none;
+	background: #fff;
+	z-index: 2;
+}
+.upload input{
+	position: absolute;
+	left: -200px;
+	top: 0;
+	width: 999em;
+	height: 999em;
+}
+.ava_r{
+	float: right;
+	width: 200px;
+	padding: 0 99px;
+	margin: 20px 0;
+}
+.ava_r .gray{
+	font-size: 12px;
+}
+.ava_r div{
+	text-align: center;
+}
+.ava_r img{
+	display: block;
+	margin: 20px auto 0 auto;
+	border-radius: 50%;
+}
 /*user o*/
+.scene .btn{
+	width: 99px;
+	font-size: 16px;
+	margin: 0 20px 20px 0;
+}
+.scene li{
+	float: left;
+	width: 340px;
+	margin: 18px;
+}
+.scene img,.scene .hover_box{
+	display: block;
+	position: relative;
+	width: 340px;
+	height: 230px;
+}
+.scene .icon{
+	margin-right: 9px;
+}
+.scene p{
+	line-height: 30px;
+}

@@ -8,7 +8,8 @@
 <body ng-app="baseApp">
 <!--#include virtual="/include/header.html"-->
 <div class="page ng-init" ng-controller="class">
-	<div class="no_class" ng-if="!grade_name">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a href="<!--#echo var="ver1"-->class/list.html">课程介绍</a>&gt;<span>班次详情</span></div>
+	<div class="no_class box" ng-if="!grade_name">
 		课程即将开始，请耐心等待……
 		<a href="<!--#echo var="ver1"-->class/list.html" class="btn big">查看其他班次</a>
 	</div>

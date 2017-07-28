@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>资料下载-中科建安</title>
+</head>
+<body ng-app="baseApp">
+	<!--#include virtual="/include/header.html"-->
+	<div class="page ng-init" ng-controller="download">
+		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>资料下载</span></div>
+		<div class="box">
+			<ul class="odd_list bdx" ng-if="!loading&&list.length">
+				<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}" style="padding: 20px">
+					<a href="{{user.logined?s.url:user.loginURL}}"><i class="icon i_download"></i>{{s.name|slice:40}}</a>
+					<a href="{{user.logined?s.url:user.loginURL}}" class="btn fr">下载</a>
+				</li>
+			</ul>
+			<!--#include virtual="/include/pagination.html"-->
+			<div class="search_none f_biger" ng-if="!loading&&!list.length">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+	<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

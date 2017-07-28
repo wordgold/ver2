@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>学习中心</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
+	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="6" data-mid="0">
+		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
+			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+		</div>
+	</div>
+	<div class="box_r box ng-init" ng-controller="detail">
+		<form class="register_f bdx" ng-submit="sub()" name="info" novalidate autocomplete="off">
+			<ul class="form">
+				<li class="no_f red">{{errMsg0}}</li>
+				<li>
+					<label for="phone" class="f_i">手&ensp;机&ensp;号：</label>
+					<input id="phone" type="text" class="txt" ng-model="user.info.phone" name="phone" disabled></li>
+				<li>
+					<label for="nickname" class="f_i"><big class="red">*</big>昵&emsp;&emsp;称：</label>
+					<input id="nickname" type="text" class="txt" ng-model="user.info.nickname" name="nickname" required placeholder="请输入昵称"><span class="err" ng-show="info.nickname.$dirty&&info.nickname.$invalid">请输入昵称</span></li>
+				<li>
+					<label for="name" class="f_i"><big class="red">*</big>真实姓名：</label>
+					<input id="name" type="text" class="txt" ng-model="user.info.name" name="name" required placeholder="请输入真实姓名"><span class="err" ng-show="info.name.$dirty&&info.name.$invalid">请输入真实姓名</span></li>
+				<!-- <li>
+					<label for="mid" class="f_i">选择专业：</label>
+					<select id="mid" class="txt" name="mid" ng-model="user.info.major_id" ng-options="l.id as l.major_name for l in list">
+					</select></li> -->
+				<li>
+					<label for="pid" class="f_i">所在地区：</label>
+					<select id="pid" class="txt" name="pid" ng-model="user.info.province_id" ng-options="p.id as p.province_name for p in plist">
+					</select></li>
+				<li class="no_f"><button class="sub btn" type="submit">提交修改</button></li>
+			</ul>
+		</form>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

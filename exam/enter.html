@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>考试入口-中科建安</title>
+	<style type="text/css">
+		.banner,.class_nav{
+			margin: 0 0 20px 0;
+		}
+		.class_nav label{
+			width: 88px;
+			margin: 0;
+		}
+		.class_nav li{
+			margin-top: 11px;
+		}
+		.class_nav b{
+			font-size: 16px;
+			margin-top:9px
+		}
+		h2,h3,h4{
+			font-size: 18px;
+			text-align: center;
+			height: 40px;
+			line-height: 40px;
+			margin: 1em 0;
+			background: url(<!--#echo var='ver1'-->images/exam/t.png) no-repeat 50% 0;
+		}
+		h3,h4{
+			width: 90px;
+			background: url(<!--#echo var='ver1'-->images/exam/t1.png);
+		}
+		h4{
+			background: url(<!--#echo var='ver1'-->images/exam/t2.png);
+		}
+		p{
+			text-indent: 2em;
+			margin: 1em;
+		}
+		table{
+			width:100%;
+		}
+		th{
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 40px;
+			background: #bce4fb;
+			text-align: center;
+		}
+		td{
+			text-align: center;
+			line-height: 40px;
+			vertical-align: middle;
+		}
+		td img{
+			vertical-align: middle;
+			margin: 0 4px 0 0;
+		}
+		.odd td{
+			background: #eee;
+		}
+		.on td{
+			background: #faa
+		}
+		td div{
+			position: relative;
+			z-index: 9;
+		}
+		td .code{
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			padding: 9px;
+			margin: 0 0 0 -60px;
+			background: #fff;
+			border: 1px #ccc solid;
+		}
+		tr.in div{
+			z-index: 19;
+		}
+		tr.in .code{
+			display: block;
+		}
+	</style>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init" ng-controller="enter">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>考试入口</span></div>
+	<div class="box">
+		<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
+			<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
+			<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
+		</div>
+		<ul class="class_nav bdx">
+			<li>
+				<b>地区导航</b>
+				<label ng-click="goTo(1,460)">长沙1</label>
+				<label ng-click="goTo(2,460)">长沙2</label>
+				<label ng-click="goTo(3,460)">长沙3</label>
+				<label ng-click="goTo(4,460)">长沙4</label>
+			</li>
+		</ul>
+		<div class="bdx" style="padding: 0">
+			<table>
+				<tr>
+					<th>省份</th>
+					<th>报名时间</th>
+					<th>报名入口</th>
+					<th>报名提醒</th>
+					<th>最新资讯</th>
+					<th>历年真题</th>
+					<th>免费试听</th>
+					<th>报考咨询</th>
+				</tr>
+				<tr ng-class="{'on':a==1,'in':b==1}">
+					<td>长沙</td>
+					<td>约7月中旬</td>
+					<td><a href="" target="_blank">网址链接</a></td>
+					<td><div ng-mouseenter="b=1" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+					<td><a href="" target="_blank">点击了解</a></td>
+					<td><a href="" target="_blank">历年真题</a></td>
+					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+				</tr>
+				<tr ng-class="{'on':a==2,'in':b==2}">
+					<td>长沙</td>
+					<td>约7月中旬</td>
+					<td><a href="" target="_blank">网址链接</a></td>
+					<td><div ng-mouseenter="b=2" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+					<td><a href="" target="_blank">点击了解</a></td>
+					<td><a href="" target="_blank">历年真题</a></td>
+					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+				</tr>
+				<tr ng-class="{'on':a==3,'in':b==3}">
+					<td>长沙</td>
+					<td>约7月中旬</td>
+					<td><a href="" target="_blank">网址链接</a></td>
+					<td><div ng-mouseenter="b=3" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+					<td><a href="" target="_blank">点击了解</a></td>
+					<td><a href="" target="_blank">历年真题</a></td>
+					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+				</tr>
+				<tr ng-class="{'on':a==4,'in':b==4}">
+					<td>长沙</td>
+					<td>约7月中旬</td>
+					<td><a href="" target="_blank">网址链接</a></td>
+					<td><div ng-mouseenter="b=4" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+					<td><a href="" target="_blank">点击了解</a></td>
+					<td><a href="" target="_blank">历年真题</a></td>
+					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+				</tr>
+			</table>
+		</div>
+		<h2>2017年安全工程师报考条件/如何报考</h2>
+		<div class="bdx">
+			<h3>报考条件</h3>
+			<p>(一)凡中华人民共和国公民，遵守国家法律、法规，并具备下列条件之一者，均可申请参加注册安全工程师执业资格考试：</p>
+			<p>1、取得安全工程、工程经济类专业中专学历，从事安全生产相关业务满7年;或取得其他专业中专学历，从事安全生产相关业务满9年。</p>
+			<p>2、取得安全工程、工程经济类大学专科学历，从事安全生产相关业务满5年;或取得其他专业大学专科学历，从事安全生产相关业务满7年。</p>
+			<p>3、取得安全工程、工程经济类大学本科学历，从事安全生产相关业务满3年;或取得其他专业大学本科学历，从事安全生产相关业务满5年。</p>
+			<p>4、取得安全工程、工程经济类第二学士学位或研究生班毕业，从事安全生产及相关业务满2年;或取得其他专业第二学士学位或研究生班毕业，从事安全生产相关业务满3年。</p>
+			<p>5、取得安全工程、工程经济类硕士学位，从事安全生产相关业务满1年;或取得其他专业硕士学位，从事安全生产相关业务满2年。</p>
+			<p>6、取得安全工程、工程经济类博士学位;或取得其他专业博士学位，从事安全生产相关业务满1年。</p>
+			<p>(二)凡符合注册安全工程师执业资格考试报考条件，且在2002年底前已评聘高级专业技术职务，并从事安全生产相关业务工作满10年的专业人员，可免试《安全生产管理知识》和《安全生产技术》两个科目，只参加《安全生产法及相关法律知识》和《安全生产事故案例分析》两个科目的考试。</p>
+			<p>(三)符合报名条件的香港、澳门和台湾居民，可按照原人事部《关于做好香港、澳门居民参加内地统一举行的专业技术人员资格考试有关问题的通知》(国人部发[2005]9号)，人力资源和社会保障部、国务院台湾事务办公室《关于再向台湾居民开放部分专业技术人员资格考试有关问题的通知》(人社部发[2009]54号)有关要求，参加注册安全工程师执业资格考试。港澳台居民在报名时，须提交国务院教育行政部门认可的相应专业学历或学位证书，从事相关专业工作年限的证明和居民身份证明等材料。台湾居民还须提交《台湾居民来往大陆通行证》。</p>
+			<p>(四)上述报考条件中有关学历的要求是指经国家教育部门承认的学历或学位;从事相关业务工作的年限要求是指取得规定学历前、后从事该相关业务工作时间的总和，其截止日期为考试一般为报名当年年底(具体情况以当地规定为准)。</p>
+			<p><b>免考条件</b></p>
+			<p>凡符合注册安全工程师执业资格考试报名条件，且在2002年9月3日前已评聘高级专业技术职务，并从事安全生产相关业务工作满10年的专业人员，可免试《安全生产管理知识》和《安全生产技术》2个科目，只参加《安全生产法及相关法律知识》和《安全生产事故案例分析》2个科目的考试。</p>
+			<h3>如何报考</h3>
+			<p>按照人力资源社会保障部人事考试中心要求，2017年度注册安全工程师资格考试将在全国范围内实行统一网上报名。为便于考试报名和相关工作的统一开展，应试人员须通过www.cpta.com.cn(中国人事考试网)或zg.cpta.com.cn/examfront(报名登录界面)进行网上报名和网上缴费。详情查看当地人事考试部门公布的报名公告。</p>
+			<p>请应试人员认真阅读报名有关文件和提示，如实填写、提交本人姓名、身份证号等报名信息并上传照片(上传照片前应使用证件照片审核处理工具进行审核，照片通过审核的方能正常上传)。报名时，应试人员应按属地原则正确选择单位所在地为报考考区。应试人员在报名时，由于自身原因报错科目或填错个人信息的，由本人承担相应责任。</p>
+			<p>为便于应试人员找回用户名、密码，修改注册信息，限制代报名行为，统一网上报名平台增加了手机绑定功能。系统会在用户注册或登陆过程中检查应试人员提交的手机号码在注册库中是否唯一，如果唯一可以绑定该手机。绑定手机后，应试人员可以使用手机号码登陆系统，接收系统向绑定手机发送验证码进行身份验证。通过验证后，应试人员可以查看用户名、重置密码和修改注册信息。应试人员通过考前资格审核后，统一网上报名平台将向用户手机推送短信，告知应试人员已通过资格审核，提示进行后续操作。</p>
+		</div>
+		<h2>2017年安全工程师报考流程</h2>
+		<div class="bdx">
+			<h4>登录报名</h4>
+			<p>1安全工程师网上报名建议使用IE8.0或以上版本浏览器。</p>
+			<p>2根据报名入口提示，填写相应信息登录报名。</p>
+			<p>3填写报名申报表，考生应如实、准确填报考试信息。</p>
+			<p>4确认报考信息，确认报考信息准确无误后，可在网上自行打印《资格考试报名表》，打印报名表前考生可以更改本人报考信息，打印后不得更改。</p>
+			<h4>上传照片</h4>
+			<p>1、照片规格参考</p>
+			<p>使用近期一寸半免冠彩色证件照   格式为jpg或jpeg格式   大小要在各省规定范围内   必须清晰，亮度足够</p>
+			<p>2、照片处理</p>
+			<p>根据电子照片要求，必须预先使用证件照片审核处理工具软件进行照片审核处理，只有通过审核处理后新生成的报名照片才能被报名系统识别。</p>
+			<h4>报名表</h4>
+			<p>1. 打印报名表</p>
+			<p>(1)、考生确认报考信息准确无误后，可在规定的时间内自行打印《资格考试报名表》，《报名表》一经打印或交费后，将不能修改任何信息，打印报名 表前务必认真核对有关信息。</p>
+			<p>(2)、使用A4纸打印《报名表》。</p>
+			<p>2. 电话填写 手工填写联系电话。考生须在报名表上手工填写真实有效的联系电话，否则责任自负。</p>
+			<p>3. 温馨提示 具体要求请以当地公布的考务文件内容为主。</p>
+			<h4>资格审核</h4>
+			<p>1. 现场审核   网报成功后，报考者需将报名表、学历证书、资格证书等的原件及复印件，带到指定地点进行审核，现场确定报考资格。</p>
+			<p>2. 网上审核   登录相应网站，根据提示填写正确信息提交，在数天之内再次登录，即可确认自己是否通过审核。</p>
+			<p>3. 考后审核   个别地区采用考试结束后再进行现场审核。</p>
+			<p>4. 无需审核   新考生需参加资格审查，老考生无需审查，直接根据要求进行报名、缴费即可。</p>
+			<h4>网上缴费</h4>
+			<p>1、登录网上报名入口，进行缴费，缴费状态显示"缴费成功"才算报名完成。</p>
+			<p>2、请使用有"银联"标志的银行卡进行网上缴费。（部分地区对缴费银行卡有特定要求，请以考务文件为准）。</p>
+			<p>3、请务必在规定时间内完成报名缴费工作，未进行现场报名缴费者，则视为自动放弃考试。</p>
+			<p>4、各省每个科目的考试费用会有一些差别，具体金额请参考当年公布的考试文件。</p>
+			<p>5、报名成功后，请在规定时间内打印准考证，并准时参加每个科目的考试。</p>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

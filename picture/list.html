@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>特训现场-中科建安</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>特训现场</span></div>
+	<div class="fl" style="width: 820px" ng-controller="scene">
+		<div class="box scene">
+			<label class="btn" ng-repeat="y in ylist" ng-click="setYear(y.year)" ng-class="{'on':hash.year==y.year}">{{y.year}}</label>
+			<ul class="bdx cf" ng-if="!loading&&list.length">
+				<li ng-repeat="s in list" ng-init="ls=s.slist[s.slist.length-1]">
+					<a href="<!--#echo var='ver1'-->picture/item.html?year={{hash.year}}&page={{page.index}}&id={{s.order_id}}" class="hover_box"><img ng-src="{{ls.imgurl}}"></a>
+					<p><i class="icon i_stime"></i>时间：{{ls.open_time}}</p>
+					<p><i class="icon i_splace"></i>地点：{{ls.place}}</p>
+					<p><i class="icon i_stname"></i>导师：{{ls.tname}}</p>
+				</li>
+			</ul>
+			<!--#include virtual="/include/pagination.html"-->
+			<div class="search_none" ng-if="!loading&&!list.length">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+	<div class="fr" style="width: 360px">
+		<div class="box">
+			<h4>特训通知</h4>
+			<div class="bdx list_a" ng-controller="home">
+				<a ng-repeat="s in tlist" title="s.title" href="<!--#echo var="ver1"-->news/item.html?id={{s.id}}&type=2">{{s.title|slice:20}}</a>
+			</div>
+		</div>
+		<div class="box">
+			<h4>授课名师<a href="<!--#echo var='ver1'-->teacher/list.html" class="more">更多&gt;</a></h4>
+			<ul class="bdx h_teacher cf" ng-controller="teacherList" data-rows="4">
+				<li ng-repeat="s in list" class="hover_box" style="margin: 20px 12px;">
+					<img ng-src="{{s.logo}}">
+					<div>
+						<h5>— {{s.name}} —</h5>
+						<p><b>主讲课程：</b>{{s.course | slice:28}}<br>
+						<span ng-if="s.fengge"><b>讲课风格：</b>{{s.fengge | slice:28}}</span></p>
+						<a href="<!--#echo var='ver1'-->teacher/item.html?id={{s.id}}" class="btn">查看详情</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

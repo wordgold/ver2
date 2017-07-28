@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>学习中心</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
+	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="6" data-mid="1">
+		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
+			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+		</div>
+	</div>
+	<div class="box_r box ng-init cf" ng-controller="avatar">
+		<div class="ava_r">
+			<h4 class="h4">预览</h4>
+			<p class="gray">您选择的图片将自动生成三种尺寸<br>请注意各尺寸的头像是否清晰</p>
+			<div class="gray">
+				<img ng-src="{{src||user.info.logo}}" width="40" height="40">40*40
+				<img ng-src="{{src||user.info.logo}}" width="60" height="60">60*60
+				<img ng-src="{{src||user.info.logo}}" width="100" height="100">100*100
+			</div>
+		</div>
+		<form class="ava_l form bdx">
+			<span class="red">*仅支持JPG、GIF、PNG格式的文件，且文件小于1M</span>
+			<div class="upload">
+				<label for="upload"><input type="file" id="upload">点击或拖拽图片到这里</label>
+				<div class="uploading" id="uploading">正在上传，<span id="up1"></span>%</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>
