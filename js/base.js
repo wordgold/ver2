@@ -455,7 +455,7 @@ base.controller('teacher', function($scope, $http, fac, hash) {
 })
 
 base.controller('banner', function($scope, $http, $attrs, animate) {
-	$http.post(service + "frontIndex/getIndexImg").success(function(response) {
+	$http.post(service + "frontIndex/getIndexImg?type=" + $attrs.type).success(function(response) {
 		if (response.code == 200) {
 			$scope.list = response.list;
 			$scope.ba = animate.rotation($scope.list.length);
@@ -523,7 +523,8 @@ base.controller('home', function($scope, $http, user, animate) {
 	$http.post(service + "frontIndex/getHomeInfomation?type=2").success(function(response) {
 		if (response.code == 200)
 			$scope.tlist = response.list;
-		$scope.ta = animate.rotation($scope.tlist.length * 40, 40);
+		$scope.tlist.length = 2;
+		$scope.ta = animate.rotation($scope.tlist.length * 50, 40);
 		$scope.ta.play()
 	});
 })
@@ -562,7 +563,7 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 		if (b || i != $scope.page.index) {
 			$scope.loading = true;
 			$scope.page.index = i;
-			$http.post(service + "frontIndex/getHomeInfomation?rows=" + hash.rows + "&page=" + $scope.page.index + "&type=" + $scope.hash.type + "&sid=" + $scope.hash.sid).success(function(response) {
+			$http.post(service + "frontIndex/getHomeInfomation?rows=" + hash.rows + "&page=" + $scope.page.index + "&type=" + $scope.hash.type + "&type_id=" + $scope.hash.sid).success(function(response) {
 				$scope.loading = false;
 				if (response.code == 200) {
 					$scope.list = response.list;

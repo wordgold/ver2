@@ -13,7 +13,10 @@
 			<label class="btn" ng-repeat="y in ylist" ng-click="setYear(y.year)" ng-class="{'on':hash.year==y.year}">{{y.year}}</label>
 			<ul class="bdx cf" ng-if="!loading&&list.length">
 				<li ng-repeat="s in list" ng-init="ls=s.slist[s.slist.length-1]">
-					<a href="<!--#echo var='ver1'-->picture/item.html?year={{hash.year}}&page={{page.index}}&id={{s.order_id}}" class="hover_box"><img ng-src="{{ls.imgurl}}"></a>
+					<a href="<!--#echo var='ver1'-->picture/item.html?year={{hash.year}}&page={{page.index}}&id={{s.order_id}}" class="hover_box">
+					<img ng-src="{{ls.imgurl}}">
+					<span class="h_b_s">{{hash.year}}年-{{ls.content}}</span>
+					</a>
 					<p><i class="icon i_stime"></i>时间：{{ls.open_time}}</p>
 					<p><i class="icon i_splace"></i>地点：{{ls.place}}</p>
 					<p><i class="icon i_stname"></i>导师：{{ls.tname}}</p>

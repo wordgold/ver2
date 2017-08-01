@@ -12,7 +12,7 @@
 				<h4 class="fl">地方资讯</h4>
 				<div class="bdx fl" ng-controller="newsList" data-type="6">
 					<a href="<!--#echo var='ver1'-->news/list.html?type=6">全国</a>
-					<a href="<!--#echo var='ver1'-->news/list.html?type=6&sid={{s.id}}" ng-repeat="s in clist">{{s.province_name}}</a>
+					<a href="<!--#echo var='ver1'-->news/list.html?type=6&sid={{s.id}}" ng-repeat="s in clist">{{s.title}}</a>
 				</div>
 				<div class="bdx fr" ng-mouseenter="ta.stop()" ng-mouseleave="ta.play()">
 					<div ng-style="{'top':0-ta.i+'px'}">
@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
+			<div class="banner bnr1" data-type="1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
 				<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
 				<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
 			</div>
@@ -59,7 +59,7 @@
 			<a href="<!--#echo var='ver1'-->picture/list.html" class="more">更多&gt;</a>
 			<div class="h_pic" ng-controller="scene" data-rows="6">
 				<div class="h_pic_list fr">
-					<label class="hover_box" title="{{hash.year}}年-{{p.slist[0].content}}" ng-class="{'on':index==$index}" ng-repeat="p in list" ng-click="play(p)"><img ng-src="{{p.slist[0].imgurl}}"><span>{{hash.year}}年<br>{{p.slist[0].content|slice:9}}</span></label>
+					<label class="hover_box" title="{{hash.year}}年-{{p.slist[p.slist.length-1].content}}" ng-class="{'on':index==$index}" ng-repeat="p in list" ng-click="play(p)"><img ng-src="{{p.slist[p.slist.length-1].imgurl}}"><span>{{hash.year}}年<br>{{p.slist[p.slist.length-1].content|slice:9}}</span></label>
 				</div>
 				<div class="hover_box">
 					<div class="pic_anim" ng-mouseenter="sa.stop()" ng-mouseleave="sa.play()">
@@ -78,7 +78,7 @@
 			<a href="<!--#echo var='ver1'-->class/list.html" class="more">更多&gt;</a>
 			<ul class="f_biger h_class">
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=155"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=155"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c1.png">
 						<p><i class="icon i_arrow"></i>章节习题 历年真题 模拟考试 视频课程 名师讲义</p>
@@ -88,7 +88,7 @@
 					</div>
 				</li>
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=156"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=156"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/2.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c2.png">
 						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学进度</p>
@@ -98,7 +98,7 @@
 					</div>
 				</li>
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.png"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/3.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c3.png">
 						<p><i class="icon i_arrow"></i>协助考生报名、学习计咨询、跟踪学习进度</p>
@@ -136,7 +136,7 @@
 				</div>
 			</div>
 			<div class="fr box">
-				<div class="banner bnr1" ng-controller="banner" data-id="" style="height: 346px">
+				<div class="banner bnr1" data-type="2" ng-controller="banner" data-id="" style="height: 346px">
 					<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
 					<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
 				</div>
@@ -173,24 +173,44 @@
 			<h3 class="tit">学员评价<span>STUGENT EVALUATION</span></h3>
 			<ul class="bdx h_comment cf">
 				<li class="fl">
-					<img ng-src="" class="u_avatar">
-					<b>姓名</b><span>2017-07-12</span>
-					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/1.jpg" class="u_avatar">
+					<b>阿勇</b>
+					<p class="f_biger">老师讲的很好，结合真题，帮助记忆。上岁数了记忆力减退，还是得按老师的方法有效果。</p>
 				</li>
 				<li class="fr">
-					<img ng-src="" class="u_avatar">
-					<b>姓名</b><span>2017-07-12</span>
-					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/2.jpg" class="u_avatar">
+					<b>光</b>
+					<p class="f_biger">经过几次特训班学习，心里有底了。</p>
 				</li>
 				<li class="fl">
-					<img ng-src="" class="u_avatar">
-					<b>姓名</b><span>2017-07-12</span>
-					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/3.jpg" class="u_avatar">
+					<b>deepblue</b>
+					<p class="f_biger">在网上学习很方便，随时随地打开就可以看视频做题。工作太忙没时间参加面授培训。</p>
 				</li>
 				<li class="fr">
-					<img ng-src="" class="u_avatar">
-					<b>姓名</b><span>2017-07-12</span>
-					<p class="f_biger">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/4.jpg" class="u_avatar">
+					<b>lazhaca蕾木</b>
+					<p class="f_biger">以前对你们有些怀疑，参加了两次培训会以后，觉得咱们很专业，相信我的选择没有错。</p>
+				</li>
+				<li class="fl">
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/5.jpg" class="u_avatar">
+					<b>妮宸</b>
+					<p class="f_biger">平时没事儿的时候打开题做一做，慢慢就掌握了。</p>
+				</li>
+				<li class="fr">
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/6.jpg" class="u_avatar">
+					<b>浅月朦胧</b>
+					<p class="f_biger">特别感谢一下中科建安李老师，从报名到学习到考试一点都没有放松，有的时候我都不好意思了。</p>
+				</li>
+				<li class="fl">
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/7.jpg" class="u_avatar">
+					<b>守艺人</b>
+					<p class="f_biger">这次能顺利通过考试除了自己的努力，老师的指点尤为重要。很多考点光靠自己无法真正的去领会，只有跟随老师的方法才能熟练掌握。我在复习过程中也遇到了不少困难，有的时候很烦躁不想学习。教研老师的指导能让我静下心来学。考过的感觉不错，希望大家都能通过考试吧。</p>
+				</li>
+				<li class="fr">
+					<img ng-src="<!--#echo var='ver1'-->tmp/c/8.jpg" class="u_avatar">
+					<b>天空中行走的云</b>
+					<p class="f_biger">思路很清晰，复杂的知识点讲出来很透。</p>
 				</li>
 			</ul>
 		</div>

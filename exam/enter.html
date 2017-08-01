@@ -16,7 +16,7 @@
 		}
 		.class_nav b{
 			font-size: 16px;
-			/*margin-top:9px*/
+			margin-top:9px
 		}
 		h2,h3,h4{
 			font-size: 18px;
@@ -33,7 +33,7 @@
 		h4{
 			background: url(<!--#echo var='ver1'-->images/exam/t2.png);
 		}
-		p{
+		.bdx p{
 			text-indent: 2em;
 			margin: 1em;
 		}
@@ -89,18 +89,30 @@
 <div class="page cf ng-init" ng-controller="enter">
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>报名入口</span></div>
 	<div class="box">
-		<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
-			<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
-			<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
-		</div>
 		<ul class="class_nav bdx">
 			<li>
 				<b>地区导航</b>
-				<label ng-click="goTo(1,460)">四川</label>
-				<label ng-click="goTo(2,460)">江西</label>
-				<label ng-click="goTo(3,460)">吉林</label>
-				<label ng-click="goTo(4,460)">青海</label>
-				<label ng-click="goTo(5,460)">湖南</label>
+				<label ng-click="goTo(1,320)">四川</label>
+				<label ng-click="goTo(2,320)">江西</label>
+				<label ng-click="goTo(3,320)">吉林</label>
+				<label ng-click="goTo(4,320)">青海</label>
+				<label ng-click="goTo(5,320)">湖南</label>
+				<label ng-click="goTo(6,320)">贵州</label>
+				<label ng-click="goTo(7,320)">浙江</label>
+				<label ng-click="goTo(8,320)">上海</label>
+				<label ng-click="goTo(9,320)">新疆</label>
+				<label ng-click="goTo(10,320)">陕西</label>
+				<label ng-click="goTo(11,320)">重庆</label>
+				<label ng-click="goTo(12,320)">安徽</label>
+				<label ng-click="goTo(13,320)">福建</label>
+				<label ng-click="goTo(14,320)">广东</label>
+				<label ng-click="goTo(15,320)">辽宁</label>
+				<label ng-click="goTo(16,320)">宁夏</label>
+				<label ng-click="goTo(17,320)">山西</label>
+				<label ng-click="goTo(18,320)">天津</label>
+				<label ng-click="goTo(19,320)">河南</label>
+				<label ng-click="goTo(20,320)">江苏</label>
+				<label ng-click="goTo(21,320)">云南</label>
 			</li>
 		</ul>
 		<div class="bdx" style="padding: 0">
@@ -174,6 +186,198 @@
 						<td>10月23日-10月26日</td>
 						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
 						<td><div ng-mouseenter="b=5" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==6,'in':b==6}">
+						<td>贵州</td>
+						<td>7月28日-8月21日</td>
+						<td>提交报名后两个工作日内</td>
+						<td>截止8月23日17:00</td>
+						<td>10月20日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=6" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==7,'in':b==7}">
+						<td>浙江</td>
+						<td>8月7日-8月16日</td>
+						<td>考后进行现场审核</td>
+						<td>与报名时间相同</td>
+						<td>10月23日-10月27日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=7" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==8,'in':b==8}">
+						<td>上海</td>
+						<td>8月8日-8月20日</td>
+						<td>8月17日-8月20日</td>
+						<td>截止8月23日16:00</td>
+						<td>10月24日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=8" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==9,'in':b==9}">
+						<td>新疆</td>
+						<td>8月1日-8月20日</td>
+						<td>8月1日-8月20日</td>
+						<td>截止8月23日23:00</td>
+						<td>10月23日-10月29日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=9" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==10,'in':b==10}">
+						<td>陕西</td>
+						<td>7月28日至8月6日</td>
+						<td>8月3日-8月15日</td>
+						<td>截止8月16日17:00</td>
+						<td>考试前7日内</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=10" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==11,'in':b==11}">
+						<td>重庆</td>
+						<td>8月1日-8月14日</td>
+						<td>考后进行现场审核</td>
+						<td>8月1日-8月16日</td>
+						<td>10月20日—10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=11" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==12,'in':b==12}">
+						<td>安徽</td>
+						<td>7月31日-8月10日</td>
+						<td>8月16日之前完成</td>
+						<td>截止8月21日17:00</td>
+						<td>10月24日 16:00开始</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=12" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==13,'in':b==13}">
+						<td>福建</td>
+						<td>7月31日-8月10日</td>
+						<td>8月10日-8月11日</td>
+						<td>7月31日-8月18日</td>
+						<td>10月20日起</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=13" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==14,'in':b==14}">
+						<td>广东</td>
+						<td>8月2日-8月23日</td>
+						<td>8月2日-8月23日</td>
+						<td>8月2日-8月23日</td>
+						<td>10月23日-10月27日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=14" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==15,'in':b==15}">
+						<td>辽宁</td>
+						<td>7月28日-8月13日</td>
+						<td>7月28日-8月15日</td>
+						<td>7月28日-8月17日</td>
+						<td>10月23日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=15" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==16,'in':b==16}">
+						<td>宁夏</td>
+						<td>7月28日-8月25日</td>
+						<td>8月21日-8月25日</td>
+						<td>8月21日-8月28日</td>
+						<td>10月20日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=16" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==17,'in':b==17}">
+						<td>山西</td>
+						<td>7月28日-8月11日</td>
+						<td>考后进行现场审核</td>
+						<td>7月28日-8月14日</td>
+						<td>10月23日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=17" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==18,'in':b==18}">
+						<td>天津</td>
+						<td>8月1日-8月10日</td>
+						<td>8月14日-8月17日</td>
+						<td>8月21日-8月24日</td>
+						<td>10月25日-10月27日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=18" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==19,'in':b==19}">
+						<td>河南</td>
+						<td>8月2日-8月16日</td>
+						<td>考后进行现场审核</td>
+						<td>8月17日-8月23日</td>
+						<td>10月20日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=19" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==20,'in':b==20}">
+						<td>江苏</td>
+						<td>7月28日-8月10日</td>
+						<td>考前进行现场审核</td>
+						<td>7月29日-8月14日</td>
+						<td>10月20日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=20" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==21,'in':b==21}">
+						<td>云南</td>
+						<td>8月15日-8月24日</td>
+						<td>考前资审考后复审</td>
+						<td>截止8月26日</td>
+						<td>考试前5日内</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=21" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
 						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
 						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
 						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>

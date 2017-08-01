@@ -865,6 +865,17 @@ hr {
 	opacity: 1;
 	filter: alpha(opacity=0);
 }
+.h_b_s{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background: #000;
+	background: rgba(0,0,0,.4);
+	color: #21a6f1;
+	font-size: 20px;
+}
 .h_teacher li{
 	position: relative;
 	float: left;
@@ -920,7 +931,7 @@ hr {
 }
 .h_comment li{
 	position: relative;
-	margin: 9px 56px;
+	margin: 0 56px;
 	max-width: 64%;
 }
 .u_avatar{
@@ -932,31 +943,25 @@ hr {
 }
 .h_comment .u_avatar{
 	position: absolute;
-	left: -30px;
-	top: -9px;
+	left: -40px;
+	top: 0;
 }
 .h_comment p{
-	padding: 12px;
+	padding: 9px;
 	background: #fcc;
 	border: 1px #f77 dashed;
 }
 .h_comment b{
 	margin: 0 0 0 40px;
 }
-.h_comment span{
-	float: right;
-	color: #ccc;
-}
 .h_comment .fr .u_avatar{
 	left: auto;
 	right: -30px;
 }
 .h_comment .fr b{
-	float: right;
+	display: block;
+	text-align: right;
 	margin: 0 40px 0 0;
-}
-.h_comment .fr span{
-	float: none;
 }
 .h_comment .fr p{
 	background: #a6dbf9;

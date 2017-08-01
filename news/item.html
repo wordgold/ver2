@@ -10,7 +10,7 @@
 		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->news/list.html?type={{hash.type}}">{{ntype[hash.type]}}</a>&gt;<span>新闻详情</span></div>
 		<div class="box">
 			<h2 class="n_title">{{info.title}}</h2>
-			<p class="n_intro"><b>编辑导语：</b>{{info.intro}}</p>
+			<p class="n_intro" ng-if="info.intro"><b>编辑导语：</b>{{info.intro}}</p>
 			<img ng-src="{{info.pic_url}}" class="n_img">
 			<div class="content" ng-bind-html="html(info.content)"></div>
 			<p class="n_date"><b>发布日期：</b>{{info.thisdate}}</p>
