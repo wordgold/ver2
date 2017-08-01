@@ -963,8 +963,8 @@ hr {
 	border: 1px #27a8f2 dashed;
 }
 .h_pic .pic_anim,.h_pic div.hover_box,.h_pic .pic_anim img{
-	width: 640px;
-	height: 385px;
+	width: 720px;
+	height: 487px;
 }
 .pic_anim{
 	position: relative;
@@ -1005,17 +1005,17 @@ hr {
 	display: block;
 }
 .h_pic_list{
-	width: 466px;
+	width: 386px;
 }
 .h_pic_list label{
 	float: left;
-	margin: 0 0 12px 60px;
+	margin: 0 0 9px 20px;
 }
 .h_pic_list img,.h_pic_list label{
 	display: block;
 	position: relative;
 	width: 172px;
-	height: 120px;
+	height: 115px;
 }
 .h_pic_list span{
 	position: absolute;
