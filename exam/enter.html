@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!--#include virtual="/include/head.html"-->
-	<title>考试入口-中科建安</title>
+	<title>报名入口-中科建安</title>
 	<style type="text/css">
 		.banner,.class_nav{
 			margin: 0 0 20px 0;
@@ -16,7 +16,7 @@
 		}
 		.class_nav b{
 			font-size: 16px;
-			margin-top:9px
+			/*margin-top:9px*/
 		}
 		h2,h3,h4{
 			font-size: 18px;
@@ -87,7 +87,7 @@
 <body ng-app="baseApp">
 <!--#include virtual="/include/header.html"-->
 <div class="page cf ng-init" ng-controller="enter">
-	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>考试入口</span></div>
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>报名入口</span></div>
 	<div class="box">
 		<div class="banner bnr1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
 			<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
@@ -96,64 +96,89 @@
 		<ul class="class_nav bdx">
 			<li>
 				<b>地区导航</b>
-				<label ng-click="goTo(1,460)">长沙1</label>
-				<label ng-click="goTo(2,460)">长沙2</label>
-				<label ng-click="goTo(3,460)">长沙3</label>
-				<label ng-click="goTo(4,460)">长沙4</label>
+				<label ng-click="goTo(1,460)">四川</label>
+				<label ng-click="goTo(2,460)">江西</label>
+				<label ng-click="goTo(3,460)">吉林</label>
+				<label ng-click="goTo(4,460)">青海</label>
+				<label ng-click="goTo(5,460)">湖南</label>
 			</li>
 		</ul>
 		<div class="bdx" style="padding: 0">
 			<table>
-				<tr>
-					<th>省份</th>
-					<th>报名时间</th>
-					<th>报名入口</th>
-					<th>报名提醒</th>
-					<th>最新资讯</th>
-					<th>历年真题</th>
-					<th>免费试听</th>
-					<th>报考咨询</th>
-				</tr>
-				<tr ng-class="{'on':a==1,'in':b==1}">
-					<td>长沙</td>
-					<td>约7月中旬</td>
-					<td><a href="" target="_blank">网址链接</a></td>
-					<td><div ng-mouseenter="b=1" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
-					<td><a href="" target="_blank">点击了解</a></td>
-					<td><a href="" target="_blank">历年真题</a></td>
-					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
-					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
-				</tr>
-				<tr ng-class="{'on':a==2,'in':b==2}">
-					<td>长沙</td>
-					<td>约7月中旬</td>
-					<td><a href="" target="_blank">网址链接</a></td>
-					<td><div ng-mouseenter="b=2" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
-					<td><a href="" target="_blank">点击了解</a></td>
-					<td><a href="" target="_blank">历年真题</a></td>
-					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
-					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
-				</tr>
-				<tr ng-class="{'on':a==3,'in':b==3}">
-					<td>长沙</td>
-					<td>约7月中旬</td>
-					<td><a href="" target="_blank">网址链接</a></td>
-					<td><div ng-mouseenter="b=3" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
-					<td><a href="" target="_blank">点击了解</a></td>
-					<td><a href="" target="_blank">历年真题</a></td>
-					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
-					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
-				</tr>
-				<tr ng-class="{'on':a==4,'in':b==4}">
-					<td>长沙</td>
-					<td>约7月中旬</td>
-					<td><a href="" target="_blank">网址链接</a></td>
-					<td><div ng-mouseenter="b=4" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">报名提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
-					<td><a href="" target="_blank">点击了解</a></td>
-					<td><a href="" target="_blank">历年真题</a></td>
-					<td><a href="" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
-					<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
-				</tr>
+				<table>
+					<tr>
+						<th>省份</th>
+						<th>报名时间</th>
+						<th>资格审查</th>
+						<th>网上缴费</th>
+						<th>准考证打印</th>
+						<th>报名入口</th>
+						<th>报名提醒</th>
+						<th>历年真题</th>
+						<th>免费试听</th>
+						<th>报考咨询</th>
+					</tr>
+					<tr ng-class="{'on':a==1,'in':b==1}">
+						<td>四川</td>
+						<td>7月28日-8月28日</td>
+						<td>7月28日-8月29日</td>
+						<td>7月29日-8月30日</td>
+						<td>10月23日-10月27日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=1" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==2,'in':b==2}">
+						<td>江西</td>
+						<td>8月7日-8月17日</td>
+						<td>8月9日-8月18日</td>
+						<td>截止8月22日17:00</td>
+						<td>缴费成功后打印准考证</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=2" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==3,'in':b==3}">
+						<td>吉林</td>
+						<td>8月4日-8月14日</td>
+						<td>与报名时间相同</td>
+						<td>截止8月22日17:00</td>
+						<td>缴费成功后打印准考证</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=3" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==4,'in':b==4}">
+						<td>青海</td>
+						<td>7月31日-8月7日</td>
+						<td>7月31日-8月8日</td>
+						<td>7月31日-8月9日</td>
+						<td>10月24日-10月27日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=4" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+					<tr ng-class="{'on':a==5,'in':b==5}">
+						<td>湖南</td>
+						<td>8月3日-8月10日</td>
+						<td>考前自我审查，考后复审</td>
+						<td>截止8月10日17:30</td>
+						<td>10月23日-10月26日</td>
+						<td><a href="http://www.cpta.com.cn/" target="_blank">报名</a></td>
+						<td><div ng-mouseenter="b=5" ng-mouseleave="b=''"><img src="<!--#echo var='ver1'-->images/exam/r.png">提醒<img src="<!--#echo var='ver1'-->images/exam/code.png" class="code"></div></td>
+						<td><a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" target="_blank">历年真题</a></td>
+						<td><a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157" title="点击试听" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/r1.png"></a></td>
+						<td><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" target="_blank"><img src="<!--#echo var='ver1'-->images/exam/qq.png">在线咨询</a></td>
+					</tr>
+				</table>
 			</table>
 		</div>
 		<h2>2017年安全工程师报考条件/如何报考</h2>
@@ -168,7 +193,7 @@
 			<p>6、取得安全工程、工程经济类博士学位;或取得其他专业博士学位，从事安全生产相关业务满1年。</p>
 			<p>(二)凡符合注册安全工程师执业资格考试报考条件，且在2002年底前已评聘高级专业技术职务，并从事安全生产相关业务工作满10年的专业人员，可免试《安全生产管理知识》和《安全生产技术》两个科目，只参加《安全生产法及相关法律知识》和《安全生产事故案例分析》两个科目的考试。</p>
 			<p>(三)符合报名条件的香港、澳门和台湾居民，可按照原人事部《关于做好香港、澳门居民参加内地统一举行的专业技术人员资格考试有关问题的通知》(国人部发[2005]9号)，人力资源和社会保障部、国务院台湾事务办公室《关于再向台湾居民开放部分专业技术人员资格考试有关问题的通知》(人社部发[2009]54号)有关要求，参加注册安全工程师执业资格考试。港澳台居民在报名时，须提交国务院教育行政部门认可的相应专业学历或学位证书，从事相关专业工作年限的证明和居民身份证明等材料。台湾居民还须提交《台湾居民来往大陆通行证》。</p>
-			<p>(四)上述报考条件中有关学历的要求是指经国家教育部门承认的学历或学位;从事相关业务工作的年限要求是指取得规定学历前、后从事该相关业务工作时间的总和，其截止日期为考试一般为报名当年年底(具体情况以当地规定为准)。</p>
+			<p>(四)上述报考条件中有关学历的要求是指经国家教育部门承认的学历或学位;从事相关业务工作的年限要求是指取得规定学历前、后从事该相关业务工作时间的总和，其截止期为考试一般为报名当年年底(具体情况以当地规定为准)。</p>
 			<p><b>免考条件</b></p>
 			<p>凡符合注册安全工程师执业资格考试报名条件，且在2002年9月3日前已评聘高级专业技术职务，并从事安全生产相关业务工作满10年的专业人员，可免试《安全生产管理知识》和《安全生产技术》2个科目，只参加《安全生产法及相关法律知识》和《安全生产事故案例分析》2个科目的考试。</p>
 			<h3>如何报考</h3>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>支付订单</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page pay ng-init" ng-controller="pay">
+	<div class="pay_t box">
+		<h2><i class="icon i_ok"></i>{{status?'订单支付成功！':payStr}}</h2>
+			订单编号：<b>{{no}}</b>
+			订单状态：<b>{{status?'支付成功':'待支付'}}</b>
+			应付金额：<b class="red">{{money|money}}</b>
+	</div>
+	<div class="pay_m box" ng-if="!status">
+		<h2 ng-if="!status">选择支付方式</h2>
+		<a ng-href="{{alipay}}" ng-click="$parent.check=true" target="_blank" class="alipayBtn"></a>
+		<label class="wechatBtn" ng-click="showWechat=!showWechat;$parent.check=true" ng-class="{'on':showWechat}"></label>
+		<p ng-show="showWechat"><img ng-src="{{wechat}}" alt="微信扫码支付"></p>
+		<p ng-show="$parent.check"><label ng-click="get()" class="btn bg_red">{{checkStr}}</label></p>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

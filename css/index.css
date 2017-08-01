@@ -173,7 +173,7 @@ li {
 	background: #fff;
 }
 .btn:hover,a:hover .btn,.btn.on,.in .btn{
-	background: #21a6f1;
+	background-color: #21a6f1;
 	color: #fff;
 }
 .btn.big{
@@ -487,6 +487,11 @@ hr {
 	width: 22px;
 	height: 22px;
 	background: url(<!--#echo var="ver1"-->images/icon/book.png)
+}
+.i_ok{
+	width: 30px;
+	height: 30px;
+	background: url(<!--#echo var="ver1"-->images/icon/ok.png)
 }
 .i_stime,.i_stname,.i_splace{
 	width: 25px;
@@ -2397,7 +2402,6 @@ iframe#alertP {
 	padding: 0;
 }
 .myClassList li{
-	border-bottom: 1px #eee solid;
 	line-height: 60px;
 }
 .myClassList li.last,.mcl_2.last{
@@ -2407,8 +2411,8 @@ iframe#alertP {
 	padding: 0 20px;
 	line-height: 60px;
 	font-size: 16px;
-	border-bottom: 1px #ddd solid;
-	background: #e5e5e5;
+	border-top: 1px #ddd solid;
+	background: #eee;
 }
 .mcl_2{
 	border-bottom: 1px #eee solid;
@@ -2531,11 +2535,14 @@ iframe#alertP {
 	width: 340px;
 	margin: 18px;
 }
-.scene img,.scene .hover_box{
+.scene img,.scene .hover_box,.scene_list li,.scene_list img{
 	display: block;
 	position: relative;
 	width: 340px;
 	height: 230px;
+}
+.scene .hover_box{
+	margin: 0 0 9px 0;
 }
 .scene .icon{
 	margin-right: 9px;
@@ -2543,3 +2550,149 @@ iframe#alertP {
 .scene p{
 	line-height: 30px;
 }
+.scene_list li{
+	float: left;
+	margin: 18px;
+}
+/*car s*/
+.carlist table{
+	width: 100%;
+	margin: 0 0 20px 0;
+	border: 1px #ddd solid;
+}
+.carlist th{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 20px;
+	background: #f6f6f6;
+	font-size: 16px;
+}
+.carlist td{
+	background: #fff;
+	padding: 20px;
+	border: 1px #ddd solid;
+}
+.carlist b.red{
+	font-size: 16px;
+	display: block;
+}
+.carlist span.gray{
+	font-size: 12px
+}
+.carbar{
+	background: #fff;
+	height: 60px;
+	line-height: 60px;
+	text-align: right;
+	padding: 0 0 0 24px;
+	border-radius: 4px;
+}
+.carbar .fl{
+	margin: 0 24px 0 0;
+}
+.carbar .bh{
+	margin: 0 24px;
+}
+.carbar b.red{
+	font-size: 24px
+}
+.carbar .btn{
+	float: right;
+	height: 56px;
+	line-height: 56px;
+	font-size: 24px;
+	margin: 0 0 0 40px;
+	border-radius: 4px;
+}
+.carlist td.carinfo{
+	padding: 0;
+}
+.carinfo li{
+	position: relative;
+	padding: 12px 0 12px 120px;
+	min-height: 60px;
+	border-bottom: 1px #e5e5e5 solid;
+}
+.carinfo li.last{
+	border: 0
+}
+.carinfo img{
+	position: absolute;
+	left: 24px;
+	top: 12px;
+	width: 84px;
+	height: 60px;
+}
+.carinfo span.red{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+.pay{
+	min-height: 500px;
+	text-align: center;
+}
+.pay_t{
+	line-height: 60px;
+	text-align: center;
+}
+.pay_t h2{
+	font-size: 24px;
+}
+.pay_t b{
+	font-size: 16px;
+	margin: 0 40px 0 0;
+}
+.alipayBtn,.wechatBtn{
+	display: inline-block;
+	width: 280px;
+	height: 120px;
+	border: 2px #eee solid;
+	background: url(<!--#echo var="ver1"-->images/alipay.png) no-repeat 50% 50%;
+	margin: 40px;
+	border-radius: 9px;
+}
+.wechatBtn{
+	background-image: url(<!--#echo var="ver1"-->images/wechat.png);
+}
+.wechatBtn.on,.alipayBtn:hover,.wechatBtn:hover{
+	border: 2px #21a6f1 solid
+}
+.pay_m p .btn{
+	font-size: 20px;
+}
+.order_d{
+	margin: 1px 0 0 0;
+}
+.order_d table{
+	width: 100%;
+	margin: 20px 0;
+	border: 1px #ddd solid;
+	background: #fff;
+}
+.order_d th{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 20px;
+	background: #f6f6f6;
+	font-size: 12px;
+	border-bottom: 1px #ddd solid;
+}
+.order_d label{
+	margin: 0 20px 0 0;
+}
+.order_d td{
+	padding: 20px;
+}
+.order_d .pagination{
+	float: right;
+	margin: 0;
+}
+.order_d p{
+	font-size: 12px;
+}
+.order_d p .gray{
+	float: right;
+	width: 120px;
+}
+/*car o*/

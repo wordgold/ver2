@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="box_r box ng-init" ng-controller="news">
-		<ul class="news_list bdx" ng-if="!hash.id&&user.news.length">
+		<ul class="news_list odd_list bdx" ng-if="!hash.id&&user.news.length">
 			<li ng-repeat="n in user.news" ng-class="{'read':n.is_read,'odd':$odd,'last':$last}">
 				<a ng-href="<!--#echo var="ver1"-->user/news.html?id={{n.id}}">{{n.title}}</a> <span class="gray fr">{{n.create_time}}</span>
 			</li>

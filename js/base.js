@@ -471,14 +471,14 @@ base.controller('scene', function($scope, $http, $attrs, fac, hash, animate) {
 			$scope.ylist = response.list;
 			if (!$scope.hash.year)
 				$scope.hash.year = response.list[0].year
-			$scope.get(1);
+			$scope.get(hash.page || 1);
 		}
 	});
 
 	$scope.setYear = function(i) {
-		if(i!=$scope.hash.year){
-			$scope.hash.year=i;
-			$scope.get(1,true)
+		if (i != $scope.hash.year) {
+			$scope.hash.year = i;
+			$scope.get(1, true)
 		}
 	}
 
@@ -496,6 +496,13 @@ base.controller('scene', function($scope, $http, $attrs, fac, hash, animate) {
 						$scope.page = fac.page($scope.page.index, hash.rows, response.total)
 						if ($attrs.rows)
 							$scope.play($scope.list[0])
+						if (hash.id)
+							for (var i = $scope.list.length; i--;) {
+								if ($scope.list[i].order_id == hash.id) {
+									$scope.slist = $scope.list[i].slist;
+									return;
+								}
+							}
 					}
 				});
 			}
@@ -1508,11 +1515,23 @@ base.controller('plan', function($scope, $http, $attrs) {
 			$scope.get(1, true);
 		}
 	};
+
+	$scope.show = function(q,gid) {
+		q.showList = !q.showList;
+		if(q.showList && !q.list){
+			$http.post(service + "webuser/getMy" + $attrs.order + "?gid=" + gid + "&order_id=" + q.order_id).success(function(response) {
+				if (response.code == 200) {
+					q.list = response.list;
+				}
+			});
+		}
+	}
+
 	$scope.loading = false;
 	$scope.get = function(b) {
 		$scope.loading = true;
 		$scope.list = [];
-		$http.post(service + "webuser/" + $attrs.type + "?rows=99&mid=" + $scope.mid + "&cid=" + $scope.cid).success(function(response) {
+		$http.post(service + "webuser/getMy" + $attrs.type + "?rows=99&mid=" + $scope.mid + "&cid=" + $scope.cid).success(function(response) {
 			$scope.loading = false;
 			if (response.code == 200) {
 				$scope.list = response.list;
@@ -1533,8 +1552,9 @@ base.controller('myclass', function($scope, $http) {
 	});
 })
 
-base.controller('news', function($scope, $http, $sce, hash) {
+base.controller('news', function($scope, $http, $sce, hash, user) {
 	$scope.hash = hash;
+	$scope.user = user;
 	$scope.html = function(s) {
 		return $sce.trustAsHtml(s);
 	}
@@ -1685,5 +1705,184 @@ base.controller('enter', function($scope, fac) {
 	$scope.goTo = function(i, h) {
 		$scope.a = i;
 		fac.scrollTo(i * 40 + 40 + h)
+	}
+})
+
+base.controller('car', function($scope, $http, user) {
+	$scope.checked = $scope.price = 0;
+	$http.post(service + "gradeFront/getShopcar").success(function(response) {
+		if (response.code == 200) {
+			$scope.list = response.list;
+		}
+	});
+
+	$scope.for = function(func) {
+		for (var l = $scope.list.length; l--;) {
+			func($scope.list[l])
+		}
+	}
+	$scope.pick = function(i) {
+		$scope.checked = $scope.price = 0;
+		$scope.for(function(item) {
+			if (item.checked) {
+				$scope.checked++;
+				$scope.price += item.cmoney - 0;
+			}
+		})
+		$scope.all = $scope.checked == $scope.list.length;
+	}
+	$scope.pickAll = function() {
+		$scope.price = 0;
+		if ($scope.all) {
+			$scope.checked = $scope.list.length;
+			$scope.for(function(item) {
+				item.checked = true;
+				$scope.price += item.cmoney - 0;
+			});
+		} else {
+			$scope.checked = 0;
+			$scope.for(function(item) {
+				item.checked = false;
+			});
+		}
+	}
+	$scope.del = function(i) {
+		$http.post(service + "gradeFront/removeShopcar?ids=" + $scope.list[i].sid);
+		$scope.list.splice(i, 1);
+		user.car = $scope.list.length;
+		$scope.pick();
+	}
+	$scope.delChecked = function() {
+		var s = new Array(),
+			ls = new Array();
+		$scope.for(function(item) {
+			if (item.checked)
+				s.push(item.sid)
+			else
+				ls.push(item)
+		});
+		$scope.list = ls;
+		user.car = $scope.list.length;
+		$http.post(service + "gradeFront/removeShopcar?ids=" + s.join());
+	}
+	$scope.delAll = function() {
+		var s = new Array();
+		$scope.for(function(item) {
+			s.push(item.sid)
+		});
+		user.car = $scope.list.length = 0;
+		$http.post(service + "gradeFront/removeShopcar?ids=" + s.join());
+	}
+	$scope.pay = function(id) {
+		if ($scope.checked && !$scope.loading) {
+			$scope.loading = " 中";
+			var s = new Array();
+			$scope.for(function(item) {
+				if (item.checked) {
+					s.push(item.sid);
+				}
+			});
+			$http.post(service + "gradeFront/createOrder?ids=" + s.join()).success(function(response) {
+				if (response.code == 200) {
+					location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
+				} else $scope.loading = "";
+			});
+		}
+	}
+})
+
+base.controller('pay', function($scope, $http, $interval, fac, hash) {
+	fac.goHome(hash.id);
+	$scope.alipay = service + "webali/pay?id=" + hash.id;
+	$scope.wechat = service + "webchat/pay?id=" + hash.id;
+	$scope.checkStr = "检查支付状态";
+	$scope.payStr = hash.pay ? '订单尚未支付，请尽快付款！' : '订单创建成功，请尽快付款！';
+	$scope.get = function() {
+		if ($scope.check) $scope.checkStr = "正在检查…"
+		$http.post(service + "gradeFront/findOrderbyid?id=" + hash.id).success(function(response) {
+			if (response.code == 200) {
+				$scope.money = response.list[0].money;
+				$scope.no = response.list[0].out_trade_no;
+				$scope.status = response.list[0].status;
+				if ($scope.check && !$scope.status) $scope.checkStr = "尚未支付成功，重新检查"
+			} else fac.goHome(0);
+		});
+	}
+	$scope.get();
+	var stop = $interval(function() {
+		$http.post(service + "gradeFront/findOrderbyid?id=" + hash.id).success(function(response) {
+			if (response.code == 200) {
+				$scope.status = response.list[0].status;
+				if ($scope.status) $interval.cancel(stop);
+			}
+		});
+	}, 9999)
+})
+
+base.controller('order', function($scope, $http, fac, hash) {
+	$scope.hash = hash.init({
+		status: 1
+	});
+	$scope.checked = 0;
+	$scope.rows = 10;
+	$scope.list = new Array(new Array(), new Array(), new Array());
+	$http.post(service + "webuser/getMyOrder").success(function(response) {
+		if (response.code == 200) {
+			angular.forEach(response.list, function(v, i) {
+				$scope.list[v.status].push(v);
+			})
+			$scope.get(1)
+		}
+	});
+	$scope.set = function(i) {
+		$scope.hash.status = i;
+		$scope.get(1);
+	}
+	$scope.get = function(i) {
+		$scope.page = fac.page(i, $scope.rows, $scope.list[$scope.hash.status].length)
+		$scope.list[2] = $scope.list[$scope.hash.status].slice(($scope.page.index - 1) * $scope.rows, $scope.page.index * $scope.rows);
+		$scope.pick();
+	}
+	$scope.pick = function(i) {
+		$scope.checked = 0;
+		var l = $scope.list[2].length;
+		for (; l--;) {
+			if ($scope.list[2][l].checked) {
+				$scope.checked++;
+			}
+		}
+		$scope.all = $scope.checked == $scope.list[2].length;
+	}
+	$scope.pickAll = function() {
+		$scope.price = 0;
+		var l = $scope.list[2].length;
+		if ($scope.all) {
+			$scope.checked = l;
+			for (; l--;) {
+				$scope.list[2][l].checked = true;
+			}
+		} else {
+			$scope.checked = 0;
+			for (; l--;) {
+				$scope.list[2][l].checked = false;
+			}
+		}
+	}
+	$scope.del = function(id, i) {
+		$http.post(service + "webuser/removeMyOrder?ids=" + id);
+		$scope.list[$scope.hash.status].splice(($scope.page.index - 1) * $scope.rows + i, 1)
+		$scope.get(1);
+	}
+	$scope.delChecked = function() {
+		var list = new Array(),
+			s = new Array();
+		angular.forEach($scope.list[2], function(v) {
+			if (!v.checked) {
+				list.push(v);
+			} else s.push(v.id)
+		})
+		$http.post(service + "webuser/removeMyOrder?ids=" + s.join());
+		$scope.list[$scope.hash.status] = $scope.list[$scope.hash.status].slice(0, ($scope.page.index - 1) * $scope.rows).concat(list, $scope.list[$scope.hash.status].slice(($scope.page.index) * $scope.rows));
+		$scope.get(1);
 	}
 })

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>学习中心</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
+	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="4">
+		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
+			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+		</div>
+	</div>
+	<div class="box_r ng-init" ng-controller="order">
+		<ul class="class_nav box">
+			<li><b>订单状态</b><label ng-class="{'on':hash.status==1}" ng-click="set(1)">已完成订单（{{list[1].length}}）</label>
+			<label ng-class="{'on':hash.status==0}" ng-click="set(0)">未完成订单（{{list[0].length}}）</label></li>
+		</ul>
+		<div class="order_d" ng-if="list[2].length">
+			<table ng-repeat="s in list[2]">
+				<tr>
+					<th><label for="gid{{s.id}}"><input name="gid" id="gid{{s.id}}" ng-if="hash.status==0" type="checkbox" ng-model="s.checked" ng-change="pick()">{{s.time_start|justDay}}</label><span class="gray">订单编号：{{s.out_trade_no}}</span></th>
+					<th width="99">金额</th>
+					<th style="text-align: right;" width="120">
+						<a href="javascript:" ng-if="hash.status==0" class="a_check" ng-class="{'on':s.del}" ng-click="s.del=!s.del">
+							<i class="icon i_sdel"></i>
+							<span class="a_show">删除</span>
+							<span class="a_hide">确认删除：<u ng-click="del(s.id,$index)">是</u> <u>否</u></span>
+						</a>
+					</th>
+				</tr>
+				<tr>
+					<td><p ng-repeat="g in s.glist"><a target="_blank" ng-href="<!--#echo var="ver1"-->class/class.html?mid={{g.major_id}}&cid={{g.course_id}}&gid={{g.id}}">{{g.name}}</a><span class="gray">￥{{g.cmoney|money}}</span></p></td>
+					<td><big class="red">￥{{s.total_fee}}</big></td>
+					<td>
+						<a href="javascript:" class="btn disabled" ng-if="s.status">已支付</a>
+						<a ng-href="<!--#echo var="ver1"-->user/pay.html?id={{s.id}}&pay=1" class="btn bg_red" ng-if="!s.status">前往支付</a>
+					</td>
+				</tr>
+			</table>
+			<div class="cf">
+				<label for="all1" ng-if="hash.status==0"><input type="checkbox" id="all1" ng-model="$parent.all" ng-change="pickAll()">全选</label>
+				<a href="javascript:" class="a_check" ng-if="hash.status==0" ng-class="{'on':s.checkDel}" ng-click="s.checkDel=!s.checkDel">
+					<i class="icon i_sdel"></i>
+					<span class="a_show">删除选中</span>
+					<span class="a_hide">确认删除：<u ng-click="delChecked()">是</u> <u>否</u></span>
+				</a>
+				<!--#include virtual="/include/pagination.html"-->
+			</div>
+		</div>
+		<div class="box" ng-if="!list[2].length">
+			<div class="search_none">
+				很抱歉，暂无相关内容
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

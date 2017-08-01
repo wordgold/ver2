@@ -14,7 +14,7 @@
 			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
 		</div>
 	</div>
-	<div class="box_r ng-init" ng-controller="plan" data-type="getMyGradeExam">
+	<div class="box_r ng-init" ng-controller="plan" data-type="GradeExam" data-order="GradeExamOrder">
 		<ul class="class_nav box" ng-if="mlist.length">
 			<!-- <li>
 				<b>报考专业</b>
@@ -29,11 +29,11 @@
 			<ul class="myClassList bdx" ng-if="!loading&&list.length">
 				<li class="mcl_1" ng-repeat="s in list" ng-class="{'last':$last}">
 					<h4>{{s.name}}</h4>
-					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showQ}">
-						<p ng-click="q.showQ=!q.showQ" class="cursor"><i class="icon i_plus" ng-if="q.examlist.length"></i><b>第 {{$index | xyz}} 阶段：</b>练习试题
-						<i ng-if="q.examlist.length" class="icon i_up fr"></i></p>
-						<table ng-if="q.examlist.length">
-							<tr ng-repeat="s in q.examlist" ng-class="{'odd':$odd}" ng-init="s.p=s.zdnums/s.yznums">
+					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showList}">
+						<p ng-click="show(q,s.id)" class="cursor"><i class="icon i_plus"></i><b>第 {{$index | xyz}} 阶段：</b>练习试题
+						<i class="icon i_up fr"></i></p>
+						<table>
+							<tr ng-repeat="s in q.list" ng-class="{'odd':$odd}" ng-init="s.p=s.zdnums/s.yznums">
 								<td style="padding: 0 0 0 42px">{{s.title}}</td>
 								<td width="120">试卷题量：{{s.nums}}</td>
 								<td width="200"><i class="i_bar" ng-if="s.yznums"><u ng-class="{'a':s.p>0.84,'b':s.p>0.69,'c':s.p>0.49}" ng-style="{width:s.yznums/s.nums*100+'%'}"></u></i></td>

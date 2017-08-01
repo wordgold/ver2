@@ -14,7 +14,7 @@
 			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
 		</div>
 	</div>
-	<div class="box_r ng-init" ng-controller="plan" data-type="getMyPlanGrade">
+	<div class="box_r ng-init" ng-controller="plan" data-type="PlanGrade" data-order="PlanGradeOrder">
 		<ul class="class_nav box" ng-if="mlist.length">
 			<!-- <li>
 				<b>报考专业</b>
@@ -29,16 +29,16 @@
 			<ul class="myClassList bdx" ng-if="!loading&&list.length">
 				<li class="mcl_1" ng-repeat="s in list" ng-class="{'last':$last}">
 					<h4>{{s.name}}</h4>
-					<div class="mcl_2" ng-repeat="g in s.jdlist" ng-class="{'last':$last,'on':g.showL}" ng-init="download=g.flist[0].name.indexOf('仅课件')==0">
-						<p ng-click="g.showL=!g.showL" class="cursor"><i class="icon i_plus" ng-if="g.flist.length"></i><b>第 {{$index | xyz}} 阶段：</b>{{download?'仅供下载课件':'观看视频'}}
-						<i ng-if="g.flist.length" class="icon i_up fr"></i></p>
+					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showList}" ng-init="download=q.flist[0].name.indexOf('仅课件')==0">
+						<p ng-click="show(q,s.id)" class="cursor"><i class="icon i_plus"></i><b>第 {{$index | xyz}} 阶段：</b>{{download?'仅供下载课件':'观看视频'}}
+						<i class="icon i_up fr"></i></p>
 						<table>
-							<tr ng-repeat="f in g.flist" ng-class="{'odd':$odd}">
+							<tr ng-repeat="f in q.list" ng-class="{'odd':$odd}">
 								<td style="padding: 0 0 0 42px">{{f.name}}</td>
 								<td width="80" class="gray">主讲：{{f.tname}}</td>
 								<td width="60"><a ng-if="f.ppt_url" ng-href="{{f.ppt_url}}" target="_blank">查看课件</a></td>
-								<td width="200" ng-if="!download"><i class="i_bar" ng-if="!g.able&&f.current_time&&f.total_time"><u class="a" ng-style="{width:f.current_time/f.total_time*100+'%'}"></u></i></td>
-								<td width="120" ng-if="!download"><a ng-if="!g.able" ng-href="<!--#echo var="ver1"-->class/item.html?mid={{f.major_id}}&cid={{f.course_id}}&gid={{f.gid}}&vid={{f.id}}" class="btn bg_white" ng-class="{'on':f.current_time>0}">{{f.current_time>0?'继续学习':'开始学习'}}</a></td>
+								<td width="200" ng-if="!download"><i class="i_bar" ng-if="!q.able&&f.current_time&&f.total_time"><u class="a" ng-style="{width:f.current_time/f.total_time*100+'%'}"></u></i></td>
+								<td width="120" ng-if="!download"><a ng-if="!q.able" ng-href="<!--#echo var="ver1"-->class/item.html?mid={{f.major_id}}&cid={{f.course_id}}&gid={{f.gid}}&vid={{f.id}}" class="btn bg_white" ng-class="{'on':f.current_time>0}">{{f.current_time>0?'继续学习':'开始学习'}}</a></td>
 							</tr>
 						</table>
 					</div>

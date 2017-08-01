@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>现场照片-中科建安</title>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page cf ng-init" ng-controller="scene">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a href="<!--#echo var="ver1"-->picture/list.html?year={{hash.year}}">特训现场</a>&gt;<span>现场照片</span></div>
+	<div class="box scene_list">
+		<h4>{{hash.year}}年-{{slist[0].content}}</h4>
+		<ul class="bdx cf" ng-if="!loading&&list.length">
+			<li ng-repeat="ls in slist" class="hover_box">
+				<img ng-src="{{ls.imgurl}}">
+			</li>
+		</ul>
+		<!--#include virtual="/include/pagination.html"-->
+		<div class="search_none" ng-if="!loading&&!list.length">
+			很抱歉，暂无相关内容
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>
