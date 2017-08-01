@@ -53,7 +53,7 @@ base.filter("slice", function() {
 base.service("user", function($http) {
 	var s = this,
 		es = new Array(),
-		callBack, attrs,
+		callBack,
 		getNews = function() {
 			$http.post(service + "webuser/getNews").success(function(response) {
 				if (response.code == 200) {
@@ -100,22 +100,21 @@ base.service("user", function($http) {
 				s.logined = true;
 				s.car = response.carCount;
 				s.showPanl = false;
-				callBack.apply(null, attrs);
+				callBack();
 			} else s.errMsg = response.msg;
 		});
 	}
-	s.show = function(f, o) {
+	s.show = function(f) {
 		s.showPanl = true;
 		callBack = f;
-		attrs = o;
 	}
-	s.judge = function(f, o) {
+	s.judge = function(f) {
 		if (s.logined) {
-			f.apply(null, o);
-		} else s.show(f, o)
+			f();
+		} else s.show(f)
 	}
 	s.buy = function(o, go) {
-		s.judge(function(o, go) {
+		s.judge(function() {
 			if (!o.status) {
 				o.status = true;
 				$http.get(service + "gradeFront/addShopcar?gids=" + o.id).success(function(response) {
@@ -128,14 +127,17 @@ base.service("user", function($http) {
 					}
 				})
 			} else location.href = "<!--#echo var='ver1'-->user/car.html"
-		}, [o, go])
+		})
 	}
-	s.pay = function(id) {
-		user.judge(function(id) {
-			$http.post(service + "?id=" + id).success(function(response) {
-
-			});
-		}, id)
+	s.pay = function(o) {
+		s.judge(function() {
+			$http.post(service + "gradeFront/addBalance?gids=" + o.id).success(function(response) {
+					if (response.code == 200)
+						location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
+					else
+						alert(response.msg)
+				});
+		})
 	}
 	s.fromURL = encodeURIComponent(location.href);
 	s.loginURL = "<!--#echo var='ver1'-->login.html?href=" + s.fromURL;
@@ -582,11 +584,12 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 		}
 		var fixed = 1;
 		window.onscroll = function() {
-			if (fixed && document.body.scrollTop > 280) {
+			var b = document.documentElement.scrollTop ? document.documentElement : document.body
+			if (fixed && b.scrollTop > 280) {
 				fixed = 0;
 				document.getElementById("help_l1").className = "nav_l box f_biger fixed";
 			}
-			if (!fixed && document.body.scrollTop < 280) {
+			if (!fixed && b.scrollTop < 280) {
 				fixed = 1;
 				document.getElementById("help_l1").className = "nav_l box f_biger";
 			}
@@ -735,11 +738,12 @@ base.controller('test', function($scope, $http, $interval, $sce, fac, user, hash
 	};
 	var fixed = 1;
 	window.onscroll = function() {
-		if (fixed && document.body.scrollTop > 520) {
+		var b = document.documentElement.scrollTop ? document.documentElement : document.body
+		if (fixed && b.scrollTop > 520) {
 			fixed = 0;
 			document.getElementById("card").className = "text_fr fixed";
 		}
-		if (!fixed && document.body.scrollTop < 520) {
+		if (!fixed && b.scrollTop < 520) {
 			fixed = 1;
 			document.getElementById("card").className = "text_fr";
 		}

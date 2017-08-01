@@ -30,7 +30,7 @@
 					<h5><a ng-href="<!--#echo var='ver1'-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{s.id}}">{{s.name}}</a></h5>
 					<p>课程简介：{{s.content}}</p>
 					<label ng-click="user.buy(s)" class="btn" ng-class="{'on':s.status}">{{s.status?'查看':'加入'}}购物车</label>
-					<label ng-click="pay(s)" class="btn">立即报名</label>
+					<label ng-click="user.pay(s)" class="btn">立即报名</label>
 				</li>
 			</ul>
 			<!--#include virtual="/include/pagination.html"-->
