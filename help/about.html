@@ -2,12 +2,12 @@
 <html>
 <head>
 	<!--#include virtual="/include/head.html"-->
-	<title>公司介绍</title>
+	<title>关于我们</title>
 </head>
 <body ng-app="baseApp">
 <!--#include virtual="/include/header.html"-->
 <div class="page cf ng-init" ng-controller="about">
-	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>公司介绍</span></div>
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>关于我们</span></div>
 	<div class="nav_l box f_biger">
 		<label ng-repeat="n in nlist" ng-click="hash.pid=$index" class="btn" ng-class="{on:hash.pid==$index}">{{n}} </label>
 	</div>
