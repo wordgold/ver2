@@ -6,7 +6,7 @@
 				<span ng-if="!user.logined" class="fr" style="margin-left:40px"><a class="tb_a" href="{{user.registerURL}}">注册</a> <span class="dl">|</span> <a class="tb_a" ng-href="{{user.loginURL}}">登录</a></span>
 				<span ng-if="user.logined" class="dl" style="width: 140px;" ng-class="{'on':showU}" ng-mouseenter="showU=true" ng-mouseleave="showU=false">&nbsp;
 					<li class="dl_b">
-						<a class="dl_t" href="<!--#echo var='ver1'-->user/history.html" title="欢迎，{{user.info.nickname}}">
+						<a class="dl_t" href="<!--#echo var='ver1'-->user/plan_v.html" title="欢迎，{{user.info.nickname}}">
 						<img ng-src="{{user.info.logo?user.info.logo:'<!--#echo var='ver1'-->images/avatar_man.png'}}" class="icon i_avatar">
 						{{user.info.nickname | slice:5}}<i class="icon i_up"></i></a>
 						<a href="<!--#echo var="ver1"-->user/detail.html">个人资料</a>
@@ -98,14 +98,12 @@
 			<a href="<!--#echo var='ver1'-->download/list.html" class="na_a" ng-class="{'in':nav=='download'}">资料下载</a>
 		</div>
 	</div>
-	<div class="fly" ng-hide="hideFly">
+	<div class="fly f_biger" ng-hide="hideFly">
 		<i class="fly_close" ng-click="hideFly=true"></i>
-		<label>免费咨询热线：<br>010-61705052</label>
-		<div class="f_biger">
-			<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw"><img src="<!--#echo var="ver1"-->images/qq.png">在线咨询</a>
-			<img class="fly_code" src="<!--#echo var="ver1"-->images/code.png">微信公众号
-		</div>
-		<label class="top_t" ng-click="goTop()"><i class="icon i_top"></i>返回顶部</label>
+		<p>距离考试还有<br><b>{{date}}</b>天</p>
+		<p class="fly_code"><img src="<!--#echo var="ver1"-->images/code.png">微信公众号</p>
+		<a target="_blank" class="fly_qq" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw"><img src="<!--#echo var="ver1"-->images/qq.png">在线咨询</a>
+		<label class="top_t" ng-click="goTop()"><i class="icon i_top"></i> 返回顶部</label>
 	</div>
 	<div ng-if="user.showPanl">
 		<div class="hbg"></div>

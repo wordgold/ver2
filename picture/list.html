@@ -19,7 +19,7 @@
 					</a>
 					<p><i class="icon i_stime"></i>时间：{{ls.open_time}}</p>
 					<p><i class="icon i_splace"></i>地点：{{ls.place}}</p>
-					<p><i class="icon i_stname"></i>导师：{{ls.tname}}</p>
+					<!-- <p><i class="icon i_stname"></i>导师：{{ls.tname}}</p> -->
 				</li>
 			</ul>
 			<!--#include virtual="/include/pagination.html"-->
@@ -31,8 +31,8 @@
 	<div class="fr" style="width: 360px">
 		<div class="box">
 			<h4>特训通知</h4>
-			<div class="bdx list_a" ng-controller="home">
-				<a ng-repeat="s in tlist" title="s.title" href="<!--#echo var="ver1"-->news/item.html?id={{s.id}}&type=2">{{s.title|slice:20}}</a>
+			<div class="bdx list_a" ng-controller="newsList" data-type="2">
+				<a ng-repeat="s in list" title="s.title" href="<!--#echo var="ver1"-->news/item.html?id={{s.id}}&type=2">{{s.title|slice:20}}</a>
 			</div>
 		</div>
 		<div class="box">

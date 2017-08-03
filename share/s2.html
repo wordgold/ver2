@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="keywords" content="中科建安（北京）教育科技有限公司,中科建安,中科建安教育网,注册安全工程师,注册安全工程师培训机构,安全工程师,安全工程师分专业,注册安全工程师讲师,注册安全工程师真题题,注册安全工程师考试时间,注册安全工程师报名时间,2017年注册安全工程师,注册安全工程师最新教材,安全生产法及相关法律知识,安全生产管理知识,安全生产技术,安全生产事故案例分析"/>
+	<meta name="description" content="中科建安（北京）教育科技有限公司，简称中科建安教育。中国执业资格考试培训领导品牌，是目前国内规模最大、最强师资阵容的注册安全工程师教育培训机构。"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+	<link href="<!--#echo var="ver1"-->favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="<!--#echo var="ver1"-->css/index.css" rel="stylesheet" type="text/css" />
+	<script src="<!--#echo var="ver1"-->share/date/WdatePicker.js" type="text/javascript"></script>
+	<script src="<!--#echo var="ver1"-->js/angular.min.js" type="text/javascript"></script>
+	<script src="<!--#echo var="ver1"-->js/base.js" type="text/javascript"></script>
+	<title>住宿回执表</title>
+	<style type="text/css">
+		.register_f li{
+			line-height: 26px;
+			min-height: 26px;
+			padding-bottom: 24px;
+		}
+		.form .txt{
+			line-height: 24px;
+			height: 26px;
+			border-radius: 2px;
+		}
+		.form .err{
+			bottom: 0;
+		}
+		.f_i{
+			margin-left: -130px;
+			font-size: 14px;
+		}
+		.radio{
+			display: inline-block;
+			white-space: nowrap;
+			margin: 0 9px 0 0;
+		}
+		.radio input{
+			position: relative;
+			top: -2px;
+		}
+		.login_bg{
+			height: 600px;
+			padding: 60px 0;
+		}
+		.ng-dirty .txt.ng-invalid{
+		    border: 1px #ed5d45 solid;
+		}
+		@media (max-width: 750px){
+			.login .header h2 {
+			    top: 32px;
+			    left: 200px;
+			    border: 0;
+			    font-size: 16px;
+			}
+			.form .txt,.form .btn{
+				width: 100%;
+			}
+			.form .err {
+			    bottom: 0;
+			    left: 0;
+			}
+			.header{
+				border-bottom: 2px #353482 solid;
+			}
+			.page,.login .page{
+				width: 100%;
+			}
+			.register_f .form{
+				padding: 0 9px 40px 9px;
+			}
+			.form li{
+				padding: 0 0 24px 0;
+			}
+			.f_i{
+				display: block;
+				width: 100%;
+				float: none;
+				margin: 0;
+				text-align: left;
+			}
+			.login_bg{
+				height: auto;
+				padding: 0;
+				background: #fff;
+			}
+		}
+	</style>
+	<script>
+		base.controller('save', function($scope, $http, $interval, fac) {
+			$scope.sex = "man";
+			$scope.stay_type = "no";
+			$scope.invoice = "no";
+			$scope.dentifier = location.href.split("dentifier=")[1].split("&")[0];
+			$scope.valid=function(){
+				var a=document.getElementById('date').value;
+				if(a)
+					$scope.user.arrival_time.$setViewValue(a);
+			}
+
+			$scope.sub = function() {
+				if(!$scope.user.$invalid){
+					$scope.errMsg = "正在请求，请稍候…";
+					$http.post(service + "wxuser/addStayUser", fac.serialize($scope.user)).success(function(response) {
+						if (response.code == 200) {
+							$scope.ok = true;
+						} else {
+							$scope.errMsg = response.msg;
+						}
+					});
+				}else
+					$scope.user.$setDirty()
+			}
+		})
+	</script>
+</head>
+<body ng-app="baseApp">
+	<div class="login" ng-controller="save">
+		<div class="page header">
+			<h1><a href="<!--#echo var="ver1"-->index.html"><img src="<!--#echo var="ver1"-->images/logo.png" alt="">中科建安</a></h1>
+			<h2>住宿回执表</h2>
+		</div>
+		<div class="login_bg">
+			<form class="register_f page ng-init" ng-submit="sub()" name="user" novalidate autocomplete="off">
+				<input type="hidden" name="dentifier" ng-model="dentifier">
+				<ul class="form" ng-show="!ok">
+					<li class="no_f red">{{errMsg}}</li>
+					<li>
+						<label for="name" class="f_i"><big class="red">*</big>姓名：</label>
+						<input id="name" type="text" class="txt" ng-model="name" name="name" required placeholder="请填写真实姓名"></li>
+					<li>
+						<label for="sex1" class="f_i"><big class="red">*</big>性别：</label>
+						<label class="radio" for="sex1"><input id="sex1" type="radio" ng-model="sex" name="sex" value="man" checked>男</label>
+						<label class="radio" for="sex2"><input id="sex2" type="radio" ng-model="sex" name="sex" value="woman">女</label></li>
+					<li>
+						<label for="phone" class="f_i"><big class="red">*</big>联系方式：</label>
+						<input id="phone" type="text" class="txt" ng-model="phone" ng-pattern="/^[0-9]+$/" name="phone" required placeholder="请输入手机或固定电话号码"><span class="err" ng-show="user.phone.$dirty&&user.phone.$invalid">只允许输入数字</span></li>
+					<li>
+						<label for="date" class="f_i"><big class="red">*</big>抵达时间：</label>
+						<input id="date" type="text" class="txt" ng-model="arrival_time" onClick="WdatePicker({minDate:'%y-%M-%d 00:00',dateFmt:'yyyy-MM-dd HH:mm'})" onFocus="WdatePicker({minDate:'%y-%M-%d 00:00',dateFmt:'yyyy-MM-dd HH:mm'})" name="arrival_time" required placeholder="请输入具体的抵达日期及时间" ng-blur="valid()" ng-change="valid()"></li>
+					<li>
+						<label for="house1" class="f_i"><big class="red">*</big>住宿方式：</label>
+						<label class="radio" for="house1"><input id="house1" type="radio" ng-model="stay_type" name="stay_type" value="singel">单住</label>
+						<label class="radio" for="house2"><input id="house2" type="radio" ng-model="stay_type" name="stay_type" value="group">合住</label>
+						<label class="radio" for="house3"><input id="house3" type="radio" ng-model="stay_type" name="stay_type" value="no" checked>不住宿</label></li>
+					<li ng-if="user.stay_type.$modelValue!='no'">
+						<label for="invoice1" class="f_i"><big class="red">*</big>开具发票：</label>
+						<label class="radio" for="invoice1"><input id="invoice1" type="radio" ng-model="invoice" name="invoice" value="company">增值税普通发票信息回执</label>
+						<label class="radio" for="invoice2"><input id="invoice2" type="radio" ng-model="invoice" name="invoice" value="singel">增值税专用发票信息回执</label>
+						<label class="radio" for="invoice3"><input id="invoice3" type="radio" ng-model="invoice" name="invoice" value="no" checked>不开发票</label></li>
+					<div ng-if="user.stay_type.$modelValue!='no'&&user.invoice.$modelValue=='company'">
+						<li>
+							<label for="dw" class="f_i"><big class="red">*</big>单位名称：</label>
+							<input id="dw" type="text" class="txt" ng-model="work_unit" name="work_unit" required placeholder=""></li>
+						<li>
+							<label for="sh" class="f_i"><big class="red">*</big>税号：</label>
+							<input id="sh" type="text" class="txt" ng-model="duty_paragraph" name="duty_paragraph" required placeholder=""></li>
+					</div>
+					<div ng-if="user.stay_type.$modelValue!='no'&&user.invoice.$modelValue=='singel'">
+						<li>
+							<label for="nsr" class="f_i"><big class="red">*</big>纳税人名称：</label>
+							<input id="nsr" type="text" class="txt" ng-model="invoice_name" name="invoice_name" required placeholder=""></li>
+						<li>
+							<label for="nsrs" class="f_i"><big class="red">*</big>纳税人识别号：</label>
+							<input id="nsrs" type="text" class="txt" ng-model="invoice_number" name="invoice_number" required placeholder=""></li>
+						<li>
+							<label for="dz" class="f_i"><big class="red">*</big>地址：</label>
+							<input id="dz" type="text" class="txt" ng-model="address" name="address" required placeholder=""></li>
+						<li>
+							<label for="dh" class="f_i"><big class="red">*</big>电话：</label>
+							<input id="dh" type="text" class="txt" ng-model="ophone" name="ophone" required placeholder=""></li>
+						<li>
+							<label for="kh" class="f_i"><big class="red">*</big>开户银行：</label>
+							<input id="kh" type="text" class="txt" ng-model="bank" name="bank" required placeholder=""></li>
+						<li>
+							<label for="yh" class="f_i"><big class="red">*</big>银行账号：</label>
+							<input id="yh" type="text" class="txt" ng-model="bank_number" name="bank_number" required placeholder=""></li>
+					</div>
+					<li class="no_f"><button class="sub btn" type="submit">提交</button></li>
+				</ul>
+				<div class="register_ok" ng-show="ok">
+					<h3><i class="icon i_ok"></i>提交成功！</h3>
+				</div>
+			</form>
+		</div>
+	</div>
+<!--#include virtual="/include/footer.html"-->
+</body>
+</html>

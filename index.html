@@ -48,7 +48,7 @@
 				<p style="margin: 20px 0 40px 120px">HI，{{user.info.nickname}}<br>
 				欢迎来到中科建安</p>
 				<p ng-if="!user.logined"><a href="{{user.loginURL}}" class="btn fl">登录</a><a href="{{user.registerURL}}" class="btn fr">注册</a></p>
-				<p ng-if="user.logined"><a href="<!--#echo var='ver1'-->user/detail.html" class="btn fl">个人资料</a><label ng-click="user.out()" class="btn fr">退出登录</label></p>
+				<p ng-if="user.logined"><a href="<!--#echo var='ver1'-->user/detail.html" class="btn fl">个人资料</a><a href="<!--#echo var='ver1'-->user/car.html" class="btn fr">购物车</a></p>
 				<a href="<!--#echo var='ver1'-->user/plan_v.html" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl1.png"> 学习计划</a>
 				<a href="<!--#echo var='ver1'-->user/class.html" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl2.png"> 我的课程</a>
 				<a href="<!--#echo var='ver1'-->user/test.html" class="h_l_a" style="margin-right: 0"><img src="<!--#echo var='ver1'-->images/hl3.png"> 我的题库</a>
@@ -78,7 +78,7 @@
 			<a href="<!--#echo var='ver1'-->class/list.html" class="more">更多&gt;</a>
 			<ul class="f_biger h_class">
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=155"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.jpg"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=155&fid=160"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/1.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c1.png">
 						<p><i class="icon i_arrow"></i>章节习题 历年真题 模拟考试 视频课程 名师讲义</p>
@@ -88,7 +88,7 @@
 					</div>
 				</li>
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=156"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/2.jpg"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=156&fid=166"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/2.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c2.png">
 						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学进度</p>
@@ -98,7 +98,7 @@
 					</div>
 				</li>
 				<li class="bdx">
-					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/3.jpg"><i class="icon i_play"></i></a>
+					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157&fid=169"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/3.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c3.png">
 						<p><i class="icon i_arrow"></i>协助考生报名、学习计咨询、跟踪学习进度</p>

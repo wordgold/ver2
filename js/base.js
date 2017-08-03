@@ -1,6 +1,6 @@
 "use strict";
 var service = "http://www.zkjan.com/kstk-api/";
-service = "http://192.168.3.15/kstk-api/";
+// service = "http://192.168.3.15/kstk-api/";
 var base = angular.module('baseApp', []);
 base.config(function($httpProvider) {
 	$httpProvider.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -53,7 +53,7 @@ base.filter("slice", function() {
 base.service("user", function($http) {
 	var s = this,
 		es = new Array(),
-		callBack,
+		callBack, attrs,
 		getNews = function() {
 			$http.post(service + "webuser/getNews").success(function(response) {
 				if (response.code == 200) {
@@ -96,22 +96,23 @@ base.service("user", function($http) {
 	s.login = function(ph, pw, checked) {
 		$http.post(service + "webuser/login", "ph=" + ph + "&pw=" + pw + "&checked=" + checked).success(function(response) {
 			if (response.code == 200) {
-				s.nickname = response.list.nickname;
+				s.info = response.list;
 				s.logined = true;
 				s.car = response.carCount;
 				s.showPanl = false;
-				callBack();
+				callBack.apply(s, attrs);
 			} else s.errMsg = response.msg;
 		});
 	}
-	s.show = function(f) {
+	s.show = function(f, o) {
 		s.showPanl = true;
 		callBack = f;
+		attrs = o;
 	}
-	s.judge = function(f) {
+	s.judge = function(f, o) {
 		if (s.logined) {
-			f();
-		} else s.show(f)
+			f.apply(null, o);
+		} else s.show(f, o)
 	}
 	s.buy = function(o, go) {
 		s.judge(function() {
@@ -132,11 +133,11 @@ base.service("user", function($http) {
 	s.pay = function(o) {
 		s.judge(function() {
 			$http.post(service + "gradeFront/addBalance?gids=" + o.id).success(function(response) {
-					if (response.code == 200)
-						location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
-					else
-						alert(response.msg)
-				});
+				if (response.code == 200)
+					location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
+				else
+					alert(response.msg)
+			});
 		})
 	}
 	s.fromURL = encodeURIComponent(location.href);
@@ -392,6 +393,13 @@ base.controller('header', function($scope, $http, $timeout, fac, hash, user) {
 	$scope.goTop = function() {
 		fac.scrollTo(0)
 	};
+
+	$http.post(service + "exam/getExamserviceDays?mid=11")
+		.then(function(r) {
+			if (r.data.code == 200) {
+				$scope.date = r.data.list[0].days.toString();
+			}
+		});
 })
 
 base.controller('teacherList', function($scope, $http, $attrs, fac, hash) {
@@ -539,7 +547,7 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 	});
 
 	$scope.ntype = NType[hash.type]
-	if (fac.nav() != "")
+	if (fac.nav() == "news")
 		document.title = $scope.ntype + " - 中科建安";
 
 	$scope.page = {};
@@ -1321,9 +1329,15 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 			$scope.content = response.list.content;
 			$scope.description = $sce.trustAsHtml(response.list.description);
 			$scope.glist = response.list.glist || [response.list];
-			$scope.grade_name = $scope.glist[0].name;
-			document.title = $scope.grade_name + " - 中科建安";
-			$scope.vlist = $scope.glist[0].flist;
+			var f = $scope.glist[0];
+			if ($scope.rt.fid && $scope.glist.length > 1) {
+				for (var i = $scope.glist.length; i --; ) {
+					if($scope.rt.fid == $scope.glist[i].id)
+						f = $scope.glist[i];
+				}
+			}
+			document.title = ($scope.grade_name = f.name) + " - 中科建安";
+			$scope.vlist = f.flist;
 			$scope.info = {
 				id: response.list.id,
 				buy: response.list.buy,
@@ -1389,56 +1403,6 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 		}
 	}
 	$scope.panl = 0;
-	$scope.clist = new Array();
-	$scope.price = {
-		l: 0,
-		p: 0,
-		s: 0,
-		c: 0,
-		gids: new Array()
-	}
-	$http.post(service + "gradeFront/getPackage?gid=" + $scope.rt.gid).success(function(response) {
-		if (response.code == 200) {
-			if (response.list.length) {
-				angular.forEach(response.list[0].glist, function(v) {
-					v.checked = true;
-					$scope.price.l++;
-					$scope.price.c += (v.cmoney - 0);
-					$scope.price.gids.push(v.gid);
-					if (v.gid == $scope.rt.gid) {
-						$scope.t = v;
-					} else {
-						$scope.clist.push(v)
-					}
-				})
-				$scope.price.p = response.list[0].price - 0;
-				$scope.price.s = $scope.price.c - $scope.price.p;
-			}
-		}
-	});
-	$scope.getPrice = function() {
-		$scope.price = {
-			l: 1,
-			p: 0,
-			s: 0,
-			c: $scope.t.cmoney - 0,
-			gids: new Array()
-		}
-		$scope.price.gids.push($scope.t.gid);
-		for (var i = $scope.clist.length; i--;) {
-			if ($scope.clist[i].checked) {
-				$scope.price.l++;
-				$scope.price.c += $scope.clist[i].cmoney - 0;
-				$scope.price.gids.push($scope.clist[i].gid);
-			}
-		}
-		$http.post(service + "gradeFront/gradeUserOrderm?gids=" + ($scope.id = $scope.price.gids.join())).success(function(response) {
-			if (response.code == 200) {
-				$scope.price.p = response.price - 0;
-				$scope.price.s = $scope.price.c - $scope.price.p;
-			}
-		});
-	}
 	$scope.user = user;
 })
 
@@ -1447,7 +1411,6 @@ base.controller('userNav', function($scope, $attrs) {
 	$scope.mid = $attrs.mid;
 	$scope.list = [{
 		name: "学习计划",
-		href: "javascript:",
 		list: [{
 			name: "观看视频",
 			href: "plan_v.html"
@@ -1460,7 +1423,6 @@ base.controller('userNav', function($scope, $attrs) {
 		href: "class.html"
 	}, {
 		name: "我的题库",
-		href: "javascript:",
 		list: [{
 			name: "错题记录",
 			href: "test.html"
@@ -1479,7 +1441,6 @@ base.controller('userNav', function($scope, $attrs) {
 		href: "car.html"
 	}, {
 		name: "账号与安全",
-		href: "javascript:",
 		list: [{
 			name: "个人资料",
 			href: "detail.html"
@@ -1521,9 +1482,9 @@ base.controller('plan', function($scope, $http, $attrs) {
 		}
 	};
 
-	$scope.show = function(q,gid) {
+	$scope.show = function(q, gid) {
 		q.showList = !q.showList;
-		if(q.showList && !q.list){
+		if (q.showList && !q.list) {
 			$http.post(service + "webuser/getMy" + $attrs.order + "?gid=" + gid + "&order_id=" + q.order_id).success(function(response) {
 				if (response.code == 200) {
 					q.list = response.list;
