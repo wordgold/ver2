@@ -1682,14 +1682,14 @@ base.controller('car', function($scope, $http, user) {
 		}
 	});
 
-	$scope.for = function(func) {
+	$scope.forh = function(func) {
 		for (var l = $scope.list.length; l--;) {
 			func($scope.list[l])
 		}
 	}
 	$scope.pick = function(i) {
 		$scope.checked = $scope.price = 0;
-		$scope.for(function(item) {
+		$scope.forh(function(item) {
 			if (item.checked) {
 				$scope.checked++;
 				$scope.price += item.cmoney - 0;
@@ -1701,13 +1701,13 @@ base.controller('car', function($scope, $http, user) {
 		$scope.price = 0;
 		if ($scope.all) {
 			$scope.checked = $scope.list.length;
-			$scope.for(function(item) {
+			$scope.forh(function(item) {
 				item.checked = true;
 				$scope.price += item.cmoney - 0;
 			});
 		} else {
 			$scope.checked = 0;
-			$scope.for(function(item) {
+			$scope.forh(function(item) {
 				item.checked = false;
 			});
 		}
@@ -1721,7 +1721,7 @@ base.controller('car', function($scope, $http, user) {
 	$scope.delChecked = function() {
 		var s = new Array(),
 			ls = new Array();
-		$scope.for(function(item) {
+		$scope.forh(function(item) {
 			if (item.checked)
 				s.push(item.sid)
 			else
@@ -1733,7 +1733,7 @@ base.controller('car', function($scope, $http, user) {
 	}
 	$scope.delAll = function() {
 		var s = new Array();
-		$scope.for(function(item) {
+		$scope.forh(function(item) {
 			s.push(item.sid)
 		});
 		user.car = $scope.list.length = 0;
@@ -1743,7 +1743,7 @@ base.controller('car', function($scope, $http, user) {
 		if ($scope.checked && !$scope.loading) {
 			$scope.loading = " 中";
 			var s = new Array();
-			$scope.for(function(item) {
+			$scope.forh(function(item) {
 				if (item.checked) {
 					s.push(item.sid);
 				}

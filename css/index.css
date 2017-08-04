@@ -747,18 +747,18 @@ hr {
 .f_code{
 	position: absolute;
 	right: 200px;
-	top: 40px;
-	width: 98px;
+	top: 30px;
+	width: 110px;
 	text-align: center;
 }
 .f_code img{
 	display: block;
-	width:90px;
+	width:102px;
 	padding: 4px;
 	background: #fff;
 }
 .footer .fl{
-	width: 220px;
+	width: 240px;
 }
 .footer .fl a{
 	display: inline-block;
@@ -1816,96 +1816,106 @@ iframe#alertP {
 }
 /*form o*/
 /*login s*/
-.login .page {
+.login{
+	background: #fff;
+}
+.login .page{
 	width: 900px;
 }
-.login .header {
-	height: 99px;
+.login .header{
+	height: 120px;
 }
-.login .header h1 {
-	top: 9px;
+.login .header h1{
+	top: 20px;
 }
-.login .header h2 {
-	top: 32px;
+.login .header h2{
+    position: absolute;
+    left: 320px;
+	top: 40px;
+    line-height: 40px;
+    border-left: 2px #21a6f1 solid;
+    padding: 0 0 0 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
-.login .header .fr {
-	margin: 40px 0 0 0;
+.login .header .fr{
+	margin: 50px 0 0 0;
 }
-.login .header .fr a {
+.login .header .fr a{
 	margin: 0 0 0 40px;
 }
-.login_bg {
+.login_bg{
 	position: relative;
-	background: url(<!--#echo var="ver1"-->images/login.jpg) 50% 50%;
+	background:url(<!--#echo var="ver1"-->images/login.jpg) 50% 50%;
 }
-.login_s {
+.login_s{
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 500px;
 	height: 100%;
-	background: url(<!--#echo var="ver1"-->images/login_f.png) no-repeat 50% 50%;
+	background:url(<!--#echo var="ver1"-->images/login_f.png) no-repeat 50% 50%;
 }
-.login_f {
+.login_f{
 	position: absolute;
-	right: 0;
+	left: 50%;
 	top: 50%;
 	width: 360px;
-	margin: -200px 0 0 0;
+	margin: -200px 0 0 -180px;
 	background: #fff;
 	border: 1px #e5e5e5 solid;
 }
-.login_f h3 {
+.login_f h3{
 	height: 60px;
 	line-height: 60px;
 	padding: 0 20px;
 	border-bottom: 1px #e5e5e5 solid;
 	font-size: 18px;
 }
-.login_f h3 a {
+.login_f h3 a{
 	font-size: 14px;
 }
-.login_f .form {
-	margin: 0 20px;
+.login_f .form{
+	margin:0 20px;
 }
-.login_f li {
+.login_f li{
 	padding-left: 0;
 }
-.login_f .err {
+.login_f .err{
 	left: 0;
 }
-.form .txt.login_ph {
-	padding: 0 0 0 58px;
-	background: url(<!--#echo var="ver1"-->images/form/ph.png) no-repeat 13px 50%;
+.form .txt.login_ph{
+	padding: 0 0 0 40px;
+	background: url(<!--#echo var="ver1"-->images/form/ph.png) no-repeat 4px 50%;
 }
-.form .txt.login_pw {
-	padding: 0 0 0 58px;
-	background: url(<!--#echo var="ver1"-->images/form/pw.png) no-repeat 11px 50%;
+.form .txt.login_pw{
+	padding: 0 0 0 40px;
+	background: url(<!--#echo var="ver1"-->images/form/pw.png) no-repeat 4px 50%;
 }
-.register_f {
+.register_f{
 	background: #fff;
 }
-.register_f .form {
+.register_f .form{
 	padding: 0 0 40px 160px;
 }
 .register_ok {
 	text-align: center;
 	padding: 40px;
 }
-.register_ok h3 {
+.register_ok h3{
 	font-size: 24px;
 	line-height: 200px;
 	border-bottom: 1px #e5e5e5 solid;
 }
-.register_ok p {
+.register_ok p{
 	margin: 40px;
 }
-.findpwd_step {
+.findpwd_step{
 	width: 555px;
 	height: 160px;
 	margin: 0 auto;
 }
-.findpwd_step li {
+.findpwd_step li{
 	position: relative;
 	float: left;
 	width: 185px;
@@ -1914,29 +1924,15 @@ iframe#alertP {
 	color: #999;
 	background: url(<!--#echo var="ver1"-->images/form/pwd1.png) no-repeat 0 60px;
 }
-.findpwd_step span {
+.findpwd_step span{
 	position: absolute;
 	left: 91px;
 	top: 61px;
 	color: #fff;
 }
-.findpwd_step li.on {
+.findpwd_step li.on{
 	color: #353482;
 	background: url(<!--#echo var="ver1"-->images/form/pwd2.png) no-repeat 0 60px;
-}
-.content p {
-	text-indent: 2em;
-	margin: 0 0 1em 0;
-}
-.content h4, .content h5 {
-	font-size: 20px;
-	margin: 1.6em 0 0.4em 0;
-}
-.content h5 {
-	font-size: 16px;
-}
-.content li {
-	margin: 0 0 .4em 2em;
 }
 /*login o*/
 /*news s*/
@@ -2114,126 +2110,6 @@ iframe#alertP {
 	margin: 0 0 0 20px;
 }
 /*help o*/
-/*login s*/
-.login{
-	background: #fff;
-}
-.login .page{
-	width: 900px;
-}
-.login .header{
-	height: 120px;
-}
-.login .header h1{
-	top: 20px;
-}
-.login .header h2{
-    position: absolute;
-    left: 320px;
-	top: 40px;
-    line-height: 40px;
-    border-left: 2px #21a6f1 solid;
-    padding: 0 0 0 20px;
-    font-size: 30px;
-    font-weight: bold;
-}
-.login .header .fr{
-	margin: 50px 0 0 0;
-}
-.login .header .fr a{
-	margin: 0 0 0 40px;
-}
-.login_bg{
-	position: relative;
-	background:url(<!--#echo var="ver1"-->images/login.jpg) 50% 50%;
-}
-.login_s{
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 500px;
-	height: 100%;
-	background:url(<!--#echo var="ver1"-->images/login_f.png) no-repeat 50% 50%;
-}
-.login_f{
-	position: absolute;
-	right: 0;
-	top: 50%;
-	width: 360px;
-	margin: -200px 0 0 0;
-	background: #fff;
-	border: 1px #e5e5e5 solid;
-}
-.login_f h3{
-	height: 60px;
-	line-height: 60px;
-	padding: 0 20px;
-	border-bottom: 1px #e5e5e5 solid;
-	font-size: 18px;
-}
-.login_f h3 a{
-	font-size: 14px;
-}
-.login_f .form{
-	margin:0 20px;
-}
-.login_f li{
-	padding-left: 0;
-}
-.login_f .err{
-	left: 0;
-}
-.form .txt.login_ph{
-	padding: 0 0 0 58px;
-	background: url(<!--#echo var="ver1"-->images/form/ph.png) no-repeat 13px 50%;
-}
-.form .txt.login_pw{
-	padding: 0 0 0 58px;
-	background: url(<!--#echo var="ver1"-->images/form/pw.png) no-repeat 11px 50%;
-}
-.register_f{
-	background: #fff;
-}
-.register_f .form{
-	padding: 0 0 40px 160px;
-}
-.register_ok {
-	text-align: center;
-	padding: 40px;
-}
-.register_ok h3{
-	font-size: 24px;
-	line-height: 200px;
-	border-bottom: 1px #e5e5e5 solid;
-}
-.register_ok p{
-	margin: 40px;
-}
-.findpwd_step{
-	width: 555px;
-	height: 160px;
-	margin: 0 auto;
-}
-.findpwd_step li{
-	position: relative;
-	float: left;
-	width: 185px;
-	text-align: center;
-	padding: 120px 0 0 0;
-	color: #999;
-	background: url(<!--#echo var="ver1"-->images/form/pwd1.png) no-repeat 0 60px;
-}
-.findpwd_step span{
-	position: absolute;
-	left: 91px;
-	top: 61px;
-	color: #fff;
-}
-.findpwd_step li.on{
-	color: #353482;
-	background: url(<!--#echo var="ver1"-->images/form/pwd2.png) no-repeat 0 60px;
-}
-/*login o*/
 /*class s*/
 .no_class{
 	text-align: center;
