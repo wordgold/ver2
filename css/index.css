@@ -51,7 +51,6 @@ input[type=checkbox]{
 	border: 1px solid #ccc;
 	box-shadow: none;
 	color: #aaa;
-	cursor: not-allowed;
 }
 textarea {
 	height: 112px;
@@ -250,7 +249,7 @@ h4 .more{
 	margin: 2px 0 0 0;
 }
 .anim {
-	transition: all ease-out .4s
+	transition: all ease-out .2s
 }
 .bh:after {
 	display: inline-block;
@@ -326,7 +325,7 @@ hr {
 	color: #ed5d45
 }
 .bread {
-	margin-bottom: 20px;
+	margin-bottom: 12px;
 }
 .bread a {
 	margin: 0 9px
@@ -369,6 +368,7 @@ hr {
 	vertical-align: middle;
 	line-height: 1;
 	margin: 0 4px;
+	background-repeat: no-repeat;
 	transition: transform .2s ease-out;
 }
 .i_avatar {
@@ -386,18 +386,23 @@ hr {
 	transform: rotate(180deg);
 }
 .i_help {
-	width: 24px;
-	height: 25px;
+	width: 20px;
+	height: 20px;
 	background: url(<!--#echo var="ver1"-->images/icon/help.png)
 }
+.i_about {
+	width: 20px;
+	height: 20px;
+	background: url(<!--#echo var="ver1"-->images/icon/about.png)
+}
 .i_ring {
-	width: 18px;
-	height: 24px;
+	width: 20px;
+	height: 20px;
 	background: url(<!--#echo var="ver1"-->images/icon/ring.png)
 }
 .i_car {
-	width: 26px;
-	height: 23px;
+	width: 20px;
+	height: 20px;
 	background: url(<!--#echo var="ver1"-->images/icon/car.png)
 }
 .i_phone{
@@ -510,6 +515,7 @@ hr {
 /*header s*/
 .header{
 	padding: 0;
+	margin-bottom: 12px;
 }
 .top_bar{
 	line-height: 50px;
@@ -958,10 +964,24 @@ hr {
 .h_law .bdx{
 	width: 524px;
 }
-.h_comment li{
+.h_comment{
 	position: relative;
-	margin: 0 56px;
-	max-width: 64%;
+	height: 370px;
+	overflow: hidden;
+	box-shadow: 0 1px 9px rgba(0,0,0,.2);
+}
+.h_comment li{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 284px;
+	box-shadow: 0 1px 9px rgba(0,0,0,.2);
+	background: #fff;
+	transition: all ease-out .2s;
+}
+.h_comment li.on{
+	margin: 0 0 0 190px;
 }
 .u_avatar{
 	width: 60px;
@@ -972,16 +992,20 @@ hr {
 }
 .h_comment .u_avatar{
 	position: absolute;
-	left: -40px;
-	top: 0;
+	left: 16px;
+	top: 16px;
 }
 .h_comment p{
-	padding: 9px;
-	background: #fcc;
-	border: 1px #f77 dashed;
+	text-indent: 2em;
+	padding:0 20px;
+	line-height: 30px;
 }
 .h_comment b{
-	margin: 0 0 0 40px;
+	display: block;
+	height: 88px;
+	line-height: 88px;
+	padding: 0 0 0 99px;
+	background: #ccf3bb;
 }
 .h_comment .fr .u_avatar{
 	left: auto;
@@ -1272,7 +1296,6 @@ hr {
 	background: #eee;
 	color: #999;
 	border: 1px #ccc solid;
-	cursor: not-allowed
 }
 .q_nav {
 	height: 32px;
@@ -1650,8 +1673,6 @@ hr {
 }
 .login_panl.login_f {
 	position: fixed;
-	right: 50%;
-	margin: -200px -180px 0 0;
 	z-index: 900;
 	border-radius: 9px;
 	box-shadow: 0 9px 64px rgba(0, 0, 0, .4);
@@ -1787,7 +1808,6 @@ iframe#alertP {
 }
 .form .btn:disabled, .form .btn.disabled {
 	opacity: .8;
-	cursor: not-allowed;
 	box-shadow: none !important;
 }
 .form .half {
@@ -1958,11 +1978,12 @@ iframe#alertP {
 .nlist p{
 	min-height: 106px;
 }
-.n_title{
-	text-align: center;
-	padding: 1em;
-	margin: 1em 0;
-	border-bottom: 1px #21a6f1 dashed;
+.news_box h2{
+	font-weight: bold;
+	margin:0 0 1em 0;
+}
+.news_box .gray{
+	margin:1em 0;
 }
 .n_intro{
 	border:1px #bce4fb dashed;
@@ -1976,6 +1997,16 @@ iframe#alertP {
 .n_date{
 	text-align: right;
 	margin: 2em 0;
+}
+.list_n{
+	padding: 0 12px;
+}
+.list_n a{
+	display: block;
+	line-height: 20px;
+	padding: 0 0 0 9px;
+	margin: 12px 0;
+	border-left: 2px #21a6f1 solid;
 }
 /*news o*/
 /*help s*/

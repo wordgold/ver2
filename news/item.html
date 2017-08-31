@@ -6,14 +6,28 @@
 </head>
 <body ng-app="baseApp">
 	<!--#include virtual="/include/header.html"-->
-	<div class="page ng-init" ng-controller="newsItem">
-		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->news/list.html?type={{hash.type}}">{{ntype[hash.type]}}</a>&gt;<span>新闻详情</span></div>
-		<div class="box">
-			<h2 class="n_title">{{info.title}}</h2>
-			<p class="n_intro" ng-if="info.intro"><b>编辑导语：</b>{{info.intro}}</p>
-			<img ng-src="{{info.pic_url}}" class="n_img">
-			<div class="content" ng-bind-html="html(info.content)"></div>
-			<p class="n_date"><b>发布日期：</b>{{info.thisdate}}</p>
+	<div class="page cf ng-init" ng-controller="newsItem">
+		<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->news/list.html?type={{hash.type}}">{{ntype}}</a>&gt;<span>新闻详情</span></div>
+		<div class="fl news_box" style="width: 820px">
+			<div class="box">
+				<h2>{{info.title}}</h2>
+				<p class="gray"><b>发布日期：</b>{{info.thisdate}}</p>
+				<div class="bdx">
+					<p class="n_intro" ng-if="info.intro"><b>编辑导语：</b>{{info.intro}}</p>
+					<img ng-src="{{info.pic_url}}" class="n_img">
+					<div ng-bind-html="html(info.content)"></div>
+				</div>
+				<p class="gray" ng-if="hlist.id"><b>上一篇：</b><a href="<!--#echo var='ver1'-->news/item.html?id={{hlist.id}}&type={{hash.type}}">{{hlist.title}}</a></p>
+				<p class="gray" ng-if="qlist.id"><b>下一篇：</b><a href="<!--#echo var='ver1'-->news/item.html?id={{qlist.id}}&type={{hash.type}}">{{qlist.title}}</a></p>
+			</div>
+		</div>
+		<div class="fr" style="width: 360px">
+			<div class="box">
+				<h4>{{ntype}}</h4>
+				<div class="bdx list_n" ng-controller="newsList" data-rows="10">
+					<a href="<!--#echo var='ver1'-->news/item.html?type={{hash.type}}&id={{s.id}}" title="{{s.title}}" ng-repeat="s in list">{{s.title}}</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!--#include virtual="/include/footer.html"-->

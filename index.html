@@ -171,48 +171,60 @@
 		</div>
 		<div class="box_pd">
 			<h3 class="tit">学员评价<span>STUGENT EVALUATION</span></h3>
-			<ul class="bdx h_comment cf">
-				<li class="fl">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/1.jpg" class="u_avatar">
-					<b>阿勇</b>
-					<p class="f_biger">老师讲的很好，结合真题，帮助记忆。上岁数了记忆力减退，还是得按老师的方法有效果。</p>
-				</li>
-				<li class="fr">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/2.jpg" class="u_avatar">
-					<b>光</b>
-					<p class="f_biger">经过几次特训班学习，心里有底了。</p>
-				</li>
-				<li class="fl">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/3.jpg" class="u_avatar">
-					<b>deepblue</b>
-					<p class="f_biger">在网上学习很方便，随时随地打开就可以看视频做题。工作太忙没时间参加面授培训。</p>
-				</li>
-				<li class="fr">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/4.jpg" class="u_avatar">
-					<b>lazhaca蕾木</b>
-					<p class="f_biger">以前对你们有些怀疑，参加了两次培训会以后，觉得咱们很专业，相信我的选择没有错。</p>
-				</li>
-				<li class="fl">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/5.jpg" class="u_avatar">
-					<b>妮宸</b>
-					<p class="f_biger">平时没事儿的时候打开题做一做，慢慢就掌握了。</p>
-				</li>
-				<li class="fr">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/6.jpg" class="u_avatar">
-					<b>浅月朦胧</b>
-					<p class="f_biger">特别感谢一下中科建安李老师，从报名到学习到考试一点都没有放松，有的时候我都不好意思了。</p>
-				</li>
-				<li class="fl">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/7.jpg" class="u_avatar">
-					<b>守艺人</b>
-					<p class="f_biger">这次能顺利通过考试除了自己的努力，老师的指点尤为重要。很多考点光靠自己无法真正的去领会，只有跟随老师的方法才能熟练掌握。我在复习过程中也遇到了不少困难，有的时候很烦躁不想学习。教研老师的指导能让我静下心来学。考过的感觉不错，希望大家都能通过考试吧。</p>
-				</li>
-				<li class="fr">
-					<img ng-src="<!--#echo var='ver1'-->tmp/c/8.jpg" class="u_avatar">
-					<b>天空中行走的云</b>
-					<p class="f_biger">思路很清晰，复杂的知识点讲出来很透。</p>
-				</li>
-			</ul>
+			<div class="bdx">
+				<ul class="h_comment f_biger">
+					<li ng-mouseenter="h_c_i=0">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/1.jpg" class="u_avatar">
+						<b>阿勇</b>
+						<p>老师讲的很好，结合真题，帮助记忆。上岁数了记忆力减退，还是得按老师的方法有效果。</p>
+					</li>
+					<li style="left: 90px;" ng-class="{'on':h_c_i<1}" ng-mouseenter="h_c_i=1">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/3.jpg" class="u_avatar">
+						<b style="background: #b5ece9">deepblue</b>
+						<p>在网上学习很方便，随时随地打开就可以看视频做题。工作太忙没时间参加面授培训。</p>
+					</li>
+					<li style="left: 180px;" ng-class="{'on':h_c_i<2}" ng-mouseenter="h_c_i=2">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/7.jpg" class="u_avatar">
+						<b style="background: #ded9ff">守艺人</b>
+						<p>这次能顺利通过考试除了自己的努力，老师的指点尤为重要。很多考点光靠自己无法真正的去领会，只有跟随老师的方法才能熟练掌握。我在复习过程中也遇到了不少困难，有的时候很烦躁不想学习。教研老师的指导能让我静下心来学。考过的感觉不错，希望大家都能通过考试吧。</p>
+					</li>
+					<li style="left: 270px;" ng-class="{'on':h_c_i<3}" ng-mouseenter="h_c_i=3">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/4.jpg" class="u_avatar">
+						<b style="background: #fbecc9">lazhaca蕾木</b>
+						<p>以前对你们有些怀疑，参加了两次培训会以后，觉得咱们很专业，相信我的选择没有错。</p>
+					</li>
+					<li style="left: 360px;" ng-class="{'on':h_c_i<4}" ng-mouseenter="h_c_i=4">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/6.jpg" class="u_avatar">
+						<b>浅月朦胧</b>
+						<p>特别感谢一下中科建安李老师，从报名到学习到考试一点都没有放松，有的时候我都不好意思了。</p>
+					</li>
+					<li style="left: 450px;" ng-class="{'on':h_c_i<5}" ng-mouseenter="h_c_i=5">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/10.jpg" class="u_avatar">
+						<b style="background: #fed3d3">老炮儿</b>
+						<p>特别感谢中科建安的老师，培训前是持怀疑态度的，但参加之后觉得真是来对了，老师的授课方法很有效，既不枯燥又能加深印象。培训课程安排的合理紧凑，而且也不是笼统的模板教学，老师思路严谨，有针对性的给我们列举了很多实例，很快就能进入状态。</p>
+					</li>
+					<li style="left: 540px;" ng-class="{'on':h_c_i<6}" ng-mouseenter="h_c_i=6">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/2.jpg" class="u_avatar">
+						<b style="background: #ded9ff">光</b>
+						<p>经过几次特训班学习，心里有底了。</p>
+					</li>
+					<li style="left: 630px;" ng-class="{'on':h_c_i<7}" ng-mouseenter="h_c_i=7">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/8.jpg" class="u_avatar">
+						<b style="background: #b5ece9">天空中行走的云</b>
+						<p>思路很清晰，复杂的知识点讲出来很透。</p>
+					</li>
+					<li style="left: 720px;" ng-class="{'on':h_c_i<8}" ng-mouseenter="h_c_i=8">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/9.jpg" class="u_avatar">
+						<b style="background: #fbecc9">张工</b>
+						<p>通过老师的讲授，基本熟悉和掌握了课程内容，很多以前的知识点也都记起来了，效率还是很高的。老师对重点知识的把控是很强的，利用丰富的专业知识，引导学生进入到课堂教学中，增强学员的辨析能能力。</p>
+					</li>
+					<li style="left: 810px;" ng-class="{'on':h_c_i<9}" ng-mouseenter="h_c_i=9">
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/5.jpg" class="u_avatar">
+						<b style="background: #fed3d3">妮宸</b>
+						<p>平时没事儿的时候打开题做一做，慢慢就掌握了。</p>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<!--#include virtual="include/footer.html"-->

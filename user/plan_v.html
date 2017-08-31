@@ -29,11 +29,11 @@
 			<ul class="myClassList bdx" ng-if="!loading&&list.length">
 				<li class="mcl_1" ng-repeat="s in list" ng-class="{'last':$last}">
 					<h4>{{s.name}}</h4>
-					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showList}" ng-init="download=q.flist[0].name.indexOf('仅课件')==0">
-						<p ng-click="show(q,s.id)" class="cursor"><i class="icon i_plus"></i><b>第 {{$index | xyz}} 阶段：</b>{{download?'仅供下载课件':'观看视频'}}
+					<div class="mcl_2" ng-repeat="q in s.jdlist" ng-class="{'last':$last,'on':q.showList}">
+						<p ng-click="show(q,s.id)" class="cursor"><i class="icon i_plus"></i><b>第 {{$index | xyz}} 阶段：</b>观看视频
 						<i class="icon i_up fr"></i></p>
 						<table>
-							<tr ng-repeat="f in q.list" ng-class="{'odd':$odd}">
+							<tr ng-repeat="f in q.list" ng-class="{'odd':$odd}" ng-init="download=f.name.indexOf('仅课件')==0">
 								<td style="padding: 0 0 0 42px">{{f.name}}</td>
 								<td width="80" class="gray">主讲：{{f.tname}}</td>
 								<td width="60"><a ng-if="f.ppt_url" ng-href="{{f.ppt_url}}" target="_blank">查看课件</a></td>

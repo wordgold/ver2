@@ -547,7 +547,7 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 	});
 
 	$scope.ntype = NType[hash.type]
-	if (fac.nav() == "news")
+	if (!$attrs.rows&&!$attrs.type)
 		document.title = $scope.ntype + " - 中科建安";
 
 	$scope.page = {};
@@ -608,14 +608,16 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 
 base.controller('newsItem', function($scope, $http, $sce, hash, NType) {
 	$scope.hash = hash;
-	$scope.ntype = NType;
+	$scope.ntype = NType[hash.type];
 	$scope.html = function(s) {
 		return $sce.trustAsHtml(s);
 	}
 	$http.post(service + "infomation/getInfomationContent?zid=" + hash.id)
 		.then(function(r) {
 			if (r.data.code == 200) {
-				$scope.info = r.data.list[0];
+				$scope.info = r.data.list;
+				$scope.hlist = r.data.hlist;
+				$scope.qlist = r.data.qlist;
 			}
 		});
 })
@@ -1461,7 +1463,12 @@ base.controller('plan', function($scope, $http, $attrs) {
 			$scope.mlist = response.list;
 			$scope.mid = $scope.mlist[0].id;
 			$scope.getCourse();
-			$scope.setCid(36);
+			for (var i = $scope.clist.length; i--;) {
+				if($scope.clist[i].id == 36){
+					$scope.setCid(36);
+					return;
+				}
+			}
 		}
 	});
 	$scope.getCourse = function(i) {

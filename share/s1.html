@@ -470,7 +470,7 @@
                     <p>
                       <strong>
                         <span style="color: #0000ff;">户    名：</span>
-                        中工建安（北京）工程技术研究院
+                        中科建安（北京）教育科技有限公司
                       </strong>
                     </p>
                     <p>
@@ -482,7 +482,7 @@
                     <p>
                       <strong>
                         <span style="color: #0000ff;">账    号：</span>
-                        0200 0049 0920 0318 460
+                        0200 0049 0920 0293 162
                       </strong>
                     </p>
                   </div>
@@ -526,6 +526,7 @@
       url = location.href.split("dentifier=");
     url=url[1].split("&");
   $i.value = url[0];
+  var submit1=true;
   var $new_entry =$("#new_entry").on("submit",function(){
     if(!$("#midlist").find(":checked").length){
       alert("请选择报考科目");
@@ -588,20 +589,26 @@
       return false;
     }
 
-    $.ajax({
-      url:"http://www.zkjan.com/kstk-api/wxuser/addSalesman",
-      type:"post",
-      dataType:'json',
-      data:$new_entry.serialize()
-    }).done(function(data) {
-      if(data.code==200)
-        $("#alert").show();
-      else
-        alert(data.msg)
-    }).fail(function(h,s,t) {
-      var state=["初始化","打开","发送","接收","完成"]
-      alert("URl : "+this.url+"\n\ntype : "+this.type+"\n\ndataType : "+this.dataType+"\n\nnetState : "+state[h.readyState]+"连接失败\n\nnetStatus : "+h.status+"\n\ndata : "+$new_entry.serialize()+"\n\n"+t+"\n\n请刷新页面重试")
-    });
+    if(submit1){
+      submit1 = false;
+      $.ajax({
+        url:"http://www.zkjan.com/kstk-api/wxuser/addSalesman",
+        type:"post",
+        dataType:'json',
+        data:$new_entry.serialize()
+      }).done(function(data) {
+        if(data.code==200)
+          $("#alert").show();
+        else
+          alert(data.msg)
+        submit1=true
+      }).fail(function(h,s,t) {
+        var state=["初始化","打开","发送","接收","完成"]
+        alert("URl : "+this.url+"\n\ntype : "+this.type+"\n\ndataType : "+this.dataType+"\n\nnetState : "+state[h.readyState]+"连接失败\n\nnetStatus : "+h.status+"\n\ndata : "+$new_entry.serialize()+"\n\n"+t+"\n\n请刷新页面重试")
+        submit1=true
+      });
+    }
+
     return false;
   })
   $("#albtn").on("click",function(){
