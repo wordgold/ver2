@@ -10,8 +10,8 @@
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
 	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="5">
 		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
-			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
-			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+			<a href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
 		</div>
 	</div>
 	<div class="box_r ng-init" ng-controller="car">

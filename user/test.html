@@ -12,11 +12,11 @@
 			<b>请选择</b>
 			<label ng-repeat="s in slist" ng-click="setType(s.type)" ng-class="{'on':rt.type==s.type}">{{s.name}}</label>
 		</li>
-		<li ng-if="rt.type==slist[0].type">
+		<li>
 			<b>错题类别</b>
 			<label ng-class="{'on':rt.errtype==1}" ng-click="setErrtype(1)">章节练习</label>
-			<label ng-class="{'on':rt.errtype==3}" ng-click="setErrtype(3)">历年真题</label>
-			<label ng-class="{'on':rt.errtype==2}" ng-click="setErrtype(2)">模拟考试</label>
+			<label ng-class="{'on':rt.errtype==3}" ng-click="setErrtype(3)" ng-show="rt.type==slist[0].type">历年真题</label>
+			<label ng-class="{'on':rt.errtype==2}" ng-click="setErrtype(2)" ng-show="rt.type==slist[0].type">模拟考试</label>
 			<label ng-class="{'on':rt.errtype==4}" ng-click="setErrtype(4)">学习计划</label>
 		</li>
 		<!-- <li>
@@ -51,7 +51,7 @@
 							<span class="a_show">取消收藏</span>
 							<span class="a_hide">确认取消：<u ng-click="delStar(s)">是</u> <u>否</u></span>
 						</a>
-						<a href="javascript:" ng-show="rt.errtype==1&&!s.colled" ng-click="addStar(s)">
+						<a href="javascript:" ng-show="(rt.errtype==1||rt.errtype==4)&&!s.colled" ng-click="addStar(s)">
 							<i class="icon i_fav"></i> 加入收藏
 						</a>
 					</div>

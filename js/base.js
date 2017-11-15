@@ -1,6 +1,6 @@
 "use strict";
 var service = "http://www.zkjan.com/kstk-api/";
-// service = "http://192.168.3.15/kstk-api/";
+// service = "http://192.168.1.135/kstk-api/";
 var base = angular.module('baseApp', []);
 base.config(function($httpProvider) {
 	$httpProvider.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -81,9 +81,10 @@ base.service("user", function($http) {
 				s.info = response.list;
 				s.logined = true;
 				s.car = response.carCount;
+				s.taocan = response.gmtc;
 				s.showPanl = false;
-				s.fire();
 			} else if (location.href.indexOf("/user/") > 0) location.href = s.loginURL;
+			s.fire();
 		});
 	}
 	s.out = function() {
@@ -495,27 +496,25 @@ base.controller('scene', function($scope, $http, $attrs, fac, hash, animate) {
 	$scope.page = {};
 	$scope.loading = false;
 	$scope.get = function(i, b) {
-		if (b || i != $scope.index) {
-			if (b || i != $scope.page.index) {
-				$scope.loading = true;
-				$scope.page.index = i;
-				$http.post(service + "frontIndex/getAllFrontscene?rows=" + hash.rows + "&page=" + $scope.page.index + "&year=" + $scope.hash.year).success(function(response) {
-					$scope.loading = false;
-					if (response.code == 200) {
-						$scope.list = response.list;
-						$scope.page = fac.page($scope.page.index, hash.rows, response.total)
-						if ($attrs.rows)
-							$scope.play($scope.list[0])
-						if (hash.id)
-							for (var i = $scope.list.length; i--;) {
-								if ($scope.list[i].order_id == hash.id) {
-									$scope.slist = $scope.list[i].slist;
-									return;
-								}
+		if (b || i != $scope.page.index) {
+			$scope.loading = true;
+			$scope.page.index = i-0;
+			$http.post(service + "frontIndex/getAllFrontscene?rows=" + hash.rows + "&page=" + $scope.page.index + "&year=" + $scope.hash.year).success(function(response) {
+				$scope.loading = false;
+				if (response.code == 200) {
+					$scope.list = response.list;
+					$scope.page = fac.page($scope.page.index, hash.rows, response.total)
+					if ($attrs.rows)
+						$scope.play($scope.list[0])
+					if (hash.id)
+						for (var i = $scope.list.length; i--;) {
+							if ($scope.list[i].order_id == hash.id) {
+								$scope.slist = $scope.list[i].slist;
+								return;
 							}
-					}
-				});
-			}
+						}
+				}
+			});
 		}
 	}
 
@@ -817,7 +816,10 @@ base.controller('test', function($scope, $http, $interval, $sce, fac, user, hash
 			}
 		}
 	}
+
+	var starType = "1";
 	if ($scope.rt.type == "grade") {
+		starType = "4";
 		$scope.rt.get = "GradeQuestion";
 		$scope.rt.update = "gradedb";
 		$scope.showBtn = $scope.started = true;
@@ -933,20 +935,24 @@ base.controller('test', function($scope, $http, $interval, $sce, fac, user, hash
 			$scope.time_stop();
 		})
 	}
+
 	$scope.addStar = function(s) {
 		user.judge(function() {
 			s.colled = true;
-			$http.get(service + "exam/addStudy?qid=" + s.qid + (s.checked ? "&answers=" + s.checked : ""));
+			$http.get(service + "exam/addStudy?type=" + starType + "&qid=" + s.qid + (s.checked ? "&answers=" + s.checked : "")).success(function(response) {
+				if (response.code == 200) {
+					s.clcid = response.list[0].clcid;
+				}
+			});
 		})
 	}
 	$scope.delStar = function(s) {
 		s.colled = false;
-		$http.get(service + "exam/removeStudy?qid=" + s.qid);
+		$http.get(service + "exam/removeStudy?clcid=" + s.clcid);
 	}
 })
 
-base.controller('mytest', function($scope, $http, $sce, fac, hash, QType) {
-	$scope.nlist = QType;
+base.controller('mytest', function($scope, $http, $sce, fac, hash) {
 	$scope.slist = [{
 		type: "ErrQuestions",
 		name: "错题记录"
@@ -1049,52 +1055,21 @@ base.controller('mytest', function($scope, $http, $sce, fac, hash, QType) {
 	}
 	$scope.addStar = function(s) {
 		s.colled = true;
-		$http.get(service + "exam/addStudy?qid=" + s.qid + (s.checked ? "&answers=" + s.checked : "")).success(function(response) {
+		$http.get(service + "exam/addStudy?qid=" + s.qid + $scope.errtype + (s.checked ? "&answers=" + s.checked : "")).success(function(response) {
+			if (response.code == 200) {
+				s.clcid = response.list[0].clcid;
+			}
 			if ($scope.rt.type == $scope.slist[1].type) $scope.get($scope.page.index, true);
 		});
 	}
 	$scope.delStar = function(s) {
 		s.colled = false;
-		$http.get(service + "exam/removeStudy?qid=" + s.qid).success(function(response) {
+		$http.get(service + "exam/removeStudy?clcid=" + s.clcid).success(function(response) {
 			if ($scope.rt.type == $scope.slist[1].type) $scope.get($scope.page.index, true);
 		});
 	}
 })
-
-base.controller('help', function($scope, $http, fac, hash) {
-	hash.init({
-		pid: 0,
-		tid: 0
-	});
-	$scope.hash = hash;
-	$scope.hash.href = "s" + $scope.hash.pid + $scope.hash.tid + "Html";
-	$scope.nlist = [{
-		name: "新手指南",
-		list: ["购课流程", "常见问题"]
-	}, {
-		name: "支付方式",
-		list: ["网银支付", "平台支付", "银行汇款", "常见支付问题"]
-	}, {
-		name: "售后服务",
-		list: ["发票制度", "退款说明"]
-	}, {
-		name: "服务条款",
-		list: ["购课服务", "使用协议"]
-	}]
-	$scope.set = function(p, t, h) {
-		$scope.hash = {
-			pid: p,
-			tid: t,
-			href: "s" + p + t + "Html"
-		};
-	}
-})
-
-base.controller('about', function($scope, $http, $sce, fac, hash) {
-	$scope.hash = hash.init({
-		pid: 0
-	});
-	$scope.nlist = ["企业简介", "企业文化", "招贤纳士", "联系我们"]
+base.controller('about', function($scope, $http, $sce) {
 	$http.post(service + "frontIndex/getRecruit").success(function(response) {
 		if (response.code == 200) {
 			$scope.list = response.list;

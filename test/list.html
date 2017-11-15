@@ -40,12 +40,12 @@
 					<span class="gray fr" ng-if="!c.yznums">题量：{{c.nums}}</span>
 					<i class="i_bar" ng-if="c.yznums"><u ng-class="{'a':c.p>0.84,'b':c.p>0.69,'c':c.p>0.49}" ng-style="{width:c.yznums/c.nums*100+'%'}"></u></i>
 				</div>
-				<a ng-href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}" class="btn" ng-class="{'on':c.yznums}">{{c.yznums?"再做一次":"开始做题"}}</a>
-				<a ng-if="c.yznums>0" style="right:180px" ng-href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}&keep=1" class="btn">继续答题</a>
+				<a href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}" class="btn" ng-class="{'on':c.yznums}">{{c.yznums?"再做一次":"开始做题"}}</a>
+				<a ng-if="c.yznums>0" style="right:180px" href="<!--#echo var='ver1'-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&name={{c.chapter_name}}&keep=1" class="btn">继续答题</a>
 				<ol>
 					<li ng-repeat="s in c.sublist" ng-init="s.p=s.zdnums/s.yznums">
 						{{s.section_name}}
-						<a ng-if="s.nums" ng-href="<!--#echo var="ver1"-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&sid={{s.id}}&name={{s.chapter_name}}-{{s.section_name}}" class="btn">开始做题</a>
+						<a ng-if="s.nums" href="<!--#echo var="ver1"-->test/item.html?mid={{c.major_id}}&cid={{c.id}}&type={{rt.type}}&sid={{s.id}}&name={{s.chapter_name}}-{{s.section_name}}" class="btn">开始做题</a>
 						<label ng-if="!s.nums" class="btn disabled">暂无习题</label>
 						<span class="gray fr" ng-if="s.yznums">已做：{{s.yznums}}/{{s.nums}}</span>
 						<i class="i_bar" ng-if="s.yznums"><u ng-class="{'a':s.p>0.84,'b':s.p>0.69,'c':s.p>0.49}" ng-style="{width:s.yznums/s.nums*100+'%'}"></u></i>
@@ -63,8 +63,8 @@
 		</ul>
 		<ul class="d_qlist qlist odd_list bdx" ng-if="!loading&&(rt.type==nlist[1].type||rt.type==nlist[2].type)&&list.length">
 			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
-				<a ng-href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"再做一次":"开始做题"}}</a>
-				<a ng-if="s.yznums>0" style="right:180px" ng-href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}&keep=1" class="btn fr">继续答题</a>
+				<a href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"再做一次":"开始做题"}}</a>
+				<a ng-if="s.yznums>0" style="right:180px" href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}&keep=1" class="btn fr">继续答题</a>
 				<span class="gray fr">已有 {{s.write_num}} 人参考</span>
 				<a href="<!--#echo var="ver1"-->test/item.html?mid={{rt.mid}}&cid={{rt.cid}}&type={{rt.type}}&sid={{s.id}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
 				{{s.title}} <br>

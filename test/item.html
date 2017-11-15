@@ -7,7 +7,7 @@
 <body ng-app="baseApp">
 <!--#include virtual="/include/header.html"-->
 <div class="page cf ng-init" ng-controller="test">
-	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a ng-href="<!--#echo var="ver1"-->test/list.html?mid={{rt.mid}}&type={{rt.type}}" ng-if="rt.type!='grade'">在线题库</a><a ng-href="<!--#echo var="ver1"-->user/history.html?title=学习中心&type=1" ng-if="rt.type=='grade'">学习计划</a>&gt;<span>在线答题</span></div>
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<a href="<!--#echo var="ver1"-->test/list.html?mid={{rt.mid}}&type={{rt.type}}" ng-if="rt.type!='grade'">在线题库</a><a href="<!--#echo var="ver1"-->user/plan_t.html" ng-if="rt.type=='grade'">学习计划</a>&gt;<span>在线答题</span></div>
 	<div class="test_t box" id="test_top1">
 		<i class="i_point" ng-show="!rt.view&&submited&&geted">{{score}}</i>
 		<h2 ng-if="rt.name">{{rt.name}}</h2>
@@ -71,7 +71,7 @@
 					<label ng-repeat="s in t.question" class="{{s.yesno}}" ng-class="{'on':s.checked,'submited':submited}" ng-click="scroll('ttq'+s.qid)">{{$index+1}}</label>
 				</div>
 			</div>
-			<a class="btn big" ng-href="{{url}}" ng-if="submited">再做一遍</a>
+			<a class="btn big" href="{{url}}" ng-if="submited">再做一遍</a>
 			<label class="btn big" ng-if="!submited" ng-click="showSub()">提交试卷</label>
 		</div>
 	</div>

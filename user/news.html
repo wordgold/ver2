@@ -10,14 +10,14 @@
 	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>学习中心</span></div>
 	<div class="nav_l box f_biger ng-init" ng-controller="userNav" data-nid="3">
 		<div ng-repeat="n in list" ng-class="{'in':nid==$index}">
-			<a ng-href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
-			<a ng-href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
+			<a href="{{n.href}}" ng-click="$parent.nid=$index" class="btn">{{n.name}}</a>
+			<a href="{{m.href}}" ng-class="{'on':mid==$index}" ng-repeat="m in n.list" ng-click="mid=$index" class="nav_l_a">{{m.name}}</a>
 		</div>
 	</div>
 	<div class="box_r box ng-init" ng-controller="news">
 		<ul class="news_list odd_list bdx" ng-if="!hash.id&&user.news.length">
 			<li ng-repeat="n in user.news" ng-class="{'read':n.is_read,'odd':$odd,'last':$last}">
-				<a ng-href="<!--#echo var="ver1"-->user/news.html?id={{n.id}}">{{n.title}}</a> <span class="gray fr">{{n.create_time}}</span>
+				<a href="<!--#echo var="ver1"-->user/news.html?id={{n.id}}">{{n.title}}</a> <span class="gray fr">{{n.create_time}}</span>
 			</li>
 		</ul>
 		<div class="bdx" ng-if="hash.id">

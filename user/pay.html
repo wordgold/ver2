@@ -15,7 +15,7 @@
 	</div>
 	<div class="pay_m box" ng-if="!status">
 		<h2 ng-if="!status">选择支付方式</h2>
-		<a ng-href="{{alipay}}" ng-click="$parent.check=true" target="_blank" class="alipayBtn"></a>
+		<a href="{{alipay}}" ng-click="$parent.check=true" target="_blank" class="alipayBtn"></a>
 		<label class="wechatBtn" ng-click="showWechat=!showWechat;$parent.check=true" ng-class="{'on':showWechat}"></label>
 		<p ng-show="showWechat"><img ng-src="{{wechat}}" alt="微信扫码支付"></p>
 		<p ng-show="$parent.check"><label ng-click="get()" class="btn bg_red">{{checkStr}}</label></p>

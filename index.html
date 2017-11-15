@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="banner bnr1" data-type="1" ng-mouseenter="ba.stop()" ng-mouseleave="ba.play()" ng-controller="banner" data-id="" style="height: 140px">
-				<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
+				<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
 				<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
 			</div>
 		</div>
@@ -49,9 +49,9 @@
 				欢迎来到中科建安</p>
 				<p ng-if="!user.logined"><a href="{{user.loginURL}}" class="btn fl">登录</a><a href="{{user.registerURL}}" class="btn fr">注册</a></p>
 				<p ng-if="user.logined"><a href="<!--#echo var='ver1'-->user/detail.html" class="btn fl">个人资料</a><a href="<!--#echo var='ver1'-->user/car.html" class="btn fr">购物车</a></p>
-				<a href="<!--#echo var='ver1'-->user/plan_v.html" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl1.png"> 学习计划</a>
-				<a href="<!--#echo var='ver1'-->user/class.html" class="h_l_a"><img src="<!--#echo var='ver1'-->images/hl2.png"> 我的课程</a>
-				<a href="<!--#echo var='ver1'-->user/test.html" class="h_l_a" style="margin-right: 0"><img src="<!--#echo var='ver1'-->images/hl3.png"> 我的题库</a>
+				<a href="<!--#echo var='ver1'-->user/plan_v.html" class="h_l_a"><img src="<!--#echo var='ver1'-->images/taocan/i2.png"> 学习计划</a>
+				<a href="<!--#echo var='ver1'-->user/class.html" class="h_l_a" style="left:138px"><img src="<!--#echo var='ver1'-->images/taocan/i3.png"> 我的课程</a>
+				<a href="<!--#echo var='ver1'-->user/test.html" class="h_l_a" style="left:258px"><img src="<!--#echo var='ver1'-->images/taocan/i4.png"> 我的题库</a>
 			</div>
 		</div>
 		<div class="box_pd">
@@ -91,7 +91,7 @@
 					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=156&fid=166"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/2.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c2.png">
-						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学进度</p>
+						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学习进度</p>
 						<p><i class="icon i_arrow"></i>为学员制定学习计划</p>
 						<p><i class="icon i_arrow"></i>赠送配套《考点精讲讲义》、《历年真题考点解析》、《章节练习题》、《高频考点试题》 </p>
 						<p><i class="icon i_person"></i>适合人群：基础较薄弱，学习时间有限，不能参加面授课程。想通过网课培训接受名师点拨，结合题库课程掌握考点，高效通过考试的学员。</p>
@@ -101,10 +101,10 @@
 					<a href="<!--#echo var='ver1'-->class/item.html?mid=11&cid=0&gid=157&fid=169"><img class="img_bg" src="<!--#echo var='ver1'-->tmp/3.jpg"><i class="icon i_play"></i></a>
 					<div class="bdx">
 						<img src="<!--#echo var='ver1'-->images/c3.png">
-						<p><i class="icon i_arrow"></i>协助考生报名、学习计咨询、跟踪学习进度</p>
+						<p><i class="icon i_arrow"></i>协助考生报名、咨询、跟踪学习进度</p>
 						<p><i class="icon i_arrow"></i>为学员制定学习计划</p>
 						<p><i class="icon i_arrow"></i>赠送配套《考点精讲讲义》、《历年真题考点解析》、《章节练习题》、《高频考点试题》</p>
-						<p><i class="icon i_person"></i>适合人群：基础薄弱，自我学习能力不强，基本没有时间学习。但有条件参加面授课程，通过名师现场教学指导，特训+冲关学习，结合密押试题。</p>
+						<p><i class="icon i_person"></i>适合人群：基础薄弱，自我学习能力不强，基本没有时间学习。但有条件参加面授课程，通过名师现场教学指导，特训+冲关学习。</p>
 					</div>
 				</li>
 			</ul>
@@ -137,7 +137,7 @@
 			</div>
 			<div class="fr box">
 				<div class="banner bnr1" data-type="2" ng-controller="banner" data-id="" style="height: 346px">
-					<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
+					<a ng-repeat="s in list" ng-class="{'on':ba.i==$index}" href="{{s.linkdress}}" ng-style="{backgroundColor:'#'+s.bgcolor,backgroundImage: 'url('+s.url+')'}"></a>
 					<p><i ng-repeat="s in list" ng-class="{'on':ba.i==$index}" ng-mouseenter="ba.i=$index"></i></p>
 				</div>
 			</div>
@@ -175,53 +175,53 @@
 				<ul class="h_comment f_biger">
 					<li ng-mouseenter="h_c_i=0">
 						<img ng-src="<!--#echo var='ver1'-->tmp/c/1.jpg" class="u_avatar">
-						<b>阿勇</b>
-						<p>老师讲的很好，结合真题，帮助记忆。上岁数了记忆力减退，还是得按老师的方法有效果。</p>
+						<b>落日余晖</b>
+						<p>感谢刘老师三个月来的全程关注和指导，奈何学生不才，没有取得好的成绩。在培训学习的整个过程中，我都能感受到老师们的关心和鼓励，享受到了学习的快乐，对安全管理也有了新的认识和提高，再一次感谢你们，真诚祝愿各位老师工作顺利、生活愉快。有空来普洱玩。</p>
 					</li>
 					<li style="left: 90px;" ng-class="{'on':h_c_i<1}" ng-mouseenter="h_c_i=1">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/3.jpg" class="u_avatar">
-						<b style="background: #b5ece9">deepblue</b>
-						<p>在网上学习很方便，随时随地打开就可以看视频做题。工作太忙没时间参加面授培训。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/2.jpg" class="u_avatar">
+						<b style="background: #b5ece9">山川</b>
+						<p>管理只看了一小时资料，感觉比较简单。资料里好几道题跟考试题差不多，考点太有用了。</p>
 					</li>
 					<li style="left: 180px;" ng-class="{'on':h_c_i<2}" ng-mouseenter="h_c_i=2">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/7.jpg" class="u_avatar">
-						<b style="background: #ded9ff">守艺人</b>
-						<p>这次能顺利通过考试除了自己的努力，老师的指点尤为重要。很多考点光靠自己无法真正的去领会，只有跟随老师的方法才能熟练掌握。我在复习过程中也遇到了不少困难，有的时候很烦躁不想学习。教研老师的指导能让我静下心来学。考过的感觉不错，希望大家都能通过考试吧。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/3.jpg" class="u_avatar">
+						<b style="background: #ded9ff">静心</b>
+						<p>中科建安的全体老师：你们辛苦了！注安考试昨天结束，感谢你们三个月来的全程关心和指导，无论考试成绩如何，我们不后悔，因为培训学习的整个过程中，我们都能感受到老师的关心和鼓励，享受到了学习的快乐和收获，认识你们很高兴。祝愿各位老师工作顺利、生活愉快！</p>
 					</li>
 					<li style="left: 270px;" ng-class="{'on':h_c_i<3}" ng-mouseenter="h_c_i=3">
 						<img ng-src="<!--#echo var='ver1'-->tmp/c/4.jpg" class="u_avatar">
-						<b style="background: #fbecc9">lazhaca蕾木</b>
-						<p>以前对你们有些怀疑，参加了两次培训会以后，觉得咱们很专业，相信我的选择没有错。</p>
+						<b style="background: #fbecc9">时光漫步</b>
+						<p>谢谢刘老师，从培训到考试结束，一直跟踪指导我们学员的学习，老师您辛苦了！学员们辛苦了！谢谢中科建安！</p>
 					</li>
 					<li style="left: 360px;" ng-class="{'on':h_c_i<4}" ng-mouseenter="h_c_i=4">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/6.jpg" class="u_avatar">
-						<b>浅月朦胧</b>
-						<p>特别感谢一下中科建安李老师，从报名到学习到考试一点都没有放松，有的时候我都不好意思了。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/5.jpg" class="u_avatar">
+						<b>天蓝云淡</b>
+						<p>感谢中科建安的老师们，你们非常敬业，也非常负责，给你们点个赞，谢谢老师！</p>
 					</li>
 					<li style="left: 450px;" ng-class="{'on':h_c_i<5}" ng-mouseenter="h_c_i=5">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/10.jpg" class="u_avatar">
-						<b style="background: #fed3d3">老炮儿</b>
-						<p>特别感谢中科建安的老师，培训前是持怀疑态度的，但参加之后觉得真是来对了，老师的授课方法很有效，既不枯燥又能加深印象。培训课程安排的合理紧凑，而且也不是笼统的模板教学，老师思路严谨，有针对性的给我们列举了很多实例，很快就能进入状态。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/6.jpg" class="u_avatar">
+						<b style="background: #fed3d3">sky</b>
+						<p>考完了第一科，哎呀，你们家那题啊，全有，一道没跑，特别是哪个多选，都在你们那范围之内的那些题里面。</p>
 					</li>
 					<li style="left: 540px;" ng-class="{'on':h_c_i<6}" ng-mouseenter="h_c_i=6">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/2.jpg" class="u_avatar">
-						<b style="background: #ded9ff">光</b>
-						<p>经过几次特训班学习，心里有底了。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/7.jpg" class="u_avatar">
+						<b style="background: #ded9ff">雪</b>
+						<p>米老师你好，中科建安太厉害了，我感觉考得还满意，无论结果如何，我都很满意，谢谢你米老师。吃水不忘挖井人，我从沈阳往回走了，祝你工作顺利！</p>
 					</li>
 					<li style="left: 630px;" ng-class="{'on':h_c_i<7}" ng-mouseenter="h_c_i=7">
 						<img ng-src="<!--#echo var='ver1'-->tmp/c/8.jpg" class="u_avatar">
-						<b style="background: #b5ece9">天空中行走的云</b>
-						<p>思路很清晰，复杂的知识点讲出来很透。</p>
+						<b style="background: #b5ece9">如烟</b>
+						<p>自我感觉不错，我把题库练习过了两遍！两遍呢！眼睛都疼的不要不要的了。有好几道题是上个月给的资料里的，自信心还是很高的，不枉花钱参加两期课程，谢谢您哦！</p>
 					</li>
 					<li style="left: 720px;" ng-class="{'on':h_c_i<8}" ng-mouseenter="h_c_i=8">
 						<img ng-src="<!--#echo var='ver1'-->tmp/c/9.jpg" class="u_avatar">
-						<b style="background: #fbecc9">张工</b>
-						<p>通过老师的讲授，基本熟悉和掌握了课程内容，很多以前的知识点也都记起来了，效率还是很高的。老师对重点知识的把控是很强的，利用丰富的专业知识，引导学生进入到课堂教学中，增强学员的辨析能能力。</p>
+						<b style="background: #fbecc9">向往的生活</b>
+						<p>给老师点个大大的赞！咱中科建安还是很赞的，考点压的也不错，老师也很负责，谢谢！</p>
 					</li>
 					<li style="left: 810px;" ng-class="{'on':h_c_i<9}" ng-mouseenter="h_c_i=9">
-						<img ng-src="<!--#echo var='ver1'-->tmp/c/5.jpg" class="u_avatar">
-						<b style="background: #fed3d3">妮宸</b>
-						<p>平时没事儿的时候打开题做一做，慢慢就掌握了。</p>
+						<img ng-src="<!--#echo var='ver1'-->tmp/c/10.jpg" class="u_avatar">
+						<b style="background: #fed3d3">高山仰止</b>
+						<p>我看了好多家的资料，中科建安的资料是最全、最好记的，比其他的资料更贴合考试需要，我支持中科建安！</p>
 					</li>
 				</ul>
 			</div>

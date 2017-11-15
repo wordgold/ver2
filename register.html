@@ -30,7 +30,7 @@
 						<input id="code" maxlength="4" ng-minlength="4" class="txt half" ng-model="code" name="code" required placeholder="短信验证码"><label class="half btn bg_white" ng-click="send(user.ph.$modelValue)" ng-class="{'disabled':user.ph.$invalid||user.imgcode.$invalid||sended}" ng-bind="sended?'等待 '+s+' 秒…':'获取短信验证码'"></label><span class="err" ng-show="user.code.$dirty&&user.code.$invalid">请输入4位短信验证码</span></li>
 					<li>
 						<label for="pw" class="f_i"><big class="red">*</big>密&emsp;&emsp;码：</label>
-						<input id="pw" type="password" maxlength="18" ng-minlength="4" class="txt" ng-model="pw" name="pw" ng-pattern="/^[0-9a-zA-Z\_]+$/" required placeholder="请输入4-18位（数字，字母，下划线）"><span class="err" ng-show="user.pw.$dirty&&user.pw.$invalid">请输入4-18位（数字，字母，下划线）</span></li>
+						<input id="pw" type="password" maxlength="18" ng-minlength="4" class="txt" ng-model="pw" v-pwd name="pw" required placeholder="请输入4-18位（数字，字母，下划线）"><span class="err" ng-show="user.pw.$dirty&&user.pw.$invalid">请输入4-18位（数字，字母，下划线）</span></li>
 					<li>
 						<label for="rpw" class="f_i"><big class="red">*</big>确认密码：</label>
 						<input id="rpw" type="password" class="txt" vconfirm="pw" required ng-model="rpw" name="rpw" placeholder="请再次输入密码"><span class="err" ng-show="user.rpw.$dirty&&user.rpw.$invalid">两次密码输入不一致</span></li>

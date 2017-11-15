@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--#include virtual="/include/head.html"-->
+	<title>购买套餐</title>
+	<style type="text/css">
+		.i1{
+			width: 750px;margin: 0 auto
+		}
+		.c1,.c2,.c3,.b1,.b2,.b3{
+			display: block;
+			position: absolute;
+			left: 262px;
+			top: 2816px;
+			width: 250px;
+			height: 70px;
+		}
+		.c1:hover,.c2:hover,.c3:hover{
+			background: transparent url(<!--#echo var='ver1'-->images/taocan/b2.png);
+		}
+		.b1:hover,.b2:hover,.b3:hover{
+			background: transparent url(<!--#echo var='ver1'-->images/taocan/b1.png);
+		}
+		.b1,.b2,.b3{
+			left:
+			top:
+		}
+		.b2{
+			top:
+		}
+		.b3{
+			top:
+		}
+		.c2{
+			top:4518px;
+		}
+		.c3{
+			top:5014px;
+		}
+	</style>
+</head>
+<body ng-app="baseApp">
+<!--#include virtual="/include/header.html"-->
+<div class="page">
+	<div class="bread"><a href="<!--#echo var="ver1"-->">首页</a>&gt;<span>购买套餐</span></div>
+	<div class="box i1 ng-init" ng-controller="taocan">
+		<img src="<!--#echo var='ver1'-->images/taocan/bg.jpg">
+		<a href="javascript:" ng-click="pay('184')" class="c1"></a>
+		<!-- <a href="<!--#echo var='ver1'-->taocan/class.html?mid=11&cid=0&gid=155&fid=160" class="b1"></a>
+		<a href="<!--#echo var='ver1'-->test/list.html?type=AllReal" class="b2"></a>
+		<a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTk2Ml80NjAzODhfNDAwNjc4MDY4MV8yXw" class="b3" target="_blank"></a> -->
+		<a href="javascript:" ng-click="pay('185')" class="c2"></a>
+		<a href="javascript:" ng-click="pay('184,185')" class="c3"></a>
+		<div ng-show="aShow">
+			<div class="hbg"></div>
+			<form ng-submit="sub()" class="login_f login_panl" name="ads" novalidate style="top: 320px">
+				<a href="javascript:" id="alertR" ng-click="aShow=false">X</a>
+				<h3><b>请输入学习资料邮寄地址</b></h3>
+				<ul class="form">
+					<li class="no_f red">{{errMsg}}</li>
+					<li style="line-height:20px;padding:0;min-height:0;">收件人姓名</li>
+					<li><input type="text" class="txt" ng-model="name" name="name" required><span class="err" ng-show="ads.name.$dirty&&ads.name.$invalid">请输入姓名</span></li>
+					<li style="line-height:20px;padding:0;min-height:0;">收件人电话</li>
+					<li><input type="text" class="txt" ng-model="phone" vphone name="phone" required><span class="err" ng-show="ads.phone.$dirty&&ads.phone.$invalid">请输入正确格式的手机号码</span></li>
+					<li style="line-height:20px;padding:0;min-height:0;">详细收件地址</li>
+					<li><textarea style="line-height: 20px;height: 99px" class="txt" ng-model="address" name="address" required></textarea><span class="err" ng-show="ads.address.$dirty&&ads.address.$invalid">请输入详细收件地址</span></li>
+					<li class="no_f"><button class="sub btn" type="submit" ng-disabled="ads.$invalid">提&emsp;&emsp;交</button></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/include/footer.html"-->
+<script>
+	base.controller('taocan', function($scope, $http, user, fac) {
+		$scope.pay = function(s){
+			user.judge(function() {
+				$scope.gids = s;
+				if(s==185){
+					$http.post(service + "gradeFront/addPackage?gids=" + $scope.gids).success(function(response) {
+						if (response.code == 200)
+							location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
+						else
+							alert(response.msg)
+					});
+				}else{
+					$scope.aShow = true;
+				}
+			})
+		}
+		$scope.gids = "";
+		$scope.sub = function(){
+			$scope.errMsg = "正在提交，请稍候..."
+			$http.post(service + "gradeFront/addPackage","gids=" + $scope.gids + "&" +fac.serialize($scope.ads)).success(function(response) {
+				if (response.code == 200)
+					location.href = "<!--#echo var='ver1'-->user/pay.html?id=" + response.orderid;
+				else
+					$scope.errMsg=response.msg
+			});
+		}
+	})
+</script>
+</body>
+</html>

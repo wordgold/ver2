@@ -17,12 +17,12 @@
 				<span class="red" ng-if="s.is_free==2">收费</span>
 				<span class="gray">{{s.play_count}} 人观看</span><br>
 				视频所在班次:
-				<a class="btn" ng-repeat="x in s.grade" ng-href="<!--#echo var="ver1"-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
+				<a class="btn" ng-repeat="x in s.grade" href="<!--#echo var="ver1"-->class/item.html?mid={{s.major_id}}&cid={{s.course_id}}&gid={{x.gid}}&vid={{s.id}}">{{x.gname}}</a>
 			</li>
 		</ul>
 		<ul class="d_qlist qlist bdx" ng-if="list.length&&hash.hstype==2">
 			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
-				<a ng-href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"在做一次":"开始做题"}}</a>
+				<a href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"在做一次":"开始做题"}}</a>
 				<span class="gray fr">已有 {{s.write_num}} 人参考</span>
 				<a href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
 				{{s.title}} <br>

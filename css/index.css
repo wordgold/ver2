@@ -306,7 +306,7 @@ hr {
 	content: "中"
 }
 .i_bar u.b:after {
-	content: "良¯"
+	content: "良"
 }
 .i_bar u.a:after {
 	content: "优"
@@ -572,6 +572,7 @@ hr {
 	top: 0;
 	width: 269px;
 	height: 80px;
+	z-index: 2;
 	overflow: hidden
 }
 .header h1 {
@@ -632,6 +633,14 @@ hr {
 	margin: 0;
 	padding: 9px;
 	line-height: 20px
+}
+.header_nav,.header_nav a{
+	position: absolute;
+	left: 0;
+	top: 30px;
+	color: #fff;
+	font-size: 9px;
+	white-space: nowrap;
 }
 .nav_a{
 	position: absolute;
@@ -728,6 +737,7 @@ hr {
 .fly_qq{
 	background: #cddafe;
 	color: #5a84fb;
+	line-height: 26px;
 }
 .fly_qq img{
 	display: inline-block;
@@ -827,12 +837,19 @@ hr {
 	width: 64px;
 }
 .h_l_a{
-	width: 64px;
-	float: left;
-	margin: 32px 42px 0 0;
+	position: absolute;
+	left: 18px;
+	bottom: 20px;
+	width: 80px;
+	height: 90px;
+	text-align: center;
+}
+.h_l_a:hover{
+	background: #eee;
 }
 .h_l_a img{
 	display: block;
+	margin: 12px auto 0 auto;
 }
 .h_news .box.fl{
 	width: 780px;
@@ -1262,11 +1279,11 @@ hr {
 	padding: 0 0 0 20px;
 	border-left:1px #90d2f8 solid;
 }
-.class_nav label {
+.class_nav label,.class_nav a{
 	display: inline-block;
 	margin: 0 24px 0 0;
 }
-.class_nav label.on, .class_nav label:hover {
+.class_nav label.on, .class_nav label:hover,.class_nav a.on,.class_nav a:hover{
 	color: #21a6f1
 }
 .class_nav b{
@@ -1278,7 +1295,7 @@ hr {
 	margin: 24px 0;
 	text-align: center
 }
-.pagination span {
+.pagination span,.pagination a{
 	display: inline-block;
 	padding: 0 9px;
 	margin: 0 9px;
@@ -1287,12 +1304,12 @@ hr {
 	border-radius: 4px;
 	cursor: pointer
 }
-.pagination span:hover {
+.pagination span:hover,.pagination a:hover {
 	border: 1px #21a6f1 solid;
 	background: #21a6f1;
 	color: #fff
 }
-.pagination span.on, .pagination span.on:hover {
+.pagination span.on, .pagination span.on:hover,.pagination a.on,.pagination a.on:hover {
 	background: #eee;
 	color: #999;
 	border: 1px #ccc solid;
@@ -1982,7 +1999,7 @@ iframe#alertP {
 	font-weight: bold;
 	margin:0 0 1em 0;
 }
-.news_box .gray{
+.news_box p.gray{
 	margin:1em 0;
 }
 .n_intro{
@@ -1992,6 +2009,7 @@ iframe#alertP {
 }
 .n_img{
 	display: block;
+	max-width: 750px;
 	margin: 20px auto;
 }
 .n_date{
