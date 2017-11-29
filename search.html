@@ -22,9 +22,9 @@
 		</ul>
 		<ul class="d_qlist qlist bdx" ng-if="list.length&&hash.hstype==2">
 			<li ng-repeat="s in list" ng-class="{'last':$last,'odd':$odd}">
-				<a href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"在做一次":"开始做题"}}</a>
+				<a href="<!--#echo var="ver1"-->test/item.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}" class="btn fr" ng-class="{'on':s.yznums}">{{s.yznums?"在做一次":"开始做题"}}</a>
 				<span class="gray fr">已有 {{s.write_num}} 人参考</span>
-				<a href="<!--#echo var="ver1"-->question/test.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
+				<a href="<!--#echo var="ver1"-->test/item.html?mid={{s.major_id}}&cid={{s.course_id}}&type={{s.sid>0?'AllSimul':'AllReal'}}&sid={{s.sid>0?s.sid:s.rid}}&name={{s.title}}&view=true" class="orange fr" ng-if="s.yznums">查看解析</a>
 				{{s.title}} <br>
 				<span class="gray">试卷题量：{{s.nums}}</span>
 				<span class="gray">考试时长：{{s.times}} 分钟</span>
