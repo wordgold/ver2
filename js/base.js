@@ -475,13 +475,13 @@ base.controller('banner', function($scope, $http, $attrs, animate) {
 
 base.controller('scene', function($scope, $http, $attrs, fac, hash, animate) {
 	$scope.hash = hash.set({
-		rows: $attrs.rows || 10
+		rows: $attrs.rows || 10,
+		tid: 0,
+		year: 0
 	});
 	$http.post(service + "frontIndex/getAllFrontsceneNf").success(function(response) {
 		if (response.code == 200) {
 			$scope.ylist = response.list;
-			if (!$scope.hash.year)
-				$scope.hash.year = response.list[0].year
 			$scope.get(hash.page || 1);
 		}
 	});
@@ -492,14 +492,30 @@ base.controller('scene', function($scope, $http, $attrs, fac, hash, animate) {
 			$scope.get(1, true)
 		}
 	}
+	$scope.tlist = [{
+		txt: '特训',
+		id: 1
+	}, {
+		txt: '内训',
+		id: 2
+	}, {
+		txt: '冲刺',
+		id: 3
+	}]
+	$scope.setTid = function(i) {
+		if (i != $scope.hash.tid) {
+			$scope.hash.tid = i;
+			$scope.get(1, true)
+		}
+	}
 
 	$scope.page = {};
 	$scope.loading = false;
 	$scope.get = function(i, b) {
 		if (b || i != $scope.page.index) {
 			$scope.loading = true;
-			$scope.page.index = i-0;
-			$http.post(service + "frontIndex/getAllFrontscene?rows=" + hash.rows + "&page=" + $scope.page.index + "&year=" + $scope.hash.year).success(function(response) {
+			$scope.page.index = i - 0;
+			$http.post(service + "frontIndex/getAllFrontscene?rows=" + hash.rows + "&page=" + $scope.page.index + "&year=" + $scope.hash.year + "&type=" + hash.tid).success(function(response) {
 				$scope.loading = false;
 				if (response.code == 200) {
 					$scope.list = response.list;
@@ -546,7 +562,7 @@ base.controller('newsList', function($scope, $http, $attrs, $sce, hash, fac, NTy
 	});
 
 	$scope.ntype = NType[hash.type]
-	if (!$attrs.rows&&!$attrs.type)
+	if (!$attrs.rows && !$attrs.type)
 		document.title = $scope.ntype + " - 中科建安";
 
 	$scope.page = {};
@@ -1308,8 +1324,8 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 			$scope.glist = response.list.glist || [response.list];
 			var f = $scope.glist[0];
 			if ($scope.rt.fid && $scope.glist.length > 1) {
-				for (var i = $scope.glist.length; i --; ) {
-					if($scope.rt.fid == $scope.glist[i].id)
+				for (var i = $scope.glist.length; i--;) {
+					if ($scope.rt.fid == $scope.glist[i].id)
 						f = $scope.glist[i];
 				}
 			}
@@ -1330,6 +1346,12 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 		$scope.vlist = f.flist;
 		$scope.getVideo($scope.vlist[0].id)
 	}
+	var ct, cvp = new CloudVodPlayer(),
+		timeCheck = function() {
+			clearTimeout(ct);
+			ct = setTimeout(timeCheck, 50000)
+			$http.post(service + "gradeFront/upVideoPro?vid=" + $scope.rt.vid + "&current_time=" + cvp.sdk.getVideoTime() + "&total_time=" + cvp.sdk.getVideoSetting().duration)
+		}
 	$scope.getVideo = function(id, b) {
 		if (b || id != $scope.rt.vid) {
 			for (var i = $scope.vlist.length; i--;) {
@@ -1338,23 +1360,19 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 			$http.post(service + "gradeFront/getByVId?gid=" + $scope.video.gid + "&vid=" + id).success(function(response) {
 				if (response.code == 200) {
 					$scope.rt.vid = id;
-					var da = response.url,
-						flashvars = {
-							f: da,
-							s: '0',
-							c: '0',
-							e: '0',
-							v: '80',
-							p: '1',
-							h: '0',
-							my_url: encodeURIComponent(location.href)
-						},
-						params = {
-							bgcolor: '#FFF',
-							allowFullScreen: true,
-							allowScriptAccess: 'always'
-						};
-					CKobject.embed('<!--#echo var="ver1"-->ckplayer/ckplayer.swf', 'video1', 'ckplayer_video1', '100%', '100%', false, flashvars, [da], params);
+					cvp.init({
+						uu: "j5cgl4xeks",
+						vu: response.vu,
+						pu: "55329a5933",
+						auto_play: 1,
+						gpcflag: 1,
+						width: 700,
+						height: 394,
+						lang: "zh_CN",
+						start:response.current_time-0
+					}, 'levideo')
+					clearTimeout(ct);
+					ct = setTimeout(timeCheck, 50000)
 				} else if (response.code == -1) user.show($scope.getVideo, [id, b])
 				else alert(response.msg)
 			});
@@ -1363,20 +1381,6 @@ base.controller('class', function($scope, $http, $sce, user, fac, hash) {
 					$scope.list = response.list;
 				}
 			});
-		}
-	}
-	var n = 0,
-		total_time, current_time = 0;
-	window.ckplayer_status = function(str) {
-		var a = str.split(":")
-		if (a[0] == "totaltime") total_time = a[1];
-		if (a[0] == "time") current_time = a[1];
-		n++;
-		if (n % 40 == 0) {
-			$http.post(service + "gradeFront/upVideoPro?vid=" + $scope.rt.vid + "&current_time=" + current_time + "&total_time=" + total_time)
-		}
-		if (a[0] == "ended") {
-			$http.post(service + "gradeFront/upVideoPro?vid=" + $scope.rt.vid + "&current_time=" + total_time + "&total_time=" + total_time)
 		}
 	}
 	$scope.panl = 0;
@@ -1388,6 +1392,7 @@ base.controller('userNav', function($scope, $attrs) {
 	$scope.mid = $attrs.mid;
 	$scope.list = [{
 		name: "学习计划",
+		href: 'plan_v.html',
 		list: [{
 			name: "观看视频",
 			href: "plan_v.html"
@@ -1400,6 +1405,7 @@ base.controller('userNav', function($scope, $attrs) {
 		href: "class.html"
 	}, {
 		name: "我的题库",
+		href: 'test.html',
 		list: [{
 			name: "错题记录",
 			href: "test.html"
@@ -1418,6 +1424,7 @@ base.controller('userNav', function($scope, $attrs) {
 		href: "car.html"
 	}, {
 		name: "账号与安全",
+		href: 'detail.html',
 		list: [{
 			name: "个人资料",
 			href: "detail.html"
@@ -1439,7 +1446,7 @@ base.controller('plan', function($scope, $http, $attrs) {
 			$scope.mid = $scope.mlist[0].id;
 			$scope.getCourse();
 			for (var i = $scope.clist.length; i--;) {
-				if($scope.clist[i].id == 36){
+				if ($scope.clist[i].id == 36) {
 					$scope.setCid(36);
 					return;
 				}

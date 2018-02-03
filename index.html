@@ -59,7 +59,7 @@
 			<a href="<!--#echo var='ver1'-->picture/list.html" class="more">更多&gt;</a>
 			<div class="h_pic" ng-controller="scene" data-rows="6">
 				<div class="h_pic_list fr">
-					<label class="hover_box" title="{{hash.year}}年-{{p.slist[p.slist.length-1].content}}" ng-class="{'on':index==$index}" ng-repeat="p in list" ng-click="play(p)"><img ng-src="{{p.slist[p.slist.length-1].imgurl}}"><span>{{hash.year}}年<br>{{p.slist[p.slist.length-1].content|slice:9}}</span></label>
+					<label class="hover_box" title="{{hash.year}}年-{{p.slist[p.slist.length-1].content}}" ng-class="{'on':index==$index}" ng-repeat="p in list" ng-click="play(p)"><img ng-src="{{p.slist[p.slist.length-1].imgurl}}"><span>{{p.slist[p.slist.length-1].year}}年<br>{{p.slist[p.slist.length-1].content|slice:9}}</span></label>
 				</div>
 				<div class="hover_box">
 					<div class="pic_anim" ng-mouseenter="sa.stop()" ng-mouseleave="sa.play()">
